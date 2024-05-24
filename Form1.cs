@@ -25,13 +25,15 @@ namespace ProjetVellemanTEST
 		 * SavedGameUi -> gamelayer = 4
 		 * SettingsUi -> gamelayer = 5
 		 * CreditsUi -> gamelayer = 6
+		 * ChooseDifficultyUi -> gamelayer = 7
 		 * Game -> gamelayer = 999
 		 */
 
 
-		long mainCpt = 0;
+		internal int mainCpt = 0;
 		internal bool game = false;
 		private int velocity = 7;
+		internal int hp = 8;
 		internal InputManager inputManager;
 		internal EntityManager entityManager;
 		internal PlayerEntity pnlPlayer;
@@ -145,7 +147,7 @@ namespace ProjetVellemanTEST
 				{
 					Console.WriteLine("destruction");
 				}
-
+				uiManager.UpdateUi();
 				mainCpt++;
 			}
 			if (gameLayer == 0)

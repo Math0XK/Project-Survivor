@@ -87,7 +87,8 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             {
                 pseudo = playerName.Text;
                 uiManager.ClearUi<NewGameUi>();
-                uiManager.frmAppMain.gameLayer = 999;
+                uiManager.frmAppMain.gameLayer = 7;
+                uiManager.CreateUiComponents<ChooseDifficultyUi>();
             }
         }
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjetVellemanTEST.GameEngine.SoundManager;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -20,17 +21,18 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
         Button btnNext = new();
         Label lblModeDescription = new();
         Label lblTitle = new();
+        int mode = 0;
 
         internal override void OnCreate(UiManager uiManager)
         {
             base.OnCreate(uiManager);
 
             lblTitle.Font = new Font(UiManager.customFont.Families[0], 40, FontStyle.Regular);
-            lblTitle.Size = new Size(388, 66);
+            lblTitle.Size = new Size(800, 66);
             lblTitle.Location = new Point(uiManager.frmAppMain.grpMain.Width / 2 - lblTitle.Width / 2, uiManager.frmAppMain.grpMain.Height * 4 / 30);
             lblTitle.BackColor = Color.Transparent;
             lblTitle.ForeColor = Color.White;
-            lblTitle.Text = "Choose the dificulty";
+            lblTitle.Text = "Select the level";
             lblTitle.TextAlign = ContentAlignment.MiddleCenter;
             uiManager.frmAppMain.grpMain.Controls.Add(lblTitle);
 
@@ -56,7 +58,7 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             btnEasyMode.Size = new Size(140, 80);
             btnEasyMode.ForeColor = Color.White;
             btnEasyMode.Text = "Easy";
-            btnEasyMode.Location = new Point(uiManager.frmAppMain.grpMain.Width * 15 / 40 - btnEasyMode.Width / 2, uiManager.frmAppMain.grpMain.Height * 7 / 30);
+            btnEasyMode.Location = new Point(uiManager.frmAppMain.grpMain.Width * 15 / 40 - btnEasyMode.Width / 2, uiManager.frmAppMain.grpMain.Height * 8 / 30);
             btnEasyMode.MouseClick += UpdateLabel;
             uiManager.frmAppMain.grpMain.Controls.Add((btnEasyMode));
 
@@ -64,7 +66,7 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             btnMediumMode.Size = new Size(140, 80);
             btnMediumMode.ForeColor = Color.White;
             btnMediumMode.Text = "Medium";
-            btnMediumMode.Location = new Point(uiManager.frmAppMain.grpMain.Width * 15 / 40 - btnMediumMode.Width / 2, uiManager.frmAppMain.grpMain.Height * 10 / 30);
+            btnMediumMode.Location = new Point(uiManager.frmAppMain.grpMain.Width * 15 / 40 - btnMediumMode.Width / 2, uiManager.frmAppMain.grpMain.Height * 11 / 30);
             btnMediumMode.MouseClick += UpdateLabel;
             uiManager.frmAppMain.grpMain.Controls.Add((btnMediumMode));
 
@@ -72,7 +74,7 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             btnHardMode.Size = new Size(140, 80);
             btnHardMode.ForeColor = Color.White;
             btnHardMode.Text = "Hard";
-            btnHardMode.Location = new Point(uiManager.frmAppMain.grpMain.Width * 15 / 40 - btnHardMode.Width / 2, uiManager.frmAppMain.grpMain.Height * 13 / 30);
+            btnHardMode.Location = new Point(uiManager.frmAppMain.grpMain.Width * 15 / 40 - btnHardMode.Width / 2, uiManager.frmAppMain.grpMain.Height * 14 / 30);
             btnHardMode.MouseClick += UpdateLabel;
             uiManager.frmAppMain.grpMain.Controls.Add((btnHardMode));
 
@@ -80,7 +82,7 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             btnHarderMode.Size = new Size(140, 80);
             btnHarderMode.ForeColor = Color.White;
             btnHarderMode.Text = "Harder";
-            btnHarderMode.Location = new Point(uiManager.frmAppMain.grpMain.Width * 15 / 40 - btnHarderMode.Width / 2, uiManager.frmAppMain.grpMain.Height * 16 / 30);
+            btnHarderMode.Location = new Point(uiManager.frmAppMain.grpMain.Width * 15 / 40 - btnHarderMode.Width / 2, uiManager.frmAppMain.grpMain.Height * 17 / 30);
             btnHarderMode.MouseClick += UpdateLabel;
             uiManager.frmAppMain.grpMain.Controls.Add((btnHarderMode));
 
@@ -88,7 +90,7 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             btnDemonMode.Size = new Size(140, 80);
             btnDemonMode.ForeColor = Color.White;
             btnDemonMode.Text = "Demon";
-            btnDemonMode.Location = new Point(uiManager.frmAppMain.grpMain.Width * 15 / 40 - btnDemonMode.Width / 2, uiManager.frmAppMain.grpMain.Height * 19 / 30);
+            btnDemonMode.Location = new Point(uiManager.frmAppMain.grpMain.Width * 15 / 40 - btnDemonMode.Width / 2, uiManager.frmAppMain.grpMain.Height * 20 / 30);
             btnDemonMode.MouseClick += UpdateLabel;
             uiManager.frmAppMain.grpMain.Controls.Add((btnDemonMode));
 
@@ -96,8 +98,8 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             lblModeDescription.Size = new Size(800, 420);
             lblModeDescription.ForeColor = Color.White;
             lblModeDescription.BackColor = Color.Transparent;
-            lblModeDescription.Text = "DevloppementCredits_Description";
-            lblModeDescription.Location = new Point(uiManager.frmAppMain.grpMain.Width * 3 / 4 - lblModeDescription.Width / 2, uiManager.frmAppMain.grpMain.Height * 10 / 30);
+            lblModeDescription.Text = "Mode_Description";
+            lblModeDescription.Location = new Point(uiManager.frmAppMain.grpMain.Width * 3 / 4 - lblModeDescription.Width / 2, uiManager.frmAppMain.grpMain.Height * 8 / 30);
             uiManager.frmAppMain.grpMain.Controls.Add(lblModeDescription);
         }
 
@@ -117,16 +119,59 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
 
         private void UpdateLabel(object sender, MouseEventArgs e)
         {
-            
+            if(sender == btnEasyMode)
+            {
+                lblModeDescription.Text = "EasyMode_Description";
+                mode = 1;
+            }
+            else if(sender == btnMediumMode)
+            {
+                lblModeDescription.Text = "MeduimMode_Description";
+                mode = 2;
+            }
+            else if(sender == btnHardMode)
+            {
+                lblModeDescription.Text = "HardMode_Description";
+                mode = 3;
+            }
+            else if (sender == btnHarderMode)
+            {
+                lblModeDescription.Text = "HarderMode_Description";
+                mode = 4;
+            }
+            else if (sender == btnDemonMode)
+            {
+                lblModeDescription.Text = "DemonMode_Description";
+                mode = 5;
+            }
         }
 
         private void BtnNext_MouseClick(object sender, MouseEventArgs e)
         {
+            if(mode == 0)
+            {
+                MessageBox.Show("No level selected, please select a level", "Selection error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else if(mode < 0 || mode > 5)
+            {
+                MessageBox.Show("Oups, something went wrong with the level", "Seletion error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                uiManager.ClearUi<ChooseDifficultyUi>();
+                uiManager.frmAppMain.gameLayer = 999;
+                uiManager.CreateUiComponents<OnGameUi>();
+                uiManager.frmAppMain.soundManager.StopMusicLoop();
+                //uiManager.frmAppMain.soundManager.PlayMusicLoop(uiManager.frmAppMain.soundManager.demonTheme);
+            }
             
         }
 
         private void BtnBack_MouseClick(object sender, MouseEventArgs e)
         {
+            uiManager.ClearUi<ChooseDifficultyUi>();
+            uiManager.frmAppMain.gameLayer = 2;
+            uiManager.CreateUiComponents<MenuUi>();
             
         }
     }

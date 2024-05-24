@@ -54,5 +54,15 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
                 }
             }
         }
+        internal void UpdateUi()
+        {
+            foreach(BaseUi ui in uiComponents)
+            {
+                if (ui is OnGameUi ui1)
+                {
+                    ui1.updateOnGameUi();
+                }
+            }
+        }
     }
 }
