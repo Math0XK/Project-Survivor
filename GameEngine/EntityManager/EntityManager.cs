@@ -149,6 +149,41 @@ namespace ProjetVellemanTEST
                 {
                     projectile.mainPanel.Top -= 10;
                 }
+                if(entity is MovingEntitiy movingEntitiy)
+                {
+                    movingEntitiy.mainPanel.Top += 1 * frmAppMain.uiManager.mode;
+                }
+                if(entity is MovingEntityDiagonal movingEntityDiagonal)
+                {
+                    if(movingEntityDiagonal.moveRL > 25)
+                    {
+                        movingEntityDiagonal.mainPanel.Top += 1 * frmAppMain.uiManager.mode;
+                        movingEntityDiagonal.mainPanel.Left += 1 * frmAppMain.uiManager.mode;
+                    }
+                    else if(movingEntityDiagonal.moveRL <= 25)
+                    {
+                        movingEntityDiagonal.mainPanel.Top += 1 * frmAppMain.uiManager.mode;
+                        movingEntityDiagonal.mainPanel.Left -= 1 * frmAppMain.uiManager.mode;
+                    }
+                }
+                if(entity is MovingEntityPattern01 pattern01)
+                {
+                    float move;
+                    pattern01.mainPanel.Top += 1 * frmAppMain.uiManager.mode;
+                    move = (float)Math.Sin(frmAppMain.mainCpt/50)*10;
+                    pattern01.mainPanel.Left -= (int)move;
+                }
+                if(entity is MovingEntityTinyVersion movingEntityTiny)
+                {
+                    movingEntityTiny.mainPanel.Top += 2 * frmAppMain.uiManager.mode;
+                }
+                if(entity is MovingEntityPattern01TinyVersion pattern01TinyVersion)
+                {
+                    float move;
+                    pattern01TinyVersion.mainPanel.Top += 2 * frmAppMain.uiManager.mode;
+                    move = (float)Math.Sin(frmAppMain.mainCpt / 50) * 10;
+                    pattern01TinyVersion.mainPanel.Left += (int)move/2;
+                }
               
             }
         }
@@ -158,7 +193,7 @@ namespace ProjetVellemanTEST
             List<BaseEntity> copy = new List<BaseEntity>(entities);
             foreach (BaseEntity entity in copy)
             {
-                if (entity.destroyed && entity is not ProjectileEntity)
+                if ((entity.destroyed || entity.mainPanel.Top>frmAppMain.grpMain.Bottom) && entity is not ProjectileEntity)
                 {
                     frmAppMain.soundManager.PlaySoundEffect(frmAppMain.soundManager.hitSoundEffect);
                     entities.Remove(entity);

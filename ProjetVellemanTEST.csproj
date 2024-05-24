@@ -59,6 +59,10 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="GameEngine\EntityManager\MovingEntityDiagonal.cs" />
+    <Compile Include="GameEngine\EntityManager\MovingEntityPattern01.cs" />
+    <Compile Include="GameEngine\EntityManager\MovingEntityPattern01TinyVersion.cs" />
+    <Compile Include="GameEngine\EntityManager\MovingEntityTinyVersion.cs" />
     <Compile Include="GameEngine\EntityManager\ProjectileEntity.cs" />
     <Compile Include="GameEngine\InputManager\InputManager.cs" />
     <Compile Include="GameEngine\EntityManager\PlayerEntity.cs" />

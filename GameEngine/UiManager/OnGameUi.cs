@@ -34,10 +34,10 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             lblHP.TextAlign = ContentAlignment.TopLeft;
             pnlUi.Controls.Add(lblHP);
 
-            lblTicks.Size = new Size(200, 50);
+            lblTicks.Size = new Size(300, 50);
             lblTicks.Location = new Point(pnlUi.Width/2 - lblTicks.Width/2, 0);
             lblTicks.Font = new Font(UiManager.customFont.Families[0], 16, FontStyle.Regular);
-            lblTicks.BackColor = Color.Transparent;
+            lblTicks.BackColor = Color.Red;
             lblTicks.ForeColor = Color.White;
             lblTicks.TextAlign = ContentAlignment.TopCenter;
             pnlUi.Controls.Add (lblTicks);
@@ -58,8 +58,8 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
 
         internal void updateOnGameUi()
         {
-            lblTicks.Text = "Ticks = " + uiManager.frmAppMain.mainCpt;
-            lblCharge.Text = "Charge = " + (uiManager.frmAppMain.charge - uiManager.frmAppMain.currentProjectile);
+            lblTicks.Text = "Ticks : " + uiManager.frmAppMain.mainCpt;
+            lblCharge.Text = "Charge : " + (uiManager.frmAppMain.charge - uiManager.frmAppMain.currentProjectile);
             lblHP.Text = "HP : "+ uiManager.frmAppMain.hp;
         }
 

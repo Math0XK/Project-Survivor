@@ -30,6 +30,7 @@ namespace ProjetVellemanTEST
         internal override void onDestroy(EntityManager entityManager)
         {
             base.onDestroy(entityManager);
+            entityManager.frmAppMain.currentEntity--;
             entityManager.frmAppMain.grpMain.Controls.Remove(mainPanel);
             mainPanel.Dispose();
         }

@@ -21,7 +21,6 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
         Button btnNext = new();
         Label lblModeDescription = new();
         Label lblTitle = new();
-        int mode = 0;
 
         internal override void OnCreate(UiManager uiManager)
         {
@@ -122,37 +121,37 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             if(sender == btnEasyMode)
             {
                 lblModeDescription.Text = "EasyMode_Description";
-                mode = 1;
+                uiManager.mode = 1;
             }
             else if(sender == btnMediumMode)
             {
                 lblModeDescription.Text = "MeduimMode_Description";
-                mode = 2;
+                uiManager.mode = 2;
             }
             else if(sender == btnHardMode)
             {
                 lblModeDescription.Text = "HardMode_Description";
-                mode = 3;
+                uiManager.mode = 3;
             }
             else if (sender == btnHarderMode)
             {
                 lblModeDescription.Text = "HarderMode_Description";
-                mode = 4;
+                uiManager.mode = 4;
             }
             else if (sender == btnDemonMode)
             {
                 lblModeDescription.Text = "DemonMode_Description";
-                mode = 5;
+                uiManager.mode = 5;
             }
         }
 
         private void BtnNext_MouseClick(object sender, MouseEventArgs e)
         {
-            if(mode == 0)
+            if(uiManager.mode == 0)
             {
                 MessageBox.Show("No level selected, please select a level", "Selection error", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            else if(mode < 0 || mode > 5)
+            else if(uiManager.mode < 0 || uiManager.mode > 5)
             {
                 MessageBox.Show("Oups, something went wrong with the level", "Seletion error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -162,7 +161,14 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
                 uiManager.frmAppMain.gameLayer = 999;
                 uiManager.CreateUiComponents<OnGameUi>();
                 uiManager.frmAppMain.soundManager.StopMusicLoop();
-                //uiManager.frmAppMain.soundManager.PlayMusicLoop(uiManager.frmAppMain.soundManager.demonTheme);
+                switch(uiManager.mode)
+                {
+                    case 1: uiManager.frmAppMain.soundManager.PlayMusicLoop(uiManager.frmAppMain.soundManager.easyTheme); break;
+                    case 2: uiManager.frmAppMain.soundManager.PlayMusicLoop(uiManager.frmAppMain.soundManager.mediumTheme); break;
+                    case 3: uiManager.frmAppMain.soundManager.PlayMusicLoop(uiManager.frmAppMain.soundManager.hardTheme); break;
+                    case 4: uiManager.frmAppMain.soundManager.PlayMusicLoop(uiManager.frmAppMain.soundManager.harderTheme); break;
+                    case 5: uiManager.frmAppMain.soundManager.PlayMusicLoop(uiManager.frmAppMain.soundManager.demonTheme); break;
+                }
             }
             
         }

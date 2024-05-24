@@ -12,6 +12,7 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
 {
     internal class UiManager 
     {
+        internal int mode = 0;
 
         internal static PrivateFontCollection customFont = new PrivateFontCollection();
         public frmAppMain frmAppMain {  get; private set; }

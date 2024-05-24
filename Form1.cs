@@ -32,8 +32,9 @@ namespace ProjetVellemanTEST
 
 		internal int mainCpt = 0;
 		internal bool game = false;
-		private int velocity = 7;
+		private int velocity = 10;
 		internal int hp = 8;
+		internal int score = 0;
 		internal InputManager inputManager;
 		internal EntityManager entityManager;
 		internal PlayerEntity pnlPlayer;
@@ -42,6 +43,8 @@ namespace ProjetVellemanTEST
 		internal int gameLayer = 0;
 		internal int charge = 3;
 		internal int currentProjectile = 0;
+		internal int currentEntity = 0;
+		internal Random random = new Random();
 		internal bool hold = false;
 
 		public frmAppMain()
@@ -89,15 +92,6 @@ namespace ProjetVellemanTEST
 			{
 				entityManager.destroyAllEntityGroup<StaticEntity>();
 			}*/
-
-			if(mainCpt == 200)
-			{
-				entityManager.CreateEntity<MovingEntitiy>();
-				MovingEntitiy movingEntitiy = entityManager.CreateEntity<MovingEntitiy>();
-				movingEntitiy.location = new Point(110, 600);
-				//movingEntitiy.destroyed = true;
-				
-			}
 
 
 			if (gameLayer == 999)
@@ -149,6 +143,35 @@ namespace ProjetVellemanTEST
 				}
 				uiManager.UpdateUi();
 				mainCpt++;
+				if (currentEntity < uiManager.mode + 3)
+				{
+					int chooseEntity = random.Next(1, uiManager.mode+1);
+					int position = random.Next(0, grpMain.Width);
+					switch(chooseEntity)
+					{
+						case 1: MovingEntitiy movingEntitiy = entityManager.CreateEntity<MovingEntitiy>();
+							movingEntitiy.location = new Point(position, 0);
+							currentEntity++;
+							break;
+						case 2: MovingEntityDiagonal movingEntityDiagonal = entityManager.CreateEntity<MovingEntityDiagonal>();
+							movingEntityDiagonal.location = new Point(position, 0);
+							currentEntity++;
+							break;
+						case 3:MovingEntityPattern01 pattern01 = entityManager.CreateEntity<MovingEntityPattern01>();
+							pattern01.location = new Point(position, 0);
+							currentEntity++;
+							break;
+						case 4:MovingEntityTinyVersion movingEntityTiny = entityManager.CreateEntity<MovingEntityTinyVersion>();
+							movingEntityTiny.location = new Point(position, 0);
+							currentEntity++;
+							break;
+						case 5:MovingEntityPattern01TinyVersion pattern01TinyVersion = entityManager.CreateEntity<MovingEntityPattern01TinyVersion>();
+							pattern01TinyVersion.location = new Point(position, 0);
+							currentEntity++;
+							break;
+					}
+				}
+
 			}
 			if (gameLayer == 0)
 			{
