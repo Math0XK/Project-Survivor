@@ -17,7 +17,7 @@ namespace ProjetVellemanTEST.GameEngine.EntityManager
             base.onCreate(entityManager);
             mainPanel = new Panel();
             mainPanel.Location = new Point(0, 0);
-            mainPanel.BackColor = System.Drawing.Color.FromArgb(255, 0, 0);
+            mainPanel.BackColor = System.Drawing.Color.FromArgb(255, 143, 0);
             mainPanel.Name = "Moving entity";
             mainPanel.Size = new System.Drawing.Size(50, 50);
             hostile = true;

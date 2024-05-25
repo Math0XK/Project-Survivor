@@ -10,6 +10,8 @@ namespace ProjetVellemanTEST.GameEngine.EntityManager
 {
     internal class MovingEntityPattern01TinyVersion : BaseEntity
     {
+        Random Random = new Random();
+        internal int moveRL = 0;
         internal override void onCreate(ProjetVellemanTEST.EntityManager entityManager)
         {
             base.onCreate(entityManager);
@@ -19,6 +21,7 @@ namespace ProjetVellemanTEST.GameEngine.EntityManager
             mainPanel.Name = "Moving entity";
             mainPanel.Size = new System.Drawing.Size(25, 25);
             hostile = true;
+            moveRL = Random.Next(0, 50);
             entityManager.frmAppMain.grpMain.Controls.Add(mainPanel);
         }
         internal override void onDestroy(ProjetVellemanTEST.EntityManager entityManager)

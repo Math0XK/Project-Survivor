@@ -80,12 +80,16 @@ namespace ProjetVellemanTEST
                             collisionX = false;
                             collisionY = false;
                         }
+                        else
+                        {
+                            entity.destroyed = true;
+                            frmAppMain.hp--;
+                            return true;
+                        }
                     }
                 }
             }
-
-            if (collisionX && collisionY) return true;
-            else return false;
+            return false;
         }
 
         public bool destruction()
@@ -131,6 +135,7 @@ namespace ProjetVellemanTEST
                             {
                                 entity.destroyed = true;
                                 projectile.destroyed = true;
+                                frmAppMain.soundManager.PlaySoundEffect(frmAppMain.soundManager.hitSoundEffect);
                                 return true;
                             }
                         }
@@ -171,7 +176,14 @@ namespace ProjetVellemanTEST
                     float move;
                     pattern01.mainPanel.Top += 1 * frmAppMain.uiManager.mode;
                     move = (float)Math.Sin(frmAppMain.mainCpt/50)*10;
-                    pattern01.mainPanel.Left -= (int)move;
+                    if(pattern01.moveRL > 25)
+                    {
+                        pattern01.mainPanel.Left -= (int)move;
+                    }
+                    else if(pattern01.moveRL <= 25)
+                    {
+                        pattern01.mainPanel.Left += (int)move;
+                    }
                 }
                 if(entity is MovingEntityTinyVersion movingEntityTiny)
                 {
@@ -182,7 +194,14 @@ namespace ProjetVellemanTEST
                     float move;
                     pattern01TinyVersion.mainPanel.Top += 2 * frmAppMain.uiManager.mode;
                     move = (float)Math.Sin(frmAppMain.mainCpt / 50) * 10;
-                    pattern01TinyVersion.mainPanel.Left += (int)move/2;
+                    if(pattern01TinyVersion.moveRL > 25)
+                    {
+                        pattern01TinyVersion.mainPanel.Left += (int)(move * 3 / 2);
+                    }
+                    else if(pattern01TinyVersion.moveRL <= 25)
+                    {
+                        pattern01TinyVersion.mainPanel.Left -= (int)(move * 3 / 2);
+                    }
                 }
               
             }
@@ -195,7 +214,6 @@ namespace ProjetVellemanTEST
             {
                 if ((entity.destroyed || entity.mainPanel.Top>frmAppMain.grpMain.Bottom) && entity is not ProjectileEntity)
                 {
-                    frmAppMain.soundManager.PlaySoundEffect(frmAppMain.soundManager.hitSoundEffect);
                     entities.Remove(entity);
                     entity.onDestroy(this);
                 }
