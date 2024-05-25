@@ -15,13 +15,12 @@ namespace ProjetVellemanTEST
     {
         internal override void onCreate(EntityManager entityManager)
         {
-
             base.onCreate(entityManager);
-            mainPanel = new Panel();
             mainPanel.Location = new Point(0, 0);
             mainPanel.BackColor = System.Drawing.Color.FromArgb(255, 201, 0);
             mainPanel.Name = "Moving entity";
             mainPanel.Size = new System.Drawing.Size(50, 50);
+            points = 25;
             hostile = true;
             entityManager.frmAppMain.grpMain.Controls.Add(mainPanel);
         }

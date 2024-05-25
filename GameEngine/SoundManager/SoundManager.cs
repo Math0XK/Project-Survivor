@@ -88,5 +88,14 @@ namespace ProjetVellemanTEST.GameEngine.SoundManager
                 }
             }
         }
+        internal void pauseMusicLoop()
+        {
+            theme.Pause();
+        }
+        internal void resumeMusicLoop()
+        {
+            theme.Play();
+        }
+
     }
 }

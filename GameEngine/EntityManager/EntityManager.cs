@@ -84,6 +84,8 @@ namespace ProjetVellemanTEST
                         {
                             entity.destroyed = true;
                             frmAppMain.hp--;
+                            frmAppMain.score -= entity.points;
+                            if(frmAppMain.score <= 0 )frmAppMain.score = 0;
                             return true;
                         }
                     }
@@ -135,6 +137,7 @@ namespace ProjetVellemanTEST
                             {
                                 entity.destroyed = true;
                                 projectile.destroyed = true;
+                                frmAppMain.score += entity.points;
                                 frmAppMain.soundManager.PlaySoundEffect(frmAppMain.soundManager.hitSoundEffect);
                                 return true;
                             }

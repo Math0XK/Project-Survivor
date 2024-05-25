@@ -14,7 +14,6 @@ namespace ProjetVellemanTEST.GameEngine.EntityManager
         internal override void onCreate(ProjetVellemanTEST.EntityManager entityManager)
         {
             base.onCreate(entityManager);
-            mainPanel = new Panel();
             mainPanel.Size = new Size(10, 20);
             mainPanel.Location = new Point(entityManager.frmAppMain.pnlPlayer.mainPanel.Left + entityManager.frmAppMain.pnlPlayer.mainPanel.Width / 2  - mainPanel.Width / 2, entityManager.frmAppMain.pnlPlayer.mainPanel.Top - entityManager.frmAppMain.pnlPlayer.mainPanel.Height + mainPanel.Height / 2 );
             mainPanel.Name = "Projectile";

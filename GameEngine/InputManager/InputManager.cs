@@ -12,6 +12,8 @@ namespace ProjetVellemanTEST
 	{
 		internal delegate void OnKeyDown(Keys key);
 		public event OnKeyDown isAnyKeyDown;
+		internal delegate void escapeDown(Keys key);
+		public event escapeDown isEscapeDown;
 		Dictionary<Keys, bool> KeyValuePairs = new Dictionary<Keys, bool>();
 		public void onKeyDown(Keys pressedKey)
 		{
@@ -25,6 +27,10 @@ namespace ProjetVellemanTEST
                 KeyValuePairs.Add(pressedKey, true);
             }
             isAnyKeyDown?.Invoke(pressedKey);
+			if(pressedKey == Keys.Escape)
+			{
+				isEscapeDown?.Invoke(pressedKey);
+			}
 		}
 		public void onKeyUp(Keys pressedKey)
 		{

@@ -70,9 +70,8 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Timer tmrGameUpdate;
         internal System.Windows.Forms.Panel grpMain;
+        internal System.Windows.Forms.Timer tmrGameUpdate;
     }
 }
 

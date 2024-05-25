@@ -70,9 +70,11 @@
     <Compile Include="GameEngine\UiManager\BaseUi.cs" />
     <Compile Include="GameEngine\UiManager\ChooseDifficultyUi.cs" />
     <Compile Include="GameEngine\UiManager\CreditsIUi.cs" />
+    <Compile Include="GameEngine\UiManager\EndGameUi.cs" />
     <Compile Include="GameEngine\UiManager\MenuUi.cs" />
     <Compile Include="GameEngine\UiManager\NewGameUi.cs" />
     <Compile Include="GameEngine\UiManager\OnGameUi.cs" />
+    <Compile Include="GameEngine\UiManager\PauseMenuUi.cs" />
     <Compile Include="GameEngine\UiManager\SavedGameUi.cs" />
     <Compile Include="GameEngine\UiManager\SettingsUi.cs" />
     <Compile Include="GameEngine\UiManager\StartupUi.cs" />

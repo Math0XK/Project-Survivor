@@ -16,7 +16,6 @@ namespace ProjetVellemanTEST
             entityManager.frmAppMain.SuspendLayout();
             base.onCreate(entityManager);
             //base.onCreate(entityManager);
-            mainPanel = new Panel();
             mainPanel.Location = new Point(location.X, location.Y);
             mainPanel.BackColor = System.Drawing.Color.FromArgb(255, 255, 255);
             mainPanel.Name = "Moving entity";

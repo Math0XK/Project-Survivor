@@ -13,6 +13,7 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
         Label lblHP = new();
         Label lblCharge = new();
         Label lblTicks = new();
+        Label lblScore = new();
         Panel pnlUi = new();
 
         internal override void OnCreate(UiManager uiManager)
@@ -26,29 +27,37 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             pnlUi.BorderStyle = BorderStyle.FixedSingle;
             uiManager.frmAppMain.grpMain.Controls.Add(pnlUi);
 
-            lblHP.Size = new Size(200, 50);
+            lblHP.Size = new Size(200, uiManager.frmAppMain.Height / 40);
             lblHP.Location = new Point(0, 0);
             lblHP.Font = new Font(UiManager.customFont.Families[0], 16, FontStyle.Regular);
             lblHP.BackColor = Color.Transparent;
             lblHP.ForeColor = Color.White;
-            lblHP.TextAlign = ContentAlignment.TopLeft;
+            lblHP.TextAlign = ContentAlignment.MiddleLeft;
             pnlUi.Controls.Add(lblHP);
 
-            lblTicks.Size = new Size(300, 50);
-            lblTicks.Location = new Point(pnlUi.Width/2 - lblTicks.Width/2, 0);
+            lblTicks.Size = new Size(230, uiManager.frmAppMain.Height / 40);
+            lblTicks.Location = new Point(uiManager.frmAppMain.grpMain.Width/2 - lblTicks.Width/2, 0);
             lblTicks.Font = new Font(UiManager.customFont.Families[0], 16, FontStyle.Regular);
-            lblTicks.BackColor = Color.Red;
+            lblTicks.BackColor = Color.Transparent;
             lblTicks.ForeColor = Color.White;
-            lblTicks.TextAlign = ContentAlignment.TopCenter;
-            pnlUi.Controls.Add (lblTicks);
+            lblTicks.TextAlign = ContentAlignment.MiddleCenter;
+            pnlUi.Controls.Add(lblTicks);
 
-            lblCharge.Size = new Size(200, 50);
-            lblCharge.Location = new Point(pnlUi.Width - lblCharge.Width, 0);
+            lblCharge.Size = new Size(200, uiManager.frmAppMain.Height / 40);
+            lblCharge.Location = new Point(lblHP.Width , 0);
             lblCharge.Font = new Font(UiManager.customFont.Families[0], 16, FontStyle.Regular);
             lblCharge.BackColor = Color.Transparent;
             lblCharge.ForeColor = Color.White;
-            lblCharge .TextAlign = ContentAlignment.TopRight;
+            lblCharge .TextAlign = ContentAlignment.TopCenter;
             pnlUi.Controls.Add(lblCharge);
+
+            lblScore.Size = new Size(300, uiManager.frmAppMain.Height / 40);
+            lblScore.Location = new Point(uiManager.frmAppMain.Width - lblScore.Width , 0);
+            lblScore.Font = new Font(UiManager.customFont.Families[0], 16, FontStyle.Regular);
+            lblScore.BackColor = Color.Transparent;
+            lblScore.ForeColor = Color.White;
+            lblScore.TextAlign = ContentAlignment.TopRight;
+            pnlUi.Controls.Add (lblScore);
         }
 
         internal override void OnDestroy(UiManager uiManager)
@@ -61,6 +70,7 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             lblTicks.Text = "Ticks : " + uiManager.frmAppMain.mainCpt;
             lblCharge.Text = "Charge : " + (uiManager.frmAppMain.charge - uiManager.frmAppMain.currentProjectile);
             lblHP.Text = "HP : "+ uiManager.frmAppMain.hp;
+            lblScore.Text = "Score : "+ uiManager.frmAppMain.score;
         }
 
     }

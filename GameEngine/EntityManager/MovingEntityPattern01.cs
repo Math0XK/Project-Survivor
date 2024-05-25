@@ -15,12 +15,12 @@ namespace ProjetVellemanTEST.GameEngine.EntityManager
         internal override void onCreate(ProjetVellemanTEST.EntityManager entityManager)
         {
             base.onCreate(entityManager);
-            mainPanel = new Panel();
             mainPanel.Location = new Point(0, 0);
             mainPanel.BackColor = System.Drawing.Color.FromArgb(255, 91, 0);
             mainPanel.Name = "Moving entity";
             mainPanel.Size = new System.Drawing.Size(50, 50);
             hostile = true;
+            points = 100;
             moveRL = Random.Next(0, 50);
             entityManager.frmAppMain.grpMain.Controls.Add(mainPanel);
         }

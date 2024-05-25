@@ -23,7 +23,6 @@ namespace ProjetVellemanTEST
                 entityManager.frmAppMain.SuspendLayout();*/
                 base.onCreate(entityManager);
                 //base.onCreate(entityManager);
-                mainPanel = new Panel();
                 mainPanel.Location = location;
                 mainPanel.BackColor = System.Drawing.Color.White;
                 mainPanel.Name = "Player";

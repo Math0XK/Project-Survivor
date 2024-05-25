@@ -46,6 +46,8 @@ namespace ProjetVellemanTEST
 		internal int currentEntity = 0;
 		internal Random random = new Random();
 		internal bool hold = false;
+		internal bool e_hold = false;
+		internal bool paused = false;
 
 		public frmAppMain()
 		{
@@ -123,6 +125,17 @@ namespace ProjetVellemanTEST
 						Console.WriteLine(currentProjectile.ToString());
 					}
 					else if(!inputManager.isKeyPressed(Keys.Space) && hold) hold = false;
+					if(inputManager.isKeyPressed(Keys.Escape) && !e_hold && !paused)
+					{
+						e_hold = true;
+						paused = true;
+						uiManager.CreateUiComponents<PauseMenuUi>();
+                        inputManager.isEscapeDown += InputManager_isEscapeDown;
+					}
+					else if(!inputManager.isKeyPressed(Keys.Escape) && e_hold)
+					{
+						e_hold = false;
+					}
 
 				}
 				else
@@ -146,27 +159,27 @@ namespace ProjetVellemanTEST
 				if (currentEntity < uiManager.mode + 3)
 				{
 					int chooseEntity = random.Next(1, uiManager.mode+1);
-					int position = random.Next(0, grpMain.Width);
+					int position = random.Next(0, grpMain.Width - 50);
 					switch(chooseEntity)
 					{
 						case 1: MovingEntitiy movingEntitiy = entityManager.CreateEntity<MovingEntitiy>();
-							movingEntitiy.location = new Point(position, 0);
+							movingEntitiy.location = new Point(position, -50);
 							currentEntity++;
 							break;
 						case 2: MovingEntityDiagonal movingEntityDiagonal = entityManager.CreateEntity<MovingEntityDiagonal>();
-							movingEntityDiagonal.location = new Point(position, 0);
+							movingEntityDiagonal.location = new Point(position, -50);
 							currentEntity++;
 							break;
 						case 3:MovingEntityPattern01 pattern01 = entityManager.CreateEntity<MovingEntityPattern01>();
-							pattern01.location = new Point(position, 0);
+							pattern01.location = new Point(position, -40);
 							currentEntity++;
 							break;
 						case 4:MovingEntityTinyVersion movingEntityTiny = entityManager.CreateEntity<MovingEntityTinyVersion>();
-							movingEntityTiny.location = new Point(position, 0);
+							movingEntityTiny.location = new Point(position, -25);
 							currentEntity++;
 							break;
 						case 5:MovingEntityPattern01TinyVersion pattern01TinyVersion = entityManager.CreateEntity<MovingEntityPattern01TinyVersion>();
-							pattern01TinyVersion.location = new Point(position, 0);
+							pattern01TinyVersion.location = new Point(position, -25);
 							currentEntity++;
 							break;
 					}
@@ -180,11 +193,17 @@ namespace ProjetVellemanTEST
 			/*entityManager.frmAppMain.grpMain.ResumeLayout(false);
 			entityManager.frmAppMain.grpMain.PerformLayout();
 			entityManager.frmAppMain.ResumeLayout(false);*/
-
 		}
 
+        private void InputManager_isEscapeDown(Keys key)
+        {
+            e_hold = true;
+            paused = false;
+            uiManager.ClearUi<PauseMenuUi>();
+			inputManager.isEscapeDown -= InputManager_isEscapeDown;
+        }
 
-		private void onKeyUp(object sender, KeyEventArgs e)
+        private void onKeyUp(object sender, KeyEventArgs e)
 		{
 			inputManager.onKeyUp(e.KeyCode);
 		}
