@@ -41,8 +41,74 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             lblTitle.TextAlign = ContentAlignment.MiddleCenter;
             pnlPauseMain.Controls.Add(lblTitle);
 
+            btnBack.Size = new Size(140, 80);
+            btnBack.Font = new Font(UiManager.customFont.Families[0], 16, FontStyle.Regular);
+            btnBack.Text = "Back to menu";
+            btnBack.ForeColor = Color.White;
+            btnBack.TextAlign = ContentAlignment.MiddleCenter;
+            btnBack.Location = new Point(pnlPauseMain.Width * 5 / 20 - btnBack.Width / 2, pnlPauseMain.Height - btnBack.Height  - 60);
+            btnBack.MouseClick += BtnBack_MouseClick;
+            pnlPauseMain.Controls.Add(btnBack);
+
+            btnRestart.Size = new Size(140, 80);
+            btnRestart.Font = new Font(UiManager.customFont.Families[0], 16, FontStyle.Regular);
+            btnRestart.Text = "Restart";
+            btnRestart.ForeColor = Color.White;
+            btnRestart.TextAlign = ContentAlignment.MiddleCenter;
+            btnRestart.Location = new Point(pnlPauseMain.Width / 2 - btnRestart.Width / 2, pnlPauseMain.Height - btnRestart.Height - 60);
+            btnRestart.MouseClick += BtnRestart_MouseClick;
+            pnlPauseMain.Controls.Add(btnRestart);
 
 
+            btnResume.Size = new Size(140, 80);
+            btnResume.Font = new Font(UiManager.customFont.Families[0], 16, FontStyle.Regular);
+            btnResume.Text = "Resume";
+            btnResume.ForeColor = Color.White;
+            btnResume.TextAlign = ContentAlignment.MiddleCenter;
+            btnResume.Location = new Point(pnlPauseMain.Width * 15 / 20  - btnResume.Width / 2, pnlPauseMain.Height - btnResume.Height - 60);
+            btnResume.MouseClick += BtnResume_MouseClick; ;
+            pnlPauseMain.Controls.Add(btnResume);
+
+
+        }
+
+        private void BtnResume_MouseClick(object sender, MouseEventArgs e)
+        {
+            uiManager.ClearUi<PauseMenuUi>();
+        }
+
+        private void BtnRestart_MouseClick(object sender, MouseEventArgs e)
+        {
+            uiManager.frmAppMain.gameLayer = 1000;
+            uiManager.frmAppMain.entityManager.clearAllEntity();
+            uiManager.frmAppMain.mainCpt = 0;
+            uiManager.frmAppMain.score = 0;
+            uiManager.ClearUi<PauseMenuUi>();
+            uiManager.frmAppMain.gameLayer = 999;
+            uiManager.frmAppMain.soundManager.StopMusicLoop();
+            switch (uiManager.mode)
+            {
+                case 1: uiManager.frmAppMain.soundManager.PlayMusicLoop(uiManager.frmAppMain.soundManager.easyTheme); break;
+                case 2: uiManager.frmAppMain.soundManager.PlayMusicLoop(uiManager.frmAppMain.soundManager.mediumTheme); break;
+                case 3: uiManager.frmAppMain.soundManager.PlayMusicLoop(uiManager.frmAppMain.soundManager.hardTheme); break;
+                case 4: uiManager.frmAppMain.soundManager.PlayMusicLoop(uiManager.frmAppMain.soundManager.harderTheme); break;
+                case 5: uiManager.frmAppMain.soundManager.PlayMusicLoop(uiManager.frmAppMain.soundManager.demonTheme); break;
+            }
+
+
+        }
+
+        private void BtnBack_MouseClick(object sender, MouseEventArgs e)
+        {
+            uiManager.frmAppMain.score = 0;
+            uiManager.frmAppMain.mainCpt = 0;
+            uiManager.frmAppMain.entityManager.clearAllEntity();
+            uiManager.frmAppMain.gameLayer = 2;
+            uiManager.frmAppMain.soundManager.StopMusicLoop();
+            uiManager.frmAppMain.soundManager.PlayMusicLoop(uiManager.frmAppMain.soundManager.startupTheme);
+            uiManager.ClearUi<OnGameUi>();
+            uiManager.ClearUi<PauseMenuUi>();
+            uiManager.CreateUiComponents<MenuUi>();
         }
 
         internal override void OnDestroy(UiManager uiManager)
@@ -50,9 +116,12 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             base.OnDestroy(uiManager);
             uiManager.frmAppMain.tmrGameUpdate.Start();
             uiManager.frmAppMain.soundManager.resumeMusicLoop();
-
-            pnlPauseMain.Dispose();
             lblTitle.Dispose();
+            btnBack.Dispose();
+            btnRestart.Dispose();
+            btnResume.Dispose();
+            lblDescription.Dispose();
+            pnlPauseMain.Dispose();
         }
     }
 }

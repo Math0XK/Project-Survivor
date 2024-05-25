@@ -230,5 +230,14 @@ namespace ProjetVellemanTEST
                 }
             }
         }
+        public void clearAllEntity()
+        {
+            List<BaseEntity> copy = new List<BaseEntity>(entities);
+            foreach(BaseEntity entity in copy)
+            {
+                entities.Remove(entity);
+                entity.onDestroy(this);
+            }
+        }
     }
 }

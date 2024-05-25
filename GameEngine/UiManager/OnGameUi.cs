@@ -20,7 +20,7 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
         {
             base.OnCreate(uiManager);
 
-            pnlUi.Width = uiManager.frmAppMain.Width;
+            pnlUi.Width = uiManager.frmAppMain.Width - 2;
             pnlUi.Height = uiManager.frmAppMain.Height /40;
             pnlUi.BackColor = Color.Transparent;
             pnlUi.ForeColor = Color.White;
@@ -63,6 +63,11 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
         internal override void OnDestroy(UiManager uiManager)
         {
             base.OnDestroy(uiManager);
+            lblScore.Dispose();
+            lblCharge.Dispose();
+            lblHP.Dispose();
+            lblTicks.Dispose();
+            pnlUi.Dispose();
         }
 
         internal void updateOnGameUi()
