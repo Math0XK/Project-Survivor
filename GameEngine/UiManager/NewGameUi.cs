@@ -11,7 +11,6 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
     internal class NewGameUi : BaseUi
     {
         internal TextBox playerName;
-        internal string pseudo;
         internal Button btnBack;
         internal Button btnNext;
         internal Label lblNameDescription;
@@ -85,7 +84,7 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             }
             else
             {
-                pseudo = playerName.Text;
+                uiManager.frmAppMain.pseudo = playerName.Text;
                 uiManager.ClearUi<NewGameUi>();
                 uiManager.frmAppMain.gameLayer = 7;
                 uiManager.CreateUiComponents<ChooseDifficultyUi>();

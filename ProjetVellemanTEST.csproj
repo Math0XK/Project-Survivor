@@ -66,6 +66,7 @@
     <Compile Include="GameEngine\EntityManager\ProjectileEntity.cs" />
     <Compile Include="GameEngine\InputManager\InputManager.cs" />
     <Compile Include="GameEngine\EntityManager\PlayerEntity.cs" />
+    <Compile Include="GameEngine\SaveManager\SaveManager.cs" />
     <Compile Include="GameEngine\SoundManager\SoundManager.cs" />
     <Compile Include="GameEngine\UiManager\BaseUi.cs" />
     <Compile Include="GameEngine\UiManager\ChooseDifficultyUi.cs" />
@@ -151,6 +152,10 @@
     <None Include="Resources\hurt_c_08-102842.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\SavesFile.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

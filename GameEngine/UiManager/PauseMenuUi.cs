@@ -69,6 +69,14 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             btnResume.MouseClick += BtnResume_MouseClick; ;
             pnlPauseMain.Controls.Add(btnResume);
 
+            lblDescription.Size = new Size(pnlPauseMain.Width, pnlPauseMain.Height - 200);
+            lblDescription.Location = new Point(0, lblTitle.Height);
+            lblDescription.Font = new Font(UiManager.customFont.Families[0], 16, FontStyle.Regular);
+            lblDescription.Text = "The game has been paused\n\n\n If you quit the game, restart or go back to menu, the score will be lost";
+            lblDescription.ForeColor = Color.White;
+            lblDescription.TextAlign = ContentAlignment.MiddleCenter;
+            pnlPauseMain.Controls.Add(lblDescription);
+
 
         }
 
@@ -81,6 +89,7 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
         {
             uiManager.frmAppMain.gameLayer = 1000;
             uiManager.frmAppMain.entityManager.clearAllEntity();
+            uiManager.frmAppMain.hp = 8;
             uiManager.frmAppMain.mainCpt = 0;
             uiManager.frmAppMain.score = 0;
             uiManager.ClearUi<PauseMenuUi>();
@@ -102,6 +111,7 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
         {
             uiManager.frmAppMain.score = 0;
             uiManager.frmAppMain.mainCpt = 0;
+            uiManager.frmAppMain.hp = 8;
             uiManager.frmAppMain.entityManager.clearAllEntity();
             uiManager.frmAppMain.gameLayer = 2;
             uiManager.frmAppMain.soundManager.StopMusicLoop();

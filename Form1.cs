@@ -35,7 +35,10 @@ namespace ProjetVellemanTEST
 		private int velocity = 10;
 		internal int hp = 8;
 		internal int score = 0;
-		internal InputManager inputManager;
+		internal int[] highScore = [0, 0, 0, 0, 0];
+		internal int endGameCpt = 0;
+        internal string pseudo;
+        internal InputManager inputManager;
 		internal EntityManager entityManager;
 		internal PlayerEntity pnlPlayer;
 		internal UiManager uiManager;
@@ -108,7 +111,7 @@ namespace ProjetVellemanTEST
 					{
 						if (inputManager.isKeyPressed(Keys.S)) pnlPlayer.mainPanel.Top += velocity;
 					}
-					if (pnlPlayer.mainPanel.Right <= grpMain.Width)
+					if (pnlPlayer.mainPanel.Right <= grpMain.Width - 7)
 					{
 						if (inputManager.isKeyPressed(Keys.D)) pnlPlayer.mainPanel.Left += velocity;
 					}
@@ -142,7 +145,7 @@ namespace ProjetVellemanTEST
 				{
                     pnlPlayer = entityManager.CreateEntity<PlayerEntity>();
                     pnlPlayer.size = new Size(20, 20);
-                    pnlPlayer.location = new Point(0, grpMain.Height - pnlPlayer.mainPanel.Height);
+                    pnlPlayer.location = new Point(grpMain.Width / 2 - pnlPlayer.mainPanel.Width / 2, (grpMain.Height) * 3 / 4 + pnlPlayer.mainPanel.Height);
                 }
 				entityManager.moveEntity();
 				entityManager.destroyEntity();
