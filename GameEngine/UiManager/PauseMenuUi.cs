@@ -66,7 +66,7 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             btnResume.ForeColor = Color.White;
             btnResume.TextAlign = ContentAlignment.MiddleCenter;
             btnResume.Location = new Point(pnlPauseMain.Width * 15 / 20  - btnResume.Width / 2, pnlPauseMain.Height - btnResume.Height - 60);
-            btnResume.MouseClick += BtnResume_MouseClick; ;
+            btnResume.MouseClick += BtnResume_MouseClick;
             pnlPauseMain.Controls.Add(btnResume);
 
             lblDescription.Size = new Size(pnlPauseMain.Width, pnlPauseMain.Height - 200);
