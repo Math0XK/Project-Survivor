@@ -36,7 +36,7 @@ namespace ProjetVellemanTEST
 		internal int hp = 8;
 		internal int score = 0;
 		internal int[] highScore = [0, 0, 0, 0, 0];
-		internal int endGameCpt = 0;
+		internal int endGameCpt = 100;
         internal string pseudo;
         internal InputManager inputManager;
 		internal EntityManager entityManager;
@@ -56,7 +56,6 @@ namespace ProjetVellemanTEST
 		{
 			InitializeComponent();
 			grpMain.Size = Size;
-			//pnlPlayer.Visible = false;
 			inputManager = new InputManager();
 			entityManager = new EntityManager(this);
 			uiManager = new UiManager(this);
@@ -68,16 +67,10 @@ namespace ProjetVellemanTEST
 				uiManager.CreateUiComponents<StartupUi>();
 			}
 			soundManager.PlayMusicLoop(soundManager.startupTheme);
-			/*entityManager.CreateEntity<StaticEntity>();
-			pnlPlayer = entityManager.CreateEntity<PlayerEntity>();
-			pnlPlayer.size = new Size(20, 20);
-			pnlPlayer.location = new Point(0, grpMain.Height - pnlPlayer.mainPanel.Height);*/
-			//soundManager.StopSound();
 		}
 
 		internal void anyKeyDown(Keys keys)
 		{
-			//écrire mon code ici
 			if (gameLayer == 0)
 			{
 				uiManager.ClearUi<StartupUi>();
@@ -91,14 +84,6 @@ namespace ProjetVellemanTEST
 
 		private void gameUpdate(object sender, EventArgs e)
 		{
-			/*entityManager.frmAppMain.grpMain.SuspendLayout();
-			entityManager.frmAppMain.SuspendLayout();*/
-			/*if(mainCpt == 100)
-			{
-				entityManager.destroyAllEntityGroup<StaticEntity>();
-			}*/
-
-
 			if (gameLayer == 999)
 			{
 				if (pnlPlayer.playerEnabled)
@@ -157,9 +142,9 @@ namespace ProjetVellemanTEST
 				{
 					Console.WriteLine("destruction");
 				}
-				uiManager.UpdateUi();
+                uiManager.UpdateUi();
 				mainCpt++;
-				if (currentEntity < uiManager.mode + 3)
+                if (currentEntity < uiManager.mode + 3)
 				{
 					int chooseEntity = random.Next(1, uiManager.mode+1);
 					int position = random.Next(0, grpMain.Width - 50);
@@ -187,15 +172,15 @@ namespace ProjetVellemanTEST
 							break;
 					}
 				}
-
+				if (hp <= 0)
+				{
+					uiManager.CreateUiComponents<EndGameUi>();
+				}
 			}
 			if (gameLayer == 0)
 			{
 				uiManager.StartupAnimation();
 			}
-			/*entityManager.frmAppMain.grpMain.ResumeLayout(false);
-			entityManager.frmAppMain.grpMain.PerformLayout();
-			entityManager.frmAppMain.ResumeLayout(false);*/
 		}
 
         private void InputManager_isEscapeDown(Keys key)

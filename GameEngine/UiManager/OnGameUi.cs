@@ -35,10 +35,10 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             lblHP.TextAlign = ContentAlignment.MiddleLeft;
             pnlUi.Controls.Add(lblHP);
 
-            lblTicks.Size = new Size(230, uiManager.frmAppMain.Height / 40);
+            lblTicks.Size = new Size(300, uiManager.frmAppMain.Height / 40);
             lblTicks.Location = new Point(uiManager.frmAppMain.grpMain.Width/2 - lblTicks.Width/2, 0);
             lblTicks.Font = new Font(UiManager.customFont.Families[0], 16, FontStyle.Regular);
-            lblTicks.BackColor = Color.Transparent;
+            lblTicks.BackColor = Color.Red;
             lblTicks.ForeColor = Color.White;
             lblTicks.TextAlign = ContentAlignment.MiddleCenter;
             pnlUi.Controls.Add(lblTicks);
@@ -72,7 +72,8 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
 
         internal void updateOnGameUi()
         {
-            lblTicks.Text = "Ticks : " + uiManager.frmAppMain.mainCpt;
+            //lblTicks.Text = "Ticks : " + uiManager.frmAppMain.mainCpt;
+            lblTicks.Text = "Progress : " + (int)(((float)uiManager.frmAppMain.mainCpt / (float)uiManager.frmAppMain.endGameCpt) * 100f) + "%";   
             lblCharge.Text = "Charge : " + (uiManager.frmAppMain.charge - uiManager.frmAppMain.currentProjectile);
             lblHP.Text = "HP : "+ uiManager.frmAppMain.hp;
             lblScore.Text = "Score : "+ uiManager.frmAppMain.score;

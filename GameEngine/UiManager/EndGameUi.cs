@@ -32,11 +32,10 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
 
 
             lblTitle.Font = new Font(UiManager.customFont.Families[0], 40, FontStyle.Regular);
-            lblTitle.Size = new Size(388, 66);
+            lblTitle.Size = new Size(900, 66);
             lblTitle.Location = new Point(pnlPauseMain.Width / 2 - lblTitle.Width / 2, 0);
             lblTitle.BackColor = Color.Transparent;
             lblTitle.ForeColor = Color.White;
-            lblTitle.Text = "Pause";
             lblTitle.TabIndex = 0;
             lblTitle.TextAlign = ContentAlignment.MiddleCenter;
             pnlPauseMain.Controls.Add(lblTitle);
@@ -60,27 +59,61 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             pnlPauseMain.Controls.Add(btnRestart);
 
 
-            btnNext.Size = new Size(140, 80);
-            btnNext.Font = new Font(UiManager.customFont.Families[0], 16, FontStyle.Regular);
-            btnNext.Text = "Resume";
-            btnNext.ForeColor = Color.White;
-            btnNext.TextAlign = ContentAlignment.MiddleCenter;
-            btnNext.Location = new Point(pnlPauseMain.Width * 15 / 20 - btnNext.Width / 2, pnlPauseMain.Height - btnNext.Height - 60);
-            btnNext.MouseClick += BtnNext_MouseClick;
-            pnlPauseMain.Controls.Add(btnNext);
-
             lblDescription.Size = new Size(pnlPauseMain.Width, pnlPauseMain.Height - 200);
             lblDescription.Location = new Point(0, lblTitle.Height);
-            lblDescription.Font = new Font(UiManager.customFont.Families[0], 16, FontStyle.Regular);
-            lblDescription.Text = "The game has been paused\n\n\n If you quit the game, restart or go back to menu, the score will be lost";
+            lblDescription.Font = new Font(UiManager.customFont.Families[0], 22, FontStyle.Regular);
             lblDescription.ForeColor = Color.White;
             lblDescription.TextAlign = ContentAlignment.MiddleCenter;
             pnlPauseMain.Controls.Add(lblDescription);
+
+            if (uiManager.frmAppMain.highScore[uiManager.mode - 1] < uiManager.frmAppMain.score)
+            {
+                uiManager.frmAppMain.highScore[uiManager.mode - 1] = uiManager.frmAppMain.score;
+            }
+            if (uiManager.win)
+            {
+                uiManager.win = false;
+                lblDescription.Text = "Survivor " + uiManager.frmAppMain.pseudo + " has succeed\n\n" + "Score : " + uiManager.frmAppMain.score + "\n" + "High score : " + uiManager.frmAppMain.highScore[uiManager.mode - 1];
+                lblTitle.Text = "Level completed";
+                if (uiManager.mode != 5)
+                {
+                    btnNext.Size = new Size(140, 80);
+                    btnNext.Font = new Font(UiManager.customFont.Families[0], 16, FontStyle.Regular);
+                    btnNext.Text = "Next level";
+                    btnNext.ForeColor = Color.White;
+                    btnNext.TextAlign = ContentAlignment.MiddleCenter;
+                    btnNext.Location = new Point(pnlPauseMain.Width * 15 / 20 - btnNext.Width / 2, pnlPauseMain.Height - btnNext.Height - 60);
+                    btnNext.MouseClick += BtnNext_MouseClick;
+                    pnlPauseMain.Controls.Add(btnNext);
+                }
+            }
+            else
+            {
+                lblDescription.Text = "Survivor " + uiManager.frmAppMain.pseudo + " hasn't survived\n\n" + "Score : " + uiManager.frmAppMain.score + "\n" + "High score : " + uiManager.frmAppMain.highScore[uiManager.mode - 1];
+                lblTitle.Text = "Level failed";
+            }
+
         }
 
         private void BtnNext_MouseClick(object sender, MouseEventArgs e)
         {
-            throw new NotImplementedException();
+            uiManager.frmAppMain.gameLayer = 1000;
+            uiManager.frmAppMain.entityManager.clearAllEntity();
+            uiManager.mode++;
+            uiManager.frmAppMain.hp = 8;
+            uiManager.frmAppMain.mainCpt = 0;
+            uiManager.frmAppMain.score = 0;
+            uiManager.ClearUi<EndGameUi>();
+            uiManager.frmAppMain.gameLayer = 999;
+            uiManager.frmAppMain.soundManager.StopMusicLoop();
+            switch (uiManager.mode)
+            {
+                case 1: uiManager.frmAppMain.soundManager.PlayGameMusic(uiManager.frmAppMain.soundManager.easyTheme); uiManager.frmAppMain.endGameCpt = 10891; break;
+                case 2: uiManager.frmAppMain.soundManager.PlayGameMusic(uiManager.frmAppMain.soundManager.mediumTheme); uiManager.frmAppMain.endGameCpt = 11630; break;
+                case 3: uiManager.frmAppMain.soundManager.PlayGameMusic(uiManager.frmAppMain.soundManager.hardTheme); uiManager.frmAppMain.endGameCpt = 13663; break;
+                case 4: uiManager.frmAppMain.soundManager.PlayGameMusic(uiManager.frmAppMain.soundManager.harderTheme); uiManager.frmAppMain.endGameCpt = 12941; break;
+                case 5: uiManager.frmAppMain.soundManager.PlayGameMusic(uiManager.frmAppMain.soundManager.demonTheme); uiManager.frmAppMain.endGameCpt = 12197; break;
+            }
         }
 
         private void BtnRestart_MouseClick(object sender, MouseEventArgs e)
@@ -90,16 +123,16 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             uiManager.frmAppMain.hp = 8;
             uiManager.frmAppMain.mainCpt = 0;
             uiManager.frmAppMain.score = 0;
-            uiManager.ClearUi<PauseMenuUi>();
+            uiManager.ClearUi<EndGameUi>();
             uiManager.frmAppMain.gameLayer = 999;
             uiManager.frmAppMain.soundManager.StopMusicLoop();
             switch (uiManager.mode)
             {
-                case 1: uiManager.frmAppMain.soundManager.PlayMusicLoop(uiManager.frmAppMain.soundManager.easyTheme); break;
-                case 2: uiManager.frmAppMain.soundManager.PlayMusicLoop(uiManager.frmAppMain.soundManager.mediumTheme); break;
-                case 3: uiManager.frmAppMain.soundManager.PlayMusicLoop(uiManager.frmAppMain.soundManager.hardTheme); break;
-                case 4: uiManager.frmAppMain.soundManager.PlayMusicLoop(uiManager.frmAppMain.soundManager.harderTheme); break;
-                case 5: uiManager.frmAppMain.soundManager.PlayMusicLoop(uiManager.frmAppMain.soundManager.demonTheme); break;
+                case 1: uiManager.frmAppMain.soundManager.PlayGameMusic(uiManager.frmAppMain.soundManager.easyTheme); uiManager.frmAppMain.endGameCpt = 10891; break;
+                case 2: uiManager.frmAppMain.soundManager.PlayGameMusic(uiManager.frmAppMain.soundManager.mediumTheme); uiManager.frmAppMain.endGameCpt = 11630; break;
+                case 3: uiManager.frmAppMain.soundManager.PlayGameMusic(uiManager.frmAppMain.soundManager.hardTheme); uiManager.frmAppMain.endGameCpt = 13663; break;
+                case 4: uiManager.frmAppMain.soundManager.PlayGameMusic(uiManager.frmAppMain.soundManager.harderTheme); uiManager.frmAppMain.endGameCpt = 12941; break;
+                case 5: uiManager.frmAppMain.soundManager.PlayGameMusic(uiManager.frmAppMain.soundManager.demonTheme); uiManager.frmAppMain.endGameCpt = 12197; break;
             }
 
 
@@ -115,7 +148,7 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             uiManager.frmAppMain.soundManager.StopMusicLoop();
             uiManager.frmAppMain.soundManager.PlayMusicLoop(uiManager.frmAppMain.soundManager.startupTheme);
             uiManager.ClearUi<OnGameUi>();
-            uiManager.ClearUi<PauseMenuUi>();
+            uiManager.ClearUi<EndGameUi>();
             uiManager.CreateUiComponents<MenuUi>();
         }
 

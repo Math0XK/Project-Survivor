@@ -1,5 +1,7 @@
-﻿using System;
+﻿using ProjetVellemanTEST.GameEngine.UiManager;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Media;
@@ -37,6 +39,20 @@ namespace ProjetVellemanTEST.GameEngine.SoundManager
             currentTheme = fileName;
             Play();
             
+        }
+
+        public void PlayGameMusic(string fileName)
+        {
+            theme.Volume = 1f;
+            theme.Open(new("file:///" + new FileInfo(fileName).FullName));
+            theme.Play();
+            theme.MediaEnded += Theme_MediaEnded;
+        }
+
+        private void Theme_MediaEnded(object sender, EventArgs e)
+        {
+            frmAppMain.uiManager.win = true;
+            frmAppMain.uiManager.CreateUiComponents<EndGameUi>();
         }
 
         internal void Play()

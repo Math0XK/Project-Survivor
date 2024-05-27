@@ -163,11 +163,11 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
                 uiManager.frmAppMain.soundManager.StopMusicLoop();
                 switch(uiManager.mode)
                 {
-                    case 1: uiManager.frmAppMain.soundManager.PlayMusicLoop(uiManager.frmAppMain.soundManager.easyTheme); break;
-                    case 2: uiManager.frmAppMain.soundManager.PlayMusicLoop(uiManager.frmAppMain.soundManager.mediumTheme); break;
-                    case 3: uiManager.frmAppMain.soundManager.PlayMusicLoop(uiManager.frmAppMain.soundManager.hardTheme); break;
-                    case 4: uiManager.frmAppMain.soundManager.PlayMusicLoop(uiManager.frmAppMain.soundManager.harderTheme); break;
-                    case 5: uiManager.frmAppMain.soundManager.PlayMusicLoop(uiManager.frmAppMain.soundManager.demonTheme); break;
+                    case 1: uiManager.frmAppMain.soundManager.PlayGameMusic(uiManager.frmAppMain.soundManager.easyTheme); uiManager.frmAppMain.endGameCpt = 10891; break;
+                    case 2: uiManager.frmAppMain.soundManager.PlayGameMusic(uiManager.frmAppMain.soundManager.mediumTheme); uiManager.frmAppMain.endGameCpt = 11630; break;
+                    case 3: uiManager.frmAppMain.soundManager.PlayGameMusic(uiManager.frmAppMain.soundManager.hardTheme); uiManager.frmAppMain.endGameCpt = 13663; break;
+                    case 4: uiManager.frmAppMain.soundManager.PlayGameMusic(uiManager.frmAppMain.soundManager.harderTheme); uiManager.frmAppMain.endGameCpt = 12941; break;
+                    case 5: uiManager.frmAppMain.soundManager.PlayGameMusic(uiManager.frmAppMain.soundManager.demonTheme); uiManager.frmAppMain.endGameCpt = 12197; break;
                 }
             }
             
