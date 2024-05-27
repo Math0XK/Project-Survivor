@@ -1,6 +1,7 @@
 ﻿using ProjetVellemanTEST.GameEngine.EntityManager;
 using ProjetVellemanTEST.GameEngine.SoundManager;
 using ProjetVellemanTEST.GameEngine.UiManager;
+using ProjetVellemanTEST.GameEngine.SaveManager;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -43,6 +44,7 @@ namespace ProjetVellemanTEST
 		internal PlayerEntity pnlPlayer;
 		internal UiManager uiManager;
 		internal SoundManager soundManager;
+		internal SaveManager saveManager;
 		internal int gameLayer = 0;
 		internal int charge = 3;
 		internal int currentProjectile = 0;
@@ -60,6 +62,7 @@ namespace ProjetVellemanTEST
 			entityManager = new EntityManager(this);
 			uiManager = new UiManager(this);
 			soundManager = new SoundManager(this);
+            saveManager = new SaveManager(this);
 			pnlPlayer = new PlayerEntity();
 			if (gameLayer == 0)
 			{

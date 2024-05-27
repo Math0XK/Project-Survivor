@@ -89,12 +89,12 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
 
         private void BtnSettings_MouseClick(object sender, MouseEventArgs e)
         {
-            
+
         }
 
         private void BtnSavedGame_MouseClick(object sender, MouseEventArgs e)
         {
-            
+            uiManager.frmAppMain.saveManager.CreateFiles();
         }
 
         internal override void OnDestroy(UiManager uiManager)
