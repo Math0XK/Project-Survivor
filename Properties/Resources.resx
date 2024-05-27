@@ -118,6 +118,18 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="click_151673" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\click-151673.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="gameboy_pluck_41265" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\gameboy-pluck-41265.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="game_over_arcade_6435" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\game-over-arcade-6435.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="good_6081" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\good-6081.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="hurt_c_08_102842" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\hurt_c_08-102842.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>

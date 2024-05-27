@@ -78,6 +78,9 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
 
         private void BtnNext_MouseClick(object sender, MouseEventArgs e)
         {
+            uiManager.frmAppMain.soundManager.PlaySoundEffect(uiManager.frmAppMain.soundManager.clickSoundEffect);
+
+            uiManager.frmAppMain.pseudo = playerName.Text;
             if(playerName.Text == "")
             {
                 MessageBox.Show("Every survivor has a name\n\r Please, enter yours", "No name", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -88,7 +91,6 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             }
             else
             {
-                uiManager.frmAppMain.pseudo = playerName.Text;
                 uiManager.ClearUi<NewGameUi>();
                 uiManager.frmAppMain.gameLayer = 7;
                 uiManager.CreateUiComponents<ChooseDifficultyUi>();
@@ -97,6 +99,8 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
 
         private void BtnBack_MouseClick(object sender, MouseEventArgs e)
         {
+            uiManager.frmAppMain.soundManager.PlaySoundEffect(uiManager.frmAppMain.soundManager.clickSoundEffect);
+
             uiManager.ClearUi <NewGameUi>();
             uiManager.frmAppMain.gameLayer = 2;
             uiManager.CreateUiComponents<MenuUi>();

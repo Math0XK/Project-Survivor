@@ -89,7 +89,9 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
 
         private void UpdateLabel(object sender, MouseEventArgs e)
         {
-            if(sender ==  btnDev) 
+            uiManager.frmAppMain.soundManager.PlaySoundEffect(uiManager.frmAppMain.soundManager.clickSoundEffect);
+
+            if (sender ==  btnDev) 
             {
                 lblCreditsDescription.Text = "DevloppementCredits_Description";
             }
@@ -105,6 +107,8 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
 
         private void BtnBack_MouseClick(object sender, MouseEventArgs e)
         {
+            uiManager.frmAppMain.soundManager.PlaySoundEffect(uiManager.frmAppMain.soundManager.clickSoundEffect);
+
             uiManager.ClearUi<CreditsIUi>();
             uiManager.frmAppMain.gameLayer = 2;
             uiManager.CreateUiComponents<MenuUi>();

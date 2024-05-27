@@ -78,9 +78,11 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
 
         private void BtnNext_MouseClick(object sender, MouseEventArgs e)
         {
+            uiManager.frmAppMain.soundManager.PlaySoundEffect(uiManager.frmAppMain.soundManager.clickSoundEffect);
+
+            uiManager.frmAppMain.pseudo = playerName.Text;
             if (uiManager.frmAppMain.saveManager.getFiles() == 1)
             {
-                uiManager.frmAppMain.pseudo = playerName.Text;
                 uiManager.frmAppMain.saveManager.ReadData();
                 uiManager.ClearUi<SavedGameUi>();
                 uiManager.frmAppMain.gameLayer = 7;
@@ -94,6 +96,8 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
 
         private void BtnBack_MouseClick(object sender, MouseEventArgs e)
         {
+            uiManager.frmAppMain.soundManager.PlaySoundEffect(uiManager.frmAppMain.soundManager.clickSoundEffect);
+
             uiManager.ClearUi<SavedGameUi>();
             uiManager.frmAppMain.gameLayer = 2;
             uiManager.CreateUiComponents<MenuUi>();

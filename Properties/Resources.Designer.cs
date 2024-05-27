@@ -72,6 +72,42 @@ namespace ProjetVellemanTEST.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.IO.UnmanagedMemoryStream semblable à System.IO.MemoryStream.
         /// </summary>
+        internal static System.IO.UnmanagedMemoryStream click_151673 {
+            get {
+                return ResourceManager.GetStream("click_151673", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.IO.UnmanagedMemoryStream semblable à System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream game_over_arcade_6435 {
+            get {
+                return ResourceManager.GetStream("game_over_arcade_6435", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.IO.UnmanagedMemoryStream semblable à System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream gameboy_pluck_41265 {
+            get {
+                return ResourceManager.GetStream("gameboy_pluck_41265", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.IO.UnmanagedMemoryStream semblable à System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream good_6081 {
+            get {
+                return ResourceManager.GetStream("good_6081", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.IO.UnmanagedMemoryStream semblable à System.IO.MemoryStream.
+        /// </summary>
         internal static System.IO.UnmanagedMemoryStream hurt_c_08_102842 {
             get {
                 return ResourceManager.GetStream("hurt_c_08_102842", resourceCulture);

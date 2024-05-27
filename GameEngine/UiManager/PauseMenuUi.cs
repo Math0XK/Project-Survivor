@@ -82,11 +82,15 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
 
         private void BtnResume_MouseClick(object sender, MouseEventArgs e)
         {
+            uiManager.frmAppMain.soundManager.PlaySoundEffect(uiManager.frmAppMain.soundManager.clickSoundEffect);
+
             uiManager.ClearUi<PauseMenuUi>();
         }
 
         private void BtnRestart_MouseClick(object sender, MouseEventArgs e)
         {
+            uiManager.frmAppMain.soundManager.PlaySoundEffect(uiManager.frmAppMain.soundManager.clickSoundEffect);
+
             uiManager.frmAppMain.gameLayer = 1000;
             uiManager.frmAppMain.entityManager.clearAllEntity();
             uiManager.frmAppMain.hp = 8;
@@ -109,6 +113,8 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
 
         private void BtnBack_MouseClick(object sender, MouseEventArgs e)
         {
+            uiManager.frmAppMain.soundManager.PlaySoundEffect(uiManager.frmAppMain.soundManager.clickSoundEffect);
+
             uiManager.frmAppMain.score = 0;
             uiManager.frmAppMain.mainCpt = 0;
             uiManager.frmAppMain.hp = 8;

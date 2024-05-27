@@ -19,12 +19,16 @@ namespace ProjetVellemanTEST.GameEngine.SoundManager
         internal string hardTheme = "Resources\\Shirobon-Vectors.wav";
         internal string harderTheme = "Resources\\Shirobon-Trident.wav";
         internal string demonTheme = "Resources\\Shirobon-Search-Unit.wav";
-        internal string hitSoundEffect = "Resources\\hurt_c_08-102842.wav";
+        internal string hurtSoundEffect = "Resources\\hurt_c_08-102842.wav";
         internal string blastSoundEffect = "Resources\\8-bit-laser-151672.wav";
+        internal string winSoundEffect = "Resources\\good-6081.wav";
+        internal string gameOverSoundEffect = "Resources\\game-over-arcade-6435.wav";
+        internal string clickSoundEffect = "Resources\\click-151673.wav";
+        internal string hitSoundEffect = "Resources\\gameboy-pluck-41265.wav";
         internal string currentTheme;
-        internal float systemVolume = 1.0f;
-        internal float musicVolume = 1.0f;
-        internal float soundEffectsVolume = 1.0f;
+        internal float systemVolume = 1f;
+        internal float musicVolume = 1f;
+        internal float soundEffectsVolume = 1f;
 
         List<MediaPlayer> soundEffects = new List<MediaPlayer>();
 
@@ -45,9 +49,9 @@ namespace ProjetVellemanTEST.GameEngine.SoundManager
         }
 
         public void PlayGameMusic(string fileName)
-        {
-            theme.Volume = musicVolume * systemVolume;
+        {  
             theme.Open(new("file:///" + new FileInfo(fileName).FullName));
+            theme.Volume = musicVolume * systemVolume;
             theme.Play();
             theme.MediaEnded += Theme_MediaEnded;
         }

@@ -77,11 +77,15 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
 
         private void BtnQuit_MouseClick(object sender, MouseEventArgs e)
         {
+            uiManager.frmAppMain.soundManager.PlaySoundEffect(uiManager.frmAppMain.soundManager.clickSoundEffect);
+
             Application.Exit();
         }
 
         private void BtnCredits_MouseClick(object sender, MouseEventArgs e)
         {
+            uiManager.frmAppMain.soundManager.PlaySoundEffect(uiManager.frmAppMain.soundManager.clickSoundEffect);
+
             uiManager.ClearUi<MenuUi>();
             uiManager.frmAppMain.gameLayer = 3;
             uiManager.CreateUiComponents<CreditsIUi>();
@@ -89,6 +93,8 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
 
         private void BtnSettings_MouseClick(object sender, MouseEventArgs e)
         {
+            uiManager.frmAppMain.soundManager.PlaySoundEffect(uiManager.frmAppMain.soundManager.clickSoundEffect);
+
             uiManager.ClearUi<MenuUi>();
             uiManager.frmAppMain.gameLayer = 5;
             uiManager.CreateUiComponents<SettingsUi>();
@@ -96,6 +102,8 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
 
         private void BtnSavedGame_MouseClick(object sender, MouseEventArgs e)
         {
+            uiManager.frmAppMain.soundManager.PlaySoundEffect(uiManager.frmAppMain.soundManager.clickSoundEffect);
+
             uiManager.ClearUi<MenuUi>();
             uiManager.frmAppMain.gameLayer = 4;
             uiManager.CreateUiComponents<SavedGameUi>();
@@ -117,6 +125,8 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
 
         private void test(object sender, MouseEventArgs e)
         {
+            uiManager.frmAppMain.soundManager.PlaySoundEffect(uiManager.frmAppMain.soundManager.clickSoundEffect);
+
             uiManager.ClearUi<MenuUi>();
             uiManager.CreateUiComponents<NewGameUi>();
         }

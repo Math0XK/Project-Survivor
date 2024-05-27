@@ -14,22 +14,79 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
         TrackBar musicVolume = new();
         TrackBar soundEffectsVolume = new();
         Button btnBack = new Button();
+        Label lblTitle = new Label();
+        Label lblSystemVolume = new Label();
+        Label lblMusicVolume = new Label();
+        Label lblSoundEffectsVolume = new Label();
 
         internal override void OnCreate(UiManager uiManager)
         {
             base.OnCreate(uiManager);
 
-            //musicVolume.Value = (int)(uiManager.frmAppMain.soundManager.musicVolume*100);
-            //soundEffectsVolume.Value = (int)(uiManager.frmAppMain.soundManager.soundEffectsVolume*100);
+            lblTitle = new();
+            lblTitle.Font = new Font(UiManager.customFont.Families[0], 40, FontStyle.Regular);
+            lblTitle.Size = new Size(400, 66);
+            lblTitle.BackColor = Color.Transparent;
+            lblTitle.ForeColor = Color.White;
+            lblTitle.TextAlign = ContentAlignment.MiddleCenter;
+            lblTitle.Text = "Settings";
+            lblTitle.Location = new Point(uiManager.frmAppMain.grpMain.Width / 2 - lblTitle.Width / 2, uiManager.frmAppMain.grpMain.Height * 4 / 30);
+            uiManager.frmAppMain.grpMain.Controls.Add(lblTitle);
+
 
             systemVolume.Minimum = 0;
             systemVolume.Maximum = 100;
             systemVolume.LargeChange = 1;
             systemVolume.Size = new Size(400, 25);
-            systemVolume.Location = new Point(uiManager.frmAppMain.grpMain.Width, 50);
+            systemVolume.Location = new Point(uiManager.frmAppMain.grpMain.Width / 2 - systemVolume.Width / 2, uiManager.frmAppMain.grpMain.Height * 10 / 30);
             systemVolume.Value = (int)(uiManager.frmAppMain.soundManager.systemVolume * 100);
             systemVolume.ValueChanged += SystemVolume_ValueChanged;
             uiManager.frmAppMain.grpMain.Controls.Add(systemVolume);
+
+            lblSystemVolume.Size = new Size(400, 30);
+            lblSystemVolume.Font = new Font(UiManager.customFont.Families[0], 16, FontStyle.Regular);
+            lblSystemVolume.Text = "System Volume :"+ systemVolume.Value+"%";
+            lblSystemVolume.BackColor = Color.Transparent;
+            lblSystemVolume.ForeColor = Color.White;
+            lblSystemVolume.TextAlign = ContentAlignment.TopCenter;
+            lblSystemVolume.Location = new Point(uiManager.frmAppMain.grpMain.Width / 2 - lblSystemVolume.Width / 2, uiManager.frmAppMain.grpMain.Height * 10 / 30 - systemVolume.Height);
+            uiManager.frmAppMain.grpMain.Controls.Add(lblSystemVolume);
+
+            musicVolume.Minimum = 0;
+            musicVolume.Maximum = 100;
+            musicVolume.LargeChange = 1;
+            musicVolume.Size = new Size(400, 25);
+            musicVolume.Location = new Point(uiManager.frmAppMain.grpMain.Width / 2 - musicVolume.Width / 2, uiManager.frmAppMain.grpMain.Height * 15 / 30);
+            musicVolume.Value = (int)(uiManager.frmAppMain.soundManager.musicVolume * 100);
+            musicVolume.ValueChanged += MusicVolume_ValueChanged; ;
+            uiManager.frmAppMain.grpMain.Controls.Add(musicVolume);
+
+            lblMusicVolume.Size = new Size(400, 30);
+            lblMusicVolume.Font = new Font(UiManager.customFont.Families[0], 16, FontStyle.Regular);
+            lblMusicVolume.Text = "Music Volume :" + musicVolume.Value + "%";
+            lblMusicVolume.BackColor = Color.Transparent;
+            lblMusicVolume.ForeColor = Color.White;
+            lblMusicVolume.TextAlign = ContentAlignment.TopCenter;
+            lblMusicVolume.Location = new Point(uiManager.frmAppMain.grpMain.Width / 2 - lblMusicVolume.Width / 2, uiManager.frmAppMain.grpMain.Height * 15 / 30 - musicVolume.Height);
+            uiManager.frmAppMain.grpMain.Controls.Add(lblMusicVolume);
+
+            soundEffectsVolume.Minimum = 0;
+            soundEffectsVolume.Maximum = 100;
+            soundEffectsVolume.LargeChange = 1;
+            soundEffectsVolume.Size = new Size(400, 25);
+            soundEffectsVolume.Location = new Point(uiManager.frmAppMain.grpMain.Width / 2 - soundEffectsVolume.Width / 2, uiManager.frmAppMain.grpMain.Height * 20 / 30);
+            soundEffectsVolume.Value = (int)(uiManager.frmAppMain.soundManager.soundEffectsVolume * 100);
+            soundEffectsVolume.ValueChanged += SoundEffectsVolume_ValueChanged;
+            uiManager.frmAppMain.grpMain.Controls.Add(soundEffectsVolume);
+
+            lblSoundEffectsVolume.Size = new Size(500, 30);
+            lblSoundEffectsVolume.Font = new Font(UiManager.customFont.Families[0], 16, FontStyle.Regular);
+            lblSoundEffectsVolume.Text = "Sound effects Volume :" + soundEffectsVolume.Value + "%";
+            lblSoundEffectsVolume.BackColor = Color.Transparent;
+            lblSoundEffectsVolume.ForeColor = Color.White;
+            lblSoundEffectsVolume.TextAlign = ContentAlignment.TopCenter;
+            lblSoundEffectsVolume.Location = new Point(uiManager.frmAppMain.grpMain.Width / 2 - lblSoundEffectsVolume.Width / 2, uiManager.frmAppMain.grpMain.Height * 20 / 30 - soundEffectsVolume.Height);
+            uiManager.frmAppMain.grpMain.Controls.Add(lblSoundEffectsVolume);
 
             btnBack.Font = new Font(UiManager.customFont.Families[0], 16, FontStyle.Regular);
             btnBack.Size = new Size(140, 80);
@@ -40,9 +97,42 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             uiManager.frmAppMain.grpMain.Controls.Add(btnBack);
         }
 
+        internal override void OnDestroy(UiManager uiManager)
+        {
+            base.OnDestroy(uiManager);
+
+            lblMusicVolume.Dispose();
+            lblSoundEffectsVolume.Dispose();
+            lblSystemVolume.Dispose();
+            btnBack.Dispose();
+            systemVolume.Dispose();
+            soundEffectsVolume.Dispose();
+            musicVolume.Dispose();
+            lblTitle.Dispose();
+        }
+
+        private void SoundEffectsVolume_ValueChanged(object sender, EventArgs e)
+        {
+            uiManager.frmAppMain.soundManager.soundEffectsVolume = (float)soundEffectsVolume.Value / 100;
+            lblSoundEffectsVolume.Text = "Sound effects Volume :" + soundEffectsVolume.Value + "%";
+
+        }
+
+        private void MusicVolume_ValueChanged(object sender, EventArgs e)
+        {
+            uiManager.frmAppMain.soundManager.musicVolume = (float)musicVolume.Value / 100;
+            lblMusicVolume.Text = "Music Volume :" + musicVolume.Value + "%";
+            uiManager.frmAppMain.soundManager.pauseMusicLoop();
+            uiManager.frmAppMain.soundManager.resumeMusicLoop();
+        }
+
         private void BtnBack_MouseClick(object sender, MouseEventArgs e)
         {
-            
+            uiManager.frmAppMain.soundManager.PlaySoundEffect(uiManager.frmAppMain.soundManager.clickSoundEffect);
+
+            uiManager.ClearUi<SettingsUi>();
+            uiManager.frmAppMain.gameLayer = 2;
+            uiManager.CreateUiComponents<MenuUi>();
         }
 
         private void SystemVolume_ValueChanged(object sender, EventArgs e)
@@ -50,6 +140,8 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             uiManager.frmAppMain.soundManager.systemVolume = (float)systemVolume.Value/100;
             uiManager.frmAppMain.soundManager.pauseMusicLoop();
             uiManager.frmAppMain.soundManager.resumeMusicLoop();
+            lblSystemVolume.Text = "System Volume :" + systemVolume.Value + "%";
+
         }
     }
 }

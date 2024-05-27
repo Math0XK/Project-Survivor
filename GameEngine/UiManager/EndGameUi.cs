@@ -76,28 +76,34 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
                 uiManager.win = false;
                 lblDescription.Text = "Survivor " + uiManager.frmAppMain.pseudo + " has succeed\n\n" + "Score : " + uiManager.frmAppMain.score + "\n" + "High score : " + uiManager.frmAppMain.highScore[uiManager.mode - 1];
                 lblTitle.Text = "Level completed";
+                uiManager.frmAppMain.soundManager.PlaySoundEffect(uiManager.frmAppMain.soundManager.winSoundEffect);
                 if (uiManager.mode != 5)
                 {
                     btnNext.Size = new Size(140, 80);
                     btnNext.Font = new Font(UiManager.customFont.Families[0], 16, FontStyle.Regular);
+                    btnNext.ForeColor = Color.White;
                     btnNext.Text = "Next level";
                     btnNext.ForeColor = Color.White;
                     btnNext.TextAlign = ContentAlignment.MiddleCenter;
                     btnNext.Location = new Point(pnlPauseMain.Width * 15 / 20 - btnNext.Width / 2, pnlPauseMain.Height - btnNext.Height - 60);
                     btnNext.MouseClick += BtnNext_MouseClick;
                     pnlPauseMain.Controls.Add(btnNext);
+                    pnlPauseMain.PerformLayout();
                 }
             }
             else
             {
                 lblDescription.Text = "Survivor " + uiManager.frmAppMain.pseudo + " hasn't survived\n\n" + "Score : " + uiManager.frmAppMain.score + "\n" + "High score : " + uiManager.frmAppMain.highScore[uiManager.mode - 1];
                 lblTitle.Text = "Level failed";
+                uiManager.frmAppMain.soundManager.PlaySoundEffect(uiManager.frmAppMain.soundManager.gameOverSoundEffect);
             }
 
         }
 
         private void BtnNext_MouseClick(object sender, MouseEventArgs e)
         {
+            uiManager.frmAppMain.soundManager.PlaySoundEffect(uiManager.frmAppMain.soundManager.clickSoundEffect);
+
             uiManager.frmAppMain.gameLayer = 1000;
             uiManager.frmAppMain.entityManager.clearAllEntity();
             uiManager.mode++;
@@ -119,6 +125,8 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
 
         private void BtnRestart_MouseClick(object sender, MouseEventArgs e)
         {
+            uiManager.frmAppMain.soundManager.PlaySoundEffect(uiManager.frmAppMain.soundManager.clickSoundEffect);
+
             uiManager.frmAppMain.gameLayer = 1000;
             uiManager.frmAppMain.entityManager.clearAllEntity();
             uiManager.frmAppMain.hp = 8;
@@ -141,6 +149,8 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
 
         private void BtnBack_MouseClick(object sender, MouseEventArgs e)
         {
+            uiManager.frmAppMain.soundManager.PlaySoundEffect(uiManager.frmAppMain.soundManager.clickSoundEffect);
+
             uiManager.frmAppMain.score = 0;
             uiManager.frmAppMain.mainCpt = 0;
             uiManager.frmAppMain.hp = 8;

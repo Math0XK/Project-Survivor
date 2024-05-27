@@ -86,6 +86,7 @@ namespace ProjetVellemanTEST
                             frmAppMain.hp--;
                             frmAppMain.score -= entity.points;
                             if(frmAppMain.score <= 0 )frmAppMain.score = 0;
+                            frmAppMain.soundManager.PlaySoundEffect(frmAppMain.soundManager.hurtSoundEffect);
                             return true;
                         }
                     }

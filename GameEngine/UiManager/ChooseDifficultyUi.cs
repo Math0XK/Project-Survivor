@@ -118,7 +118,8 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
 
         private void UpdateLabel(object sender, MouseEventArgs e)
         {
-            if(sender == btnEasyMode)
+            uiManager.frmAppMain.soundManager.PlaySoundEffect(uiManager.frmAppMain.soundManager.clickSoundEffect);
+            if (sender == btnEasyMode)
             {
                 lblModeDescription.Text = "EasyMode_Description";
                 uiManager.mode = 1;
@@ -147,6 +148,7 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
 
         private void BtnNext_MouseClick(object sender, MouseEventArgs e)
         {
+            uiManager.frmAppMain.soundManager.PlaySoundEffect(uiManager.frmAppMain.soundManager.clickSoundEffect);
             if(uiManager.mode == 0)
             {
                 MessageBox.Show("No level selected, please select a level", "Selection error", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -175,6 +177,7 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
 
         private void BtnBack_MouseClick(object sender, MouseEventArgs e)
         {
+            uiManager.frmAppMain.soundManager.PlaySoundEffect(uiManager.frmAppMain.soundManager.clickSoundEffect);
             uiManager.ClearUi<ChooseDifficultyUi>();
             uiManager.frmAppMain.gameLayer = 2;
             uiManager.CreateUiComponents<MenuUi>();
