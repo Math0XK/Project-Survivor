@@ -82,6 +82,10 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             {
                 MessageBox.Show("Every survivor has a name\n\r Please, enter yours", "No name", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+            else if(uiManager.frmAppMain.saveManager.getFiles() == 1)
+            {
+                MessageBox.Show("This survivor already exists\n\nPlease, load save", "Name already exists", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
             else
             {
                 uiManager.frmAppMain.pseudo = playerName.Text;

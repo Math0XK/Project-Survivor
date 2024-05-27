@@ -10,7 +10,6 @@ namespace ProjetVellemanTEST.GameEngine.SaveManager
 {
     internal class SaveManager
     {
-        internal string path = "Resources\\SavesFile.txt";
         private frmAppMain frmAppMain;
 
         public SaveManager(frmAppMain frmAppMain)
@@ -18,12 +17,13 @@ namespace ProjetVellemanTEST.GameEngine.SaveManager
             this.frmAppMain = frmAppMain;
         }
 
-        internal void GetFiles()
+        internal void CountFiles()
         {
+            FILE_NAME = "Resources\\" + frmAppMain.pseudo + ".txt";
             try
             {
                 // Set a variable to the My Documents path.
-                string docPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                string docPath = FILE_NAME;
 
                 List<string> dirs = new List<string>(Directory.EnumerateDirectories(docPath));
 
@@ -43,17 +43,19 @@ namespace ProjetVellemanTEST.GameEngine.SaveManager
             }
         }
 
-        private const string FILE_NAME = "Test.txt";
+        private string FILE_NAME;
 
-        internal void CreateFiles()
+        internal int getFiles()
         {
+            FILE_NAME = "Resources\\" + frmAppMain.pseudo + ".txt";
             if (File.Exists(FILE_NAME))
             {
                 Console.WriteLine($"{FILE_NAME} already exists!");
-                return;
+                return 1;
             }
+            else return 0;
 
-            using (FileStream fs = new FileStream(FILE_NAME, FileMode.CreateNew))
+            /*using (FileStream fs = new FileStream(FILE_NAME, FileMode.CreateNew))
             {
                 using (StreamWriter w = new StreamWriter(fs))
                 {
@@ -73,6 +75,57 @@ namespace ProjetVellemanTEST.GameEngine.SaveManager
                         Console.WriteLine(r.ReadLine());
                     }
                 }
+            }*/
+
+        }
+        internal void WriteData()
+        {
+            FILE_NAME = "Resources\\" + frmAppMain.pseudo + ".txt";
+            // Create a string array with the lines of text
+            string[] lines = { frmAppMain.highScore[0].ToString(), frmAppMain.highScore[1].ToString(), frmAppMain.highScore[2].ToString(), frmAppMain.highScore[3].ToString(), frmAppMain.highScore[4].ToString() };
+            using (StreamWriter saves = new StreamWriter(FILE_NAME))
+            {
+                foreach(string line in lines) 
+                    saves.WriteLine(line);
+            }
+
+            /*// Set a variable to the Documents path.
+            string docPath =
+              Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
+            // Write the string array to a new file named "WriteLines.txt".
+            using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "WriteLines.txt")))
+            {
+                foreach (string line in lines)
+                    outputFile.WriteLine(line);
+            }*/
+        }
+
+        internal void ReadData()
+        {
+            string[] tabData = new string[5];
+            FILE_NAME = "Resources\\" + frmAppMain.pseudo + ".txt";
+            try
+            {
+                // Open the text file using a stream reader.
+                using StreamReader reader = new(FILE_NAME);
+
+                // Read the stream as a string.
+                string text = reader.ReadToEnd();
+
+                tabData = text.Split('\n');
+                for(int i=0; i<5; i++)
+                {
+                    frmAppMain.highScore[i] = Int32.Parse(tabData[i]);
+                }
+                // Write the text to the console.
+                Console.WriteLine(text);
+                Console.WriteLine(frmAppMain.highScore[0]+"\n");
+            }
+            catch (IOException e)
+            {
+                Console.WriteLine("The file could not be read:");
+                Console.WriteLine(e.Message);
             }
         }
 

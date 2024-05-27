@@ -89,15 +89,6 @@ namespace ProjetVellemanTEST.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à .
-        /// </summary>
-        internal static string SavesFile {
-            get {
-                return ResourceManager.GetString("SavesFile", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Recherche une ressource localisée de type System.IO.UnmanagedMemoryStream semblable à System.IO.MemoryStream.
         /// </summary>
         internal static System.IO.UnmanagedMemoryStream Shirobon_Hiraeth {

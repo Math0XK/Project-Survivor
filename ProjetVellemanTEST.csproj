@@ -155,8 +155,5 @@
     </None>
   </ItemGroup>
   <ItemGroup />
-  <ItemGroup>
-    <None Include="Resources\SavesFile.txt" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

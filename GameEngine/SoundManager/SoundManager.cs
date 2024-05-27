@@ -22,6 +22,9 @@ namespace ProjetVellemanTEST.GameEngine.SoundManager
         internal string hitSoundEffect = "Resources\\hurt_c_08-102842.wav";
         internal string blastSoundEffect = "Resources\\8-bit-laser-151672.wav";
         internal string currentTheme;
+        internal float systemVolume = 1.0f;
+        internal float musicVolume = 1.0f;
+        internal float soundEffectsVolume = 1.0f;
 
         List<MediaPlayer> soundEffects = new List<MediaPlayer>();
 
@@ -43,7 +46,7 @@ namespace ProjetVellemanTEST.GameEngine.SoundManager
 
         public void PlayGameMusic(string fileName)
         {
-            theme.Volume = 1f;
+            theme.Volume = musicVolume * systemVolume;
             theme.Open(new("file:///" + new FileInfo(fileName).FullName));
             theme.Play();
             theme.MediaEnded += Theme_MediaEnded;
@@ -51,13 +54,14 @@ namespace ProjetVellemanTEST.GameEngine.SoundManager
 
         private void Theme_MediaEnded(object sender, EventArgs e)
         {
+            theme.MediaEnded -= Theme_MediaEnded;
             frmAppMain.uiManager.win = true;
             frmAppMain.uiManager.CreateUiComponents<EndGameUi>();
         }
 
         internal void Play()
         {
-            theme.Volume = 1f;
+            theme.Volume = musicVolume * systemVolume;
             theme.Open(new("file:///" + new FileInfo(currentTheme).FullName));
             theme.Play();
             Console.WriteLine("music");
@@ -75,6 +79,7 @@ namespace ProjetVellemanTEST.GameEngine.SoundManager
         public void StopMusicLoop() 
         {
             theme.MediaEnded -= CurrentTheme_MediaEnded;
+            theme.MediaEnded -= Theme_MediaEnded;
             theme.Stop();
             theme.Close();
         }
@@ -83,7 +88,7 @@ namespace ProjetVellemanTEST.GameEngine.SoundManager
         {
             MediaPlayer soundEffect = new MediaPlayer();
             soundEffect = new();
-            soundEffect.Volume = 1f;
+            soundEffect.Volume = soundEffectsVolume * systemVolume;
             soundEffect.Open(new("file:///" + new FileInfo(fileName).FullName));
             soundEffects.Add(soundEffect);
             soundEffect.MediaEnded += StopSound;

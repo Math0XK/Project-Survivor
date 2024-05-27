@@ -83,18 +83,20 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
         private void BtnCredits_MouseClick(object sender, MouseEventArgs e)
         {
             uiManager.ClearUi<MenuUi>();
-            uiManager.frmAppMain.gameLayer = 4;
+            uiManager.frmAppMain.gameLayer = 3;
             uiManager.CreateUiComponents<CreditsIUi>();
         }
 
         private void BtnSettings_MouseClick(object sender, MouseEventArgs e)
         {
-
+            uiManager.frmAppMain.saveManager.ReadData();
         }
 
         private void BtnSavedGame_MouseClick(object sender, MouseEventArgs e)
         {
-            uiManager.frmAppMain.saveManager.CreateFiles();
+            uiManager.ClearUi<MenuUi>();
+            uiManager.frmAppMain.gameLayer = 4;
+            uiManager.CreateUiComponents<SavedGameUi>();
         }
 
         internal override void OnDestroy(UiManager uiManager)

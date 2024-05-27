@@ -70,6 +70,7 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             {
                 uiManager.frmAppMain.highScore[uiManager.mode - 1] = uiManager.frmAppMain.score;
             }
+            uiManager.frmAppMain.saveManager.WriteData();
             if (uiManager.win)
             {
                 uiManager.win = false;
