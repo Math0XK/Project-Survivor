@@ -115,6 +115,7 @@ namespace ProjetVellemanTEST.GameEngine.SoundManager
         }
         internal void resumeMusicLoop()
         {
+            theme.Volume = musicVolume * systemVolume;
             theme.Play();
         }
 

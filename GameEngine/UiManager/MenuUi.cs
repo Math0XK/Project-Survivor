@@ -89,7 +89,9 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
 
         private void BtnSettings_MouseClick(object sender, MouseEventArgs e)
         {
-            uiManager.frmAppMain.saveManager.ReadData();
+            uiManager.ClearUi<MenuUi>();
+            uiManager.frmAppMain.gameLayer = 5;
+            uiManager.CreateUiComponents<SettingsUi>();
         }
 
         private void BtnSavedGame_MouseClick(object sender, MouseEventArgs e)
