@@ -114,7 +114,7 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
         private void BtnBack_MouseClick(object sender, MouseEventArgs e)
         {
             uiManager.frmAppMain.soundManager.PlaySoundEffect(uiManager.frmAppMain.soundManager.clickSoundEffect);
-
+            uiManager.mode = 0;
             uiManager.frmAppMain.score = 0;
             uiManager.frmAppMain.mainCpt = 0;
             uiManager.frmAppMain.hp = 8;

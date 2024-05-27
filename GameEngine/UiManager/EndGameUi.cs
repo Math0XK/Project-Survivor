@@ -88,6 +88,7 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
                     btnNext.Location = new Point(pnlPauseMain.Width * 15 / 20 - btnNext.Width / 2, pnlPauseMain.Height - btnNext.Height - 60);
                     btnNext.MouseClick += BtnNext_MouseClick;
                     pnlPauseMain.Controls.Add(btnNext);
+                    pnlPauseMain.Controls.SetChildIndex(btnNext, 0);
                     pnlPauseMain.PerformLayout();
                 }
             }
@@ -150,7 +151,7 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
         private void BtnBack_MouseClick(object sender, MouseEventArgs e)
         {
             uiManager.frmAppMain.soundManager.PlaySoundEffect(uiManager.frmAppMain.soundManager.clickSoundEffect);
-
+            uiManager.mode = 0;
             uiManager.frmAppMain.score = 0;
             uiManager.frmAppMain.mainCpt = 0;
             uiManager.frmAppMain.hp = 8;
