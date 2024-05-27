@@ -22,6 +22,9 @@ namespace ProjetVellemanTEST.GameEngine.SaveManager
 
         internal void Save() { 
             StreamWriter streamWriter = new StreamWriter(path);
+            streamWriter.Write(frmAppMain.pseudo + "*" + frmAppMain.highScore[0]+"*" + frmAppMain.highScore[1] + "*" + frmAppMain.highScore[2] + "*" + frmAppMain.highScore[3] + "*" + frmAppMain.highScore[4]);
+            streamWriter.Flush();
+            streamWriter.Close();
         }
 
         internal void test()
