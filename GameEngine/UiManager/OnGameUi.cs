@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjetVellemanTEST.GameEngine.K8055DManager;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -58,6 +59,8 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             lblScore.ForeColor = Color.White;
             lblScore.TextAlign = ContentAlignment.TopRight;
             pnlUi.Controls.Add (lblScore);
+
+            Fctvm110.SetAllDigital();
         }
 
         internal override void OnDestroy(UiManager uiManager)

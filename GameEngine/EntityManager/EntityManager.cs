@@ -1,4 +1,5 @@
 ﻿using ProjetVellemanTEST.GameEngine.EntityManager;
+using ProjetVellemanTEST.GameEngine.K8055DManager;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -83,6 +84,7 @@ namespace ProjetVellemanTEST
                         else
                         {
                             entity.destroyed = true;
+                            Fctvm110.ClearDigitalChannel(frmAppMain.hp);
                             frmAppMain.hp--;
                             frmAppMain.score -= entity.points;
                             if(frmAppMain.score <= 0 )frmAppMain.score = 0;

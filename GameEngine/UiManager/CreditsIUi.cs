@@ -35,7 +35,11 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             btnBack.ForeColor = Color.White;
             btnBack.Text = "Back";
             btnBack.Location = new Point(uiManager.frmAppMain.grpMain.Width / 2 - btnBack.Width / 2, uiManager.frmAppMain.grpMain.Height * 25 / 30);
-            btnBack.MouseClick += BtnBack_MouseClick;
+            //btnBack.MouseClick += BtnBack_MouseClick;
+            btnBack.TabIndex = 0;
+            btnBack.GotFocus += GotFocus;
+            btnBack.Click += BtnBack_Click;
+            uiManager.buttons.Add(btnBack);
             uiManager.frmAppMain.grpMain.Controls.Add(btnBack);
 
             btnDev = new Button();
@@ -44,7 +48,11 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             btnDev.ForeColor = Color.White;
             btnDev.Text = "Devloppement";
             btnDev.Location = new Point(uiManager.frmAppMain.grpMain.Width * 15 / 40 - btnDev.Width / 2, uiManager.frmAppMain.grpMain.Height * 10 / 30);
-            btnDev.MouseClick += UpdateLabel;
+            //btnDev.MouseClick += UpdateLabel;
+            btnDev.TabIndex = 1;
+            btnDev.GotFocus += GotFocus;
+            btnDev.Click += UpdateLabel;
+            uiManager.buttons.Add(btnDev);
             uiManager.frmAppMain.grpMain.Controls.Add((btnDev));
 
             btnLicence = new Button();
@@ -53,7 +61,11 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             btnLicence.ForeColor = Color.White;
             btnLicence.Text = "Licence";
             btnLicence.Location = new Point(uiManager.frmAppMain.grpMain.Width * 15 / 40 - btnLicence.Width / 2, uiManager.frmAppMain.grpMain.Height * 15 / 30);
-            btnLicence.MouseClick += UpdateLabel;
+            //btnLicence.MouseClick += UpdateLabel;
+            btnLicence.TabIndex = 1;
+            btnLicence.GotFocus += GotFocus;
+            btnLicence.Click += UpdateLabel;
+            uiManager.buttons.Add(btnLicence);
             uiManager.frmAppMain.grpMain.Controls.Add((btnLicence));
 
             btnSoundtrack = new Button();
@@ -62,7 +74,11 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             btnSoundtrack.ForeColor = Color.White;
             btnSoundtrack.Text = "Soundtrack";
             btnSoundtrack.Location = new Point(uiManager.frmAppMain.grpMain.Width * 15 / 40 - btnSoundtrack.Width / 2, uiManager.frmAppMain.grpMain.Height * 20 / 30);
-            btnSoundtrack.MouseClick += UpdateLabel;
+            //btnSoundtrack.MouseClick += UpdateLabel;
+            btnSoundtrack.TabIndex = 1;
+            btnSoundtrack.GotFocus += GotFocus;
+            btnSoundtrack.Click += UpdateLabel;
+            uiManager.buttons.Add(btnSoundtrack);
             uiManager.frmAppMain.grpMain.Controls.Add((btnSoundtrack));
 
             lblCreditsDescription = new Label();
@@ -75,6 +91,15 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             uiManager.frmAppMain.grpMain.Controls.Add(lblCreditsDescription);
         }
 
+        private void BtnBack_Click(object sender, EventArgs e)
+        {
+            uiManager.frmAppMain.soundManager.PlaySoundEffect(uiManager.frmAppMain.soundManager.clickSoundEffect);
+
+            uiManager.ClearUi<CreditsIUi>();
+            uiManager.frmAppMain.gameLayer = 2;
+            uiManager.CreateUiComponents<MenuUi>();
+        }
+
         internal override void OnDestroy(UiManager uiManager)
         {
             base.OnDestroy(uiManager);
@@ -84,10 +109,52 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             btnLicence.Dispose();
             btnBack.Dispose();
             btnDev.Dispose();
+            uiManager.buttons.Clear();
 
         }
 
-        private void UpdateLabel(object sender, MouseEventArgs e)
+        private void UpdateLabel(object sender, EventArgs e)
+        {
+            uiManager.frmAppMain.soundManager.PlaySoundEffect(uiManager.frmAppMain.soundManager.clickSoundEffect);
+
+            if (sender == btnDev)
+            {
+                lblCreditsDescription.Text = "DevloppementCredits_Description";
+            }
+            else if (sender == btnSoundtrack)
+            {
+                lblCreditsDescription.Text = "SoundtrackCredits_Description";
+            }
+            else if (sender == btnLicence)
+            {
+                lblCreditsDescription.Text = "LicenceDistubution_Description";
+            }
+        }
+        private void GotFocus(object sender, EventArgs e)
+        {
+            if(sender == btnBack)
+            {
+                btnBack.TabIndex = 1;
+                btnDev.TabIndex = 0;
+            }
+            if(sender == btnDev)
+            {
+                btnDev.TabIndex = 1;
+                btnLicence.TabIndex = 0;
+            }
+            if(sender == btnLicence)
+            {
+                btnLicence.TabIndex = 1;
+                btnSoundtrack.TabIndex = 0;
+            }
+            if(sender == btnSoundtrack)
+            {
+                btnSoundtrack.TabIndex = 1;
+                btnBack.TabIndex = 0;
+            }
+        }
+
+        /*private void UpdateLabel(object sender, MouseEventArgs e)
         {
             uiManager.frmAppMain.soundManager.PlaySoundEffect(uiManager.frmAppMain.soundManager.clickSoundEffect);
 
@@ -103,15 +170,15 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             {
                 lblCreditsDescription.Text = "LicenceDistubution_Description";
             }
-        }
+        }*/
 
-        private void BtnBack_MouseClick(object sender, MouseEventArgs e)
+        /*private void BtnBack_MouseClick(object sender, MouseEventArgs e)
         {
             uiManager.frmAppMain.soundManager.PlaySoundEffect(uiManager.frmAppMain.soundManager.clickSoundEffect);
 
             uiManager.ClearUi<CreditsIUi>();
             uiManager.frmAppMain.gameLayer = 2;
             uiManager.CreateUiComponents<MenuUi>();
-        }
+        }*/
     }
 }

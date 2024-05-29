@@ -7,6 +7,7 @@ using System.Media;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace ProjetVellemanTEST.GameEngine.UiManager
 {
@@ -24,6 +25,7 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
         }
 
         List<BaseUi> uiComponents = new List<BaseUi>();
+        internal List<Button> buttons = new List<Button>();
 
         internal T CreateUiComponents<T>() where T : BaseUi, new()
         {

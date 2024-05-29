@@ -117,6 +117,16 @@ namespace ProjetVellemanTEST.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Byte[].
         /// </summary>
+        internal static byte[] K8055D {
+            get {
+                object obj = ResourceManager.GetObject("K8055D", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Byte[].
+        /// </summary>
         internal static byte[] PixeloidMono_d94EV {
             get {
                 object obj = ResourceManager.GetObject("PixeloidMono_d94EV", resourceCulture);

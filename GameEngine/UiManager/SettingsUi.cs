@@ -93,8 +93,20 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             btnBack.ForeColor = Color.White;
             btnBack.Text = "Back";
             btnBack.Location = new Point(uiManager.frmAppMain.grpMain.Width / 2 - btnBack.Width / 2, uiManager.frmAppMain.grpMain.Height * 25 / 30);
-            btnBack.MouseClick += BtnBack_MouseClick;
+            //btnBack.MouseClick += BtnBack_MouseClick;
+            btnBack.Click += BtnBack_Click;
+            btnBack.TabIndex = 0;
+            uiManager.buttons.Add(btnBack);
             uiManager.frmAppMain.grpMain.Controls.Add(btnBack);
+        }
+
+        private void BtnBack_Click(object sender, EventArgs e)
+        {
+            uiManager.frmAppMain.soundManager.PlaySoundEffect(uiManager.frmAppMain.soundManager.clickSoundEffect);
+
+            uiManager.ClearUi<SettingsUi>();
+            uiManager.frmAppMain.gameLayer = 2;
+            uiManager.CreateUiComponents<MenuUi>();
         }
 
         internal override void OnDestroy(UiManager uiManager)
@@ -109,6 +121,7 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             soundEffectsVolume.Dispose();
             musicVolume.Dispose();
             lblTitle.Dispose();
+            uiManager.buttons.Clear();
         }
 
         private void SoundEffectsVolume_ValueChanged(object sender, EventArgs e)
@@ -126,14 +139,14 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             uiManager.frmAppMain.soundManager.resumeMusicLoop();
         }
 
-        private void BtnBack_MouseClick(object sender, MouseEventArgs e)
+        /*private void BtnBack_MouseClick(object sender, MouseEventArgs e)
         {
             uiManager.frmAppMain.soundManager.PlaySoundEffect(uiManager.frmAppMain.soundManager.clickSoundEffect);
 
             uiManager.ClearUi<SettingsUi>();
             uiManager.frmAppMain.gameLayer = 2;
             uiManager.CreateUiComponents<MenuUi>();
-        }
+        }*/
 
         private void SystemVolume_ValueChanged(object sender, EventArgs e)
         {

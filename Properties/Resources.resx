@@ -133,6 +133,9 @@
   <data name="hurt_c_08_102842" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\hurt_c_08-102842.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="K8055D" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\K8055D.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="PixeloidMono_d94EV" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\PixeloidMono-d94EV.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>

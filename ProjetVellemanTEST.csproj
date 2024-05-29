@@ -15,7 +15,7 @@
     <langversion>latest</langversion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -67,6 +67,7 @@
     <Compile Include="GameEngine\EntityManager\ProjectileEntity.cs" />
     <Compile Include="GameEngine\InputManager\InputManager.cs" />
     <Compile Include="GameEngine\EntityManager\PlayerEntity.cs" />
+    <Compile Include="GameEngine\K8055DManager\K8055DManager.cs" />
     <Compile Include="GameEngine\SaveManager\SaveManager.cs" />
     <Compile Include="GameEngine\SoundManager\SoundManager.cs" />
     <Compile Include="GameEngine\UiManager\BaseUi.cs" />
@@ -172,6 +173,11 @@
   <ItemGroup>
     <None Include="Resources\gameboy-pluck-41265.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\K8055D.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

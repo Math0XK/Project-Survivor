@@ -13,6 +13,7 @@ using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ProjetVellemanTEST.GameEngine.K8055DManager;
 
 namespace ProjetVellemanTEST
 {
@@ -38,21 +39,26 @@ namespace ProjetVellemanTEST
 		internal int score = 0;
 		internal int[] highScore = [0, 0, 0, 0, 0];
 		internal int endGameCpt = 100;
-        internal string pseudo;
-        internal InputManager inputManager;
+		internal string pseudo;
+		internal InputManager inputManager;
 		internal EntityManager entityManager;
 		internal PlayerEntity pnlPlayer;
 		internal UiManager uiManager;
 		internal SoundManager soundManager;
 		internal SaveManager saveManager;
+		internal Fctvm110 Fctvm110;
 		internal int gameLayer = 0;
 		internal int charge = 3;
 		internal int currentProjectile = 0;
 		internal int currentEntity = 0;
+		internal int actualCount = 0;
+		int digitalChannels;
 		internal Random random = new Random();
 		internal bool hold = false;
+		internal bool hold2 = false;
 		internal bool e_hold = false;
 		internal bool paused = false;
+		internal int[] Vbtn = [0, 0, 0, 0, 0];
 
 		public frmAppMain()
 		{
@@ -64,15 +70,37 @@ namespace ProjetVellemanTEST
 			soundManager = new SoundManager(this);
             saveManager = new SaveManager(this);
 			pnlPlayer = new PlayerEntity();
+			Fctvm110 = new Fctvm110();
+			if (Fctvm110.SearchDevices() != 0)
+			{
+				Console.WriteLine("card found");
+				Console.WriteLine(Fctvm110.ReadAllDigital());
+			}
 			if (gameLayer == 0)
 			{
+                Fctvm110.isAnyButtonsDown += Fctvm110_isAnyButtonsDown;
 				inputManager.isAnyKeyDown += anyKeyDown;
 				uiManager.CreateUiComponents<StartupUi>();
 			}
 			soundManager.PlayMusicLoop(soundManager.startupTheme);
+			
 		}
 
-		internal void anyKeyDown(Keys keys)
+        private void Fctvm110_isAnyButtonsDown(int value)
+        {
+            Console.WriteLine("card event");
+            if (gameLayer == 0)
+            {
+                uiManager.ClearUi<StartupUi>();
+                Console.WriteLine("test");
+                gameLayer = 1;
+                uiManager.CreateUiComponents<MenuUi>();
+				Fctvm110.isAnyButtonsDown -= Fctvm110_isAnyButtonsDown;
+                inputManager.isAnyKeyDown -= anyKeyDown;
+            }
+        }
+
+        internal void anyKeyDown(Keys keys)
 		{
 			if (gameLayer == 0)
 			{
@@ -80,34 +108,52 @@ namespace ProjetVellemanTEST
 				Console.WriteLine("test");
 				gameLayer = 1;
 				uiManager.CreateUiComponents<MenuUi>();
-				inputManager.isAnyKeyDown -= anyKeyDown;
+                Fctvm110.isAnyButtonsDown -= Fctvm110_isAnyButtonsDown;
+                inputManager.isAnyKeyDown -= anyKeyDown;
 			}
 			
 		}
 
 		private void gameUpdate(object sender, EventArgs e)
 		{
+            if(gameLayer != 999)
+			{
+                Fctvm110.isAnyButtonsPressed();
+                if (Fctvm110.ReadDigitalChannel(1) && !hold)
+                {
+                    this.Select(true, true);
+                    hold = true;
+                }
+                else if (!Fctvm110.ReadDigitalChannel(1) && hold) hold = false;
+            }
 			if (gameLayer == 999)
 			{
 				if (pnlPlayer.playerEnabled)
 				{
-					if (pnlPlayer.mainPanel.Top >= (grpMain.Height) * 3 / 4)
+                    digitalChannels = Fctvm110.ReadAllDigital();
+                    for (int i = 0; i < 5; i++)
+                    {
+                        Vbtn[i] = digitalChannels % 2;
+                        digitalChannels /= 2;
+                        Console.WriteLine(Vbtn[i]);
+                    }
+                    if (pnlPlayer.mainPanel.Top >= (grpMain.Height) * 3 / 4)
 					{
-						if (inputManager.isKeyPressed(Keys.Z)) pnlPlayer.mainPanel.Top -= velocity;
+						if (inputManager.isKeyPressed(Keys.Z) || inputManager.isKeyPressed(Keys.Up) || Vbtn[2] == 1) pnlPlayer.mainPanel.Top -= velocity;
 					}
 					if (pnlPlayer.mainPanel.Bottom <= grpMain.Height - 7)
 					{
-						if (inputManager.isKeyPressed(Keys.S)) pnlPlayer.mainPanel.Top += velocity;
+						if (inputManager.isKeyPressed(Keys.S) || Vbtn[3] == 1) pnlPlayer.mainPanel.Top += velocity;
 					}
 					if (pnlPlayer.mainPanel.Right <= grpMain.Width - 7)
 					{
-						if (inputManager.isKeyPressed(Keys.D)) pnlPlayer.mainPanel.Left += velocity;
+						if (inputManager.isKeyPressed(Keys.D) || Vbtn[0] == 1) pnlPlayer.mainPanel.Left += velocity;
 					}
 					if (pnlPlayer.mainPanel.Left >= 7)
 					{
-						if (inputManager.isKeyPressed(Keys.Q)) pnlPlayer.mainPanel.Left -= velocity;
+						if (inputManager.isKeyPressed(Keys.Q) || Vbtn[1] == 1) pnlPlayer.mainPanel.Left -= velocity;
 					}
-					if (inputManager.isKeyPressed(Keys.Space) && !hold && currentProjectile < charge)
+					if ((inputManager.isKeyPressed(Keys.Space) || Vbtn[4] == 1) && !hold && currentProjectile < charge)
 					{
 						currentProjectile++;
 						hold = true;
@@ -115,7 +161,7 @@ namespace ProjetVellemanTEST
 						Console.WriteLine("Porjectile");
 						Console.WriteLine(currentProjectile.ToString());
 					}
-					else if(!inputManager.isKeyPressed(Keys.Space) && hold) hold = false;
+					else if (!inputManager.isKeyPressed(Keys.Space) && Vbtn[4] == 0 && hold) hold = false;
 					if(inputManager.isKeyPressed(Keys.Escape) && !e_hold && !paused)
 					{
 						e_hold = true;
@@ -135,6 +181,7 @@ namespace ProjetVellemanTEST
                     pnlPlayer.size = new Size(20, 20);
                     pnlPlayer.location = new Point(grpMain.Width / 2 - pnlPlayer.mainPanel.Width / 2, (grpMain.Height) * 3 / 4 + pnlPlayer.mainPanel.Height);
                 }
+
 				entityManager.moveEntity();
 				entityManager.destroyEntity();
 				if (entityManager.collision())
@@ -146,7 +193,19 @@ namespace ProjetVellemanTEST
 					Console.WriteLine("destruction");
 				}
                 uiManager.UpdateUi();
-				mainCpt++;
+                
+                /*if (mainCpt == actualCount)
+                {
+                    actualCount = mainCpt;
+					digitalChannels = Fctvm110.ReadAllDigital();
+					for (int i = 0; i <5; i++)
+					{
+						Vbtn[i] = digitalChannels % 2;
+						digitalChannels /= 2;
+						Console.WriteLine(Vbtn[i]);
+					}
+                }*/
+                mainCpt++;
                 if (currentEntity < uiManager.mode + 3)
 				{
 					int chooseEntity = random.Next(1, uiManager.mode+1);
@@ -179,10 +238,29 @@ namespace ProjetVellemanTEST
 				{
 					uiManager.CreateUiComponents<EndGameUi>();
 				}
-			}
+				
+            }
 			if (gameLayer == 0)
 			{
 				uiManager.StartupAnimation();
+			}
+			if(gameLayer != 0 && gameLayer < 999)
+			{
+				if (Fctvm110.ReadDigitalChannel(2)) Vbtn[1] = 1;
+				else Vbtn[1] = 0;
+				if (Vbtn[1] == 1 && !hold2)
+				{
+					hold2 = true;
+					List<Button> copy = new List<Button>(uiManager.buttons);
+					foreach(Button button in copy)
+					{
+						if (button.Focused)
+						{
+							button.PerformClick();
+						}
+					}
+				}
+				else if(hold && Vbtn[1] == 0) hold2 = false;
 			}
 		}
 
