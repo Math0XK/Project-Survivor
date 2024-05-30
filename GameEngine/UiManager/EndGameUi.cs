@@ -22,7 +22,7 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             base.OnCreate(uiManager);
             //uiManager.frmAppMain.tmrGameUpdate.Stop();
             uiManager.frmAppMain.gameLayer = 998;
-            uiManager.frmAppMain.soundManager.pauseMusicLoop();
+            uiManager.frmAppMain.soundManager.StopMusicLoop();
 
             pnlPauseMain.Size = new Size(uiManager.frmAppMain.grpMain.Width / 2, uiManager.frmAppMain.grpMain.Height / 2);
             pnlPauseMain.Location = new Point(uiManager.frmAppMain.grpMain.Width / 2 - pnlPauseMain.Width / 2, uiManager.frmAppMain.grpMain.Height / 2 - pnlPauseMain.Height / 2);

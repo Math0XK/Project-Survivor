@@ -58,6 +58,7 @@ namespace ProjetVellemanTEST
 		internal bool hold2 = false;
 		internal bool e_hold = false;
 		internal bool paused = false;
+		internal int data1, data2;
 		internal int[] Vbtn = [0, 0, 0, 0, 0];
 
 		public frmAppMain()
@@ -82,9 +83,18 @@ namespace ProjetVellemanTEST
 				inputManager.isAnyKeyDown += anyKeyDown;
 				uiManager.CreateUiComponents<StartupUi>();
 			}
+            soundManager.isSystemVolumeChanged += SoundManager_isSystemVolumeChanged;
 			soundManager.PlayMusicLoop(soundManager.startupTheme);
 			
 		}
+
+        private void SoundManager_isSystemVolumeChanged()
+        {
+			Console.Write("value changed");
+			Fctvm110.OutputAnalogChannel(2, data2);
+            uiManager.frmAppMain.soundManager.pauseMusicLoop();
+            uiManager.frmAppMain.soundManager.resumeMusicLoop();
+        }
 
         private void Fctvm110_isAnyButtonsDown(int value)
         {
@@ -116,8 +126,11 @@ namespace ProjetVellemanTEST
 
 		private void gameUpdate(object sender, EventArgs e)
 		{
+			soundManager.SystemVolumeChange();
             if(gameLayer != 999)
 			{
+				data1 = Fctvm110.ReadAnalogChannel(1);
+				Console.WriteLine(soundManager.systemVolume);
                 Fctvm110.isAnyButtonsPressed();
                 if (Fctvm110.ReadDigitalChannel(1) && !hold)
                 {
@@ -126,8 +139,11 @@ namespace ProjetVellemanTEST
                 }
                 else if (!Fctvm110.ReadDigitalChannel(1) && hold) hold = false;
             }
+			soundManager.systemVolume = (float)data1 / 255;
 			if (gameLayer == 999)
 			{
+				Fctvm110.ReadAllAnalog(ref data1, ref data2);
+				Console.WriteLine(data1);
 				if (pnlPlayer.playerEnabled)
 				{
                     digitalChannels = Fctvm110.ReadAllDigital();
@@ -135,7 +151,7 @@ namespace ProjetVellemanTEST
                     {
                         Vbtn[i] = digitalChannels % 2;
                         digitalChannels /= 2;
-                        Console.WriteLine(Vbtn[i]);
+                        //Console.WriteLine(Vbtn[i]);
                     }
                     if (pnlPlayer.mainPanel.Top >= (grpMain.Height) * 3 / 4)
 					{

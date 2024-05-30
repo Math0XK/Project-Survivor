@@ -123,5 +123,16 @@ namespace ProjetVellemanTEST.GameEngine.SoundManager
             theme.Play();
         }
 
+        public delegate void SystemVolumeChanged();
+        public event SystemVolumeChanged isSystemVolumeChanged;
+
+        public void SystemVolumeChange()
+        {
+            if (theme.Volume != musicVolume*systemVolume && !frmAppMain.paused)
+            {
+                isSystemVolumeChanged?.Invoke();
+            }
+        }
+
     }
 }

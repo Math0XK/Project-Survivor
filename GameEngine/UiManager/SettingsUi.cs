@@ -41,6 +41,7 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             systemVolume.Location = new Point(uiManager.frmAppMain.grpMain.Width / 2 - systemVolume.Width / 2, uiManager.frmAppMain.grpMain.Height * 10 / 30);
             systemVolume.Value = (int)(uiManager.frmAppMain.soundManager.systemVolume * 100);
             systemVolume.ValueChanged += SystemVolume_ValueChanged;
+            uiManager.frmAppMain.soundManager.isSystemVolumeChanged += SoundManager_isSystemVolumeChanged;
             uiManager.frmAppMain.grpMain.Controls.Add(systemVolume);
 
             lblSystemVolume.Size = new Size(400, 30);
@@ -98,6 +99,12 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             btnBack.TabIndex = 0;
             uiManager.buttons.Add(btnBack);
             uiManager.frmAppMain.grpMain.Controls.Add(btnBack);
+        }
+
+        private void SoundManager_isSystemVolumeChanged()
+        {
+            systemVolume.Value = (int)(uiManager.frmAppMain.soundManager.systemVolume * 100);
+            lblSystemVolume.Text = "System Volume :" + systemVolume.Value + "%";
         }
 
         private void BtnBack_Click(object sender, EventArgs e)
