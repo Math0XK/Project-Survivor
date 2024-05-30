@@ -58,6 +58,7 @@ namespace ProjetVellemanTEST
 		internal bool hold2 = false;
 		internal bool e_hold = false;
 		internal bool paused = false;
+		internal bool cardMode = false;
 		internal int data1, data2;
 		internal int[] Vbtn = [0, 0, 0, 0, 0];
 
@@ -76,10 +77,14 @@ namespace ProjetVellemanTEST
 			{
 				Console.WriteLine("card found");
 				Console.WriteLine(Fctvm110.ReadAllDigital());
+				cardMode = true;
 			}
 			if (gameLayer == 0)
 			{
-                Fctvm110.isAnyButtonsDown += Fctvm110_isAnyButtonsDown;
+				if (cardMode)
+				{
+					Fctvm110.isAnyButtonsDown += Fctvm110_isAnyButtonsDown;
+				}
 				inputManager.isAnyKeyDown += anyKeyDown;
 				uiManager.CreateUiComponents<StartupUi>();
 			}
@@ -91,7 +96,10 @@ namespace ProjetVellemanTEST
         private void SoundManager_isSystemVolumeChanged()
         {
 			Console.Write("value changed");
-			Fctvm110.OutputAnalogChannel(2, data2);
+			if (cardMode)
+			{
+				Fctvm110.OutputAnalogChannel(2, data2);
+			}
             uiManager.frmAppMain.soundManager.pauseMusicLoop();
             uiManager.frmAppMain.soundManager.resumeMusicLoop();
         }
@@ -127,7 +135,7 @@ namespace ProjetVellemanTEST
 		private void gameUpdate(object sender, EventArgs e)
 		{
 			soundManager.SystemVolumeChange();
-            if(gameLayer != 999)
+            if(gameLayer != 999 && cardMode)
 			{
 				data1 = Fctvm110.ReadAnalogChannel(1);
 				Console.WriteLine(soundManager.systemVolume);
@@ -139,35 +147,44 @@ namespace ProjetVellemanTEST
                 }
                 else if (!Fctvm110.ReadDigitalChannel(1) && hold) hold = false;
             }
-			soundManager.systemVolume = (float)data1 / 255;
+			if (cardMode)
+			{
+				soundManager.systemVolume = (float)data1 / 255;
+			}
 			if (gameLayer == 999)
 			{
-				Fctvm110.ReadAllAnalog(ref data1, ref data2);
-				Console.WriteLine(data1);
+				if (cardMode)
+				{
+					Fctvm110.ReadAllAnalog(ref data1, ref data2);
+					Console.WriteLine(data1);
+				}
 				if (pnlPlayer.playerEnabled)
 				{
-                    digitalChannels = Fctvm110.ReadAllDigital();
-                    for (int i = 0; i < 5; i++)
-                    {
-                        Vbtn[i] = digitalChannels % 2;
-                        digitalChannels /= 2;
-                        //Console.WriteLine(Vbtn[i]);
-                    }
+					if (cardMode)
+					{
+						digitalChannels = Fctvm110.ReadAllDigital();
+						for (int i = 0; i < 5; i++)
+						{
+							Vbtn[i] = digitalChannels % 2;
+							digitalChannels /= 2;
+							//Console.WriteLine(Vbtn[i]);
+						}
+					}
                     if (pnlPlayer.mainPanel.Top >= (grpMain.Height) * 3 / 4)
 					{
 						if (inputManager.isKeyPressed(Keys.Z) || inputManager.isKeyPressed(Keys.Up) || Vbtn[2] == 1) pnlPlayer.mainPanel.Top -= velocity;
 					}
 					if (pnlPlayer.mainPanel.Bottom <= grpMain.Height - 7)
 					{
-						if (inputManager.isKeyPressed(Keys.S) || Vbtn[3] == 1) pnlPlayer.mainPanel.Top += velocity;
+						if (inputManager.isKeyPressed(Keys.S) || inputManager.isKeyPressed(Keys.Down) || Vbtn[3] == 1) pnlPlayer.mainPanel.Top += velocity;
 					}
 					if (pnlPlayer.mainPanel.Right <= grpMain.Width - 7)
 					{
-						if (inputManager.isKeyPressed(Keys.D) || Vbtn[0] == 1) pnlPlayer.mainPanel.Left += velocity;
+						if (inputManager.isKeyPressed(Keys.D) || inputManager.isKeyPressed(Keys.Right) || Vbtn[0] == 1) pnlPlayer.mainPanel.Left += velocity;
 					}
 					if (pnlPlayer.mainPanel.Left >= 7)
 					{
-						if (inputManager.isKeyPressed(Keys.Q) || Vbtn[1] == 1) pnlPlayer.mainPanel.Left -= velocity;
+						if (inputManager.isKeyPressed(Keys.Q) || inputManager.isKeyPressed(Keys.Left) || Vbtn[1] == 1) pnlPlayer.mainPanel.Left -= velocity;
 					}
 					if ((inputManager.isKeyPressed(Keys.Space) || Vbtn[4] == 1) && !hold && currentProjectile < charge)
 					{
@@ -262,21 +279,24 @@ namespace ProjetVellemanTEST
 			}
 			if(gameLayer != 0 && gameLayer < 999)
 			{
-				if (Fctvm110.ReadDigitalChannel(2)) Vbtn[1] = 1;
-				else Vbtn[1] = 0;
-				if (Vbtn[1] == 1 && !hold2)
+				if (cardMode)
 				{
-					hold2 = true;
-					List<Button> copy = new List<Button>(uiManager.buttons);
-					foreach(Button button in copy)
+					if (Fctvm110.ReadDigitalChannel(2)) Vbtn[1] = 1;
+					else Vbtn[1] = 0;
+					if (Vbtn[1] == 1 && !hold2)
 					{
-						if (button.Focused)
+						hold2 = true;
+						List<Button> copy = new List<Button>(uiManager.buttons);
+						foreach (Button button in copy)
 						{
-							button.PerformClick();
+							if (button.Focused)
+							{
+								button.PerformClick();
+							}
 						}
 					}
+					else if (hold && Vbtn[1] == 0) hold2 = false;
 				}
-				else if(hold && Vbtn[1] == 0) hold2 = false;
 			}
 		}
 

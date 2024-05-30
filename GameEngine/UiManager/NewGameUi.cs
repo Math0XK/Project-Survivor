@@ -103,6 +103,7 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             }
             else
             {
+                uiManager.frmAppMain.highScore = [0, 0, 0, 0, 0];
                 uiManager.ClearUi<NewGameUi>();
                 uiManager.frmAppMain.gameLayer = 7;
                 uiManager.CreateUiComponents<ChooseDifficultyUi>();

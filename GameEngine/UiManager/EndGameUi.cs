@@ -83,6 +83,10 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             uiManager.frmAppMain.saveManager.WriteData();
             if (uiManager.win)
             {
+                if (uiManager.frmAppMain.cardMode)
+                {
+                    Fctvm110.ClearAllDigital();
+                }
                 //uiManager.win = false;
                 lblDescription.Text = "Survivor " + uiManager.frmAppMain.pseudo + " has succeed\n\n" + "Score : " + uiManager.frmAppMain.score + "\n" + "High score : " + uiManager.frmAppMain.highScore[uiManager.mode - 1];
                 lblTitle.Text = "Level completed";
@@ -127,12 +131,12 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
                 btnRestart.TabIndex = 1;
                 btnBack.TabIndex = 0;
             }
-            if(sender == btnBack && uiManager.win)
+            if(sender == btnBack && uiManager.win && uiManager.mode < 5)
             {
                 btnBack.TabIndex = 1;
                 btnNext.TabIndex = 0;
             }
-            else if(sender == btnBack && !uiManager.win)
+            else if(sender == btnBack && (!uiManager.win || uiManager.mode == 5))
             {
                 btnBack.TabIndex = 1;
                 btnRestart.TabIndex = 0;

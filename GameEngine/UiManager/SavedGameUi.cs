@@ -92,6 +92,7 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
         {
             uiManager.frmAppMain.soundManager.PlaySoundEffect(uiManager.frmAppMain.soundManager.clickSoundEffect);
 
+            uiManager.frmAppMain.highScore = [0, 0, 0, 0, 0];
             uiManager.frmAppMain.pseudo = playerName.Text;
             if (uiManager.frmAppMain.saveManager.getFiles() == 1)
             {
