@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace ProjetVellemanTEST.GameEngine.SaveManager
 {
@@ -15,32 +16,6 @@ namespace ProjetVellemanTEST.GameEngine.SaveManager
         public SaveManager(frmAppMain frmAppMain)
         {
             this.frmAppMain = frmAppMain;
-        }
-
-        internal void CountFiles()
-        {
-            FILE_NAME = "Resources\\" + frmAppMain.pseudo + ".txt";
-            try
-            {
-                // Set a variable to the My Documents path.
-                string docPath = FILE_NAME;
-
-                List<string> dirs = new List<string>(Directory.EnumerateDirectories(docPath));
-
-                foreach (var dir in dirs)
-                {
-                    Console.WriteLine($"{dir.Substring(dir.LastIndexOf(Path.DirectorySeparatorChar) + 1)}");
-                }
-                Console.WriteLine($"{dirs.Count} directories found.");
-            }
-            catch (UnauthorizedAccessException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            catch (PathTooLongException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
         }
 
         private string FILE_NAME;
@@ -55,28 +30,6 @@ namespace ProjetVellemanTEST.GameEngine.SaveManager
             }
             else return 0;
 
-            /*using (FileStream fs = new FileStream(FILE_NAME, FileMode.CreateNew))
-            {
-                using (StreamWriter w = new StreamWriter(fs))
-                {
-                    for (int i = 0; i < 11; i++)
-                    {
-                        w.Write(i);
-                    }
-                }
-            }
-
-            using (FileStream fs = new FileStream(FILE_NAME, FileMode.Open, FileAccess.Read))
-            {
-                using (StreamReader r = new StreamReader(fs))
-                {
-                    while (!r.EndOfStream)
-                    {
-                        Console.WriteLine(r.ReadLine());
-                    }
-                }
-            }*/
-
         }
         internal void WriteData()
         {
@@ -88,17 +41,6 @@ namespace ProjetVellemanTEST.GameEngine.SaveManager
                 foreach(string line in lines) 
                     saves.WriteLine(line);
             }
-
-            /*// Set a variable to the Documents path.
-            string docPath =
-              Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-
-            // Write the string array to a new file named "WriteLines.txt".
-            using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "WriteLines.txt")))
-            {
-                foreach (string line in lines)
-                    outputFile.WriteLine(line);
-            }*/
         }
 
         internal void ReadData()
@@ -113,19 +55,16 @@ namespace ProjetVellemanTEST.GameEngine.SaveManager
                 // Read the stream as a string.
                 string text = reader.ReadToEnd();
 
+                //Convert data to int and stock information in highscore
                 tabData = text.Split('\n');
                 for(int i=0; i<5; i++)
                 {
                     frmAppMain.highScore[i] = Int32.Parse(tabData[i]);
                 }
-                // Write the text to the console.
-                Console.WriteLine(text);
-                Console.WriteLine(frmAppMain.highScore[0]+"\n");
             }
             catch (IOException e)
             {
-                Console.WriteLine("The file could not be read:");
-                Console.WriteLine(e.Message);
+                MessageBox.Show("The file could not be read:"+e.Message, "FILE ERROR", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 

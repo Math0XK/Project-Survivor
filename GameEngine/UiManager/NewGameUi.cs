@@ -53,7 +53,6 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             btnBack.ForeColor = Color.White;
             btnBack.TextAlign = ContentAlignment.MiddleCenter;
             btnBack.Location = new Point((uiManager.frmAppMain.grpMain.Width / 2 - btnBack.Width / 2) * 16 / 20, uiManager.frmAppMain.grpMain.Height * 25 / 30);
-            //btnBack.MouseClick += BtnBack_MouseClick;
             btnBack.TabIndex = 1;
             btnBack.Click += BtnBack_Click;
             uiManager.buttons.Add(btnBack);
@@ -66,7 +65,6 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             btnNext.ForeColor = Color.White;
             btnNext.TextAlign = ContentAlignment.MiddleCenter;
             btnNext.Location = new Point((uiManager.frmAppMain.grpMain.Width / 2 - btnNext.Width / 2) * 24 / 20, uiManager.frmAppMain.grpMain.Height * 25 / 30);
-            //btnNext.MouseClick += BtnNext_MouseClick;
             btnNext.TabIndex = 0;
             btnNext.Click += BtnNext_Click;
             uiManager.buttons.Add(btnNext);
@@ -136,35 +134,5 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             btnNext.Dispose();
             playerName.Dispose();
         }
-
-        /*private void BtnNext_MouseClick(object sender, MouseEventArgs e)
-        {
-            uiManager.frmAppMain.soundManager.PlaySoundEffect(uiManager.frmAppMain.soundManager.clickSoundEffect);
-
-            uiManager.frmAppMain.pseudo = playerName.Text;
-            if(playerName.Text == "")
-            {
-                MessageBox.Show("Every survivor has a name\n\r Please, enter yours", "No name", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else if(uiManager.frmAppMain.saveManager.getFiles() == 1)
-            {
-                MessageBox.Show("This survivor already exists\n\nPlease, load save", "Name already exists", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else
-            {
-                uiManager.ClearUi<NewGameUi>();
-                uiManager.frmAppMain.gameLayer = 7;
-                uiManager.CreateUiComponents<ChooseDifficultyUi>();
-            }
-        }*/
-
-        /*private void BtnBack_MouseClick(object sender, MouseEventArgs e)
-        {
-            uiManager.frmAppMain.soundManager.PlaySoundEffect(uiManager.frmAppMain.soundManager.clickSoundEffect);
-
-            uiManager.ClearUi <NewGameUi>();
-            uiManager.frmAppMain.gameLayer = 2;
-            uiManager.CreateUiComponents<MenuUi>();
-        }*/
     }
 }
