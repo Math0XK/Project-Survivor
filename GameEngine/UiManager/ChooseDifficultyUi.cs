@@ -44,7 +44,6 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             btnBack.Location = new Point((uiManager.frmAppMain.grpMain.Width / 2 - btnBack.Width / 2) * 16 / 20, uiManager.frmAppMain.grpMain.Height * 25 / 30);
             //btnBack.MouseClick += BtnBack_MouseClick;
             btnBack.Click += BtnBack_Click;
-            btnBack.GotFocus += GotFocus;
             btnBack.TabIndex = 1;
             uiManager.buttons.Add(btnBack);
             uiManager.frmAppMain.grpMain.Controls.Add(btnBack);
@@ -57,7 +56,6 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             btnNext.Location = new Point((uiManager.frmAppMain.grpMain.Width / 2 - btnNext.Width / 2) * 24 / 20, uiManager.frmAppMain.grpMain.Height * 25 / 30);
             //btnNext.MouseClick += BtnNext_MouseClick;
             btnNext.Click += BtnNext_Click;
-            btnNext.GotFocus += GotFocus;
             btnNext.TabIndex = 1;
             uiManager.buttons.Add(btnNext);
             uiManager.frmAppMain.grpMain.Controls.Add(btnNext);
@@ -69,7 +67,6 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             btnEasyMode.Location = new Point(uiManager.frmAppMain.grpMain.Width * 15 / 40 - btnEasyMode.Width / 2, uiManager.frmAppMain.grpMain.Height * 8 / 30);
             //btnEasyMode.MouseClick += UpdateLabel;
             btnEasyMode.Click += UpdateLabel;
-            btnEasyMode.GotFocus += GotFocus;
             btnEasyMode.TabIndex = 0;
             uiManager.buttons.Add(btnEasyMode);
             uiManager.frmAppMain.grpMain.Controls.Add((btnEasyMode));
@@ -81,7 +78,6 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             btnMediumMode.Location = new Point(uiManager.frmAppMain.grpMain.Width * 15 / 40 - btnMediumMode.Width / 2, uiManager.frmAppMain.grpMain.Height * 11 / 30);
             //btnMediumMode.MouseClick += UpdateLabel;
             btnMediumMode.Click += UpdateLabel;
-            btnMediumMode.GotFocus += GotFocus;
             btnMediumMode.TabIndex = 1;
             uiManager.buttons.Add(btnMediumMode);
             uiManager.frmAppMain.grpMain.Controls.Add((btnMediumMode));
@@ -93,7 +89,6 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             btnHardMode.Location = new Point(uiManager.frmAppMain.grpMain.Width * 15 / 40 - btnHardMode.Width / 2, uiManager.frmAppMain.grpMain.Height * 14 / 30);
             //btnHardMode.MouseClick += UpdateLabel;
             btnHardMode.Click += UpdateLabel;
-            btnHardMode.GotFocus += GotFocus;
             btnHardMode.TabIndex = 1;
             uiManager.buttons.Add(btnHardMode);
             uiManager.frmAppMain.grpMain.Controls.Add((btnHardMode));
@@ -105,7 +100,6 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             btnHarderMode.Location = new Point(uiManager.frmAppMain.grpMain.Width * 15 / 40 - btnHarderMode.Width / 2, uiManager.frmAppMain.grpMain.Height * 17 / 30);
             //btnHarderMode.MouseClick += UpdateLabel;
             btnHarderMode.Click += UpdateLabel;
-            btnHarderMode.GotFocus += GotFocus;
             btnHarderMode.TabIndex = 1;
             uiManager.buttons.Add(btnHarderMode);
             uiManager.frmAppMain.grpMain.Controls.Add((btnHarderMode));
@@ -117,7 +111,6 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             btnDemonMode.Location = new Point(uiManager.frmAppMain.grpMain.Width * 15 / 40 - btnDemonMode.Width / 2, uiManager.frmAppMain.grpMain.Height * 20 / 30);
             //btnDemonMode.MouseClick += UpdateLabel;
             btnDemonMode.Click += UpdateLabel;
-            btnDemonMode.GotFocus += GotFocus;
             btnDemonMode.TabIndex = 1;
             uiManager.buttons.Add(btnDemonMode);
             uiManager.frmAppMain.grpMain.Controls.Add((btnDemonMode));
@@ -126,9 +119,20 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             lblModeDescription.Size = new Size(800, 420);
             lblModeDescription.ForeColor = Color.White;
             lblModeDescription.BackColor = Color.Transparent;
-            lblModeDescription.Text = "Mode_Description";
+            lblModeDescription.Text = "\r\nChoose from different levels, each offering new challenges to overcome.\r\nWill you be able to complete all these levels?";
             lblModeDescription.Location = new Point(uiManager.frmAppMain.grpMain.Width * 3 / 4 - lblModeDescription.Width / 2, uiManager.frmAppMain.grpMain.Height * 8 / 30);
             uiManager.frmAppMain.grpMain.Controls.Add(lblModeDescription);
+
+            if (uiManager.frmAppMain.cardMode)
+            {
+                btnBack.GotFocus += GotFocus;
+                btnNext.GotFocus += GotFocus;
+                btnEasyMode.GotFocus += GotFocus;
+                btnMediumMode.GotFocus += GotFocus;
+                btnHardMode.GotFocus += GotFocus;
+                btnHarderMode.GotFocus += GotFocus;
+                btnDemonMode.GotFocus += GotFocus;
+            }
         }
 
         private void GotFocus(object sender, EventArgs e)
@@ -136,36 +140,50 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             if(sender == btnEasyMode)
             {
                 btnEasyMode.TabIndex = 1;
+                btnBack.ForeColor = Color.White;
+                btnEasyMode.ForeColor = Color.ForestGreen;
                 btnMediumMode.TabIndex = 0;
             }
             if(sender == btnMediumMode)
             {
                 btnMediumMode.TabIndex = 1;
+                btnEasyMode.ForeColor = Color.White;
+                btnMediumMode.ForeColor = Color.ForestGreen;
                 btnHardMode.TabIndex = 0;
             }
             if(sender == btnHardMode)
             {
                 btnHardMode.TabIndex = 1;
+                btnMediumMode.ForeColor = Color.White;
+                btnHardMode.ForeColor = Color.ForestGreen;
                 btnHarderMode.TabIndex = 0;
             }
             if(sender == btnHarderMode)
             {
                 btnHarderMode.TabIndex = 1;
+                btnHardMode.ForeColor = Color.White;
+                btnHarderMode.ForeColor = Color.ForestGreen;
                 btnDemonMode.TabIndex = 0;
             }
             if(sender == btnDemonMode)
             {
                 btnDemonMode.TabIndex = 1;
+                btnHarderMode.ForeColor = Color.White;
+                btnDemonMode.ForeColor = Color.ForestGreen;
                 btnNext.TabIndex = 0;
             }
             if(sender == btnNext)
             {
                 btnNext.TabIndex = 1;
+                btnDemonMode.ForeColor = Color.White;
+                btnNext.ForeColor = Color.ForestGreen;
                 btnBack.TabIndex = 0;
             }
             if(sender == btnBack)
             {
                 btnBack.TabIndex = 1;
+                btnNext.ForeColor = Color.White;
+                btnBack.ForeColor = Color.ForestGreen;
                 btnEasyMode.TabIndex = 0;
             }
         }
@@ -210,27 +228,27 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             uiManager.frmAppMain.soundManager.PlaySoundEffect(uiManager.frmAppMain.soundManager.clickSoundEffect);
             if (sender == btnEasyMode)
             {
-                lblModeDescription.Text = "EasyMode_Description";
+                lblModeDescription.Text = "\r\nIn this mode, enemies are slow and predictable, perfect for learning the basics.\r\n\r\n\r\nYour highest score: " + uiManager.frmAppMain.highScore[0];
                 uiManager.mode = 1;
             }
             else if (sender == btnMediumMode)
             {
-                lblModeDescription.Text = "MeduimMode_Description";
+                lblModeDescription.Text = "\r\nIn this mode, enemies are a bit faster but still just as predictable. It's only the warm-up!\r\n\r\n\r\nYour highest score: " + uiManager.frmAppMain.highScore[1];
                 uiManager.mode = 2;
             }
             else if (sender == btnHardMode)
             {
-                lblModeDescription.Text = "HardMode_Description";
+                lblModeDescription.Text = "\r\nIn this mode, enemies are even faster and have become unpredictable. This is where the real challenge begins.\r\n\r\n\r\nYour highest score: " + uiManager.frmAppMain.highScore[2];
                 uiManager.mode = 3;
             }
             else if (sender == btnHarderMode)
             {
-                lblModeDescription.Text = "HarderMode_Description";
+                lblModeDescription.Text = "\r\nHaven't had enough yet? I've got just what you need! In this mode, enemies are more numerous, faster, and unpredictable. Very few survivors come back unscathed.\r\n\r\n\r\nYour highest score: " + uiManager.frmAppMain.highScore[3];
                 uiManager.mode = 4;
             }
             else if (sender == btnDemonMode)
             {
-                lblModeDescription.Text = "DemonMode_Description";
+                lblModeDescription.Text = "\r\nIn this demonic mode, you will have to fight until your last drop of blood to become the ultimate survivor!\r\n\r\n\r\nYour highest score: " + uiManager.frmAppMain.highScore[4];
                 uiManager.mode = 5;
             }
         }

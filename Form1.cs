@@ -76,7 +76,11 @@ namespace ProjetVellemanTEST
 			if (Fctvm110.SearchDevices() != 0)
 			{
 				Console.WriteLine("card found");
-				Console.WriteLine(Fctvm110.ReadAllDigital());
+				
+				Fctvm110.ClearAllAnalog();
+				data1 = Fctvm110.ReadAnalogChannel(1);
+				Fctvm110.OutputAnalogChannel(2, data1);
+                Fctvm110.ClearAllDigital();
 				cardMode = true;
 			}
 			if (gameLayer == 0)
@@ -98,7 +102,7 @@ namespace ProjetVellemanTEST
 			Console.Write("value changed");
 			if (cardMode)
 			{
-				Fctvm110.OutputAnalogChannel(2, data2);
+				Fctvm110.OutputAnalogChannel(2, data1);
 			}
             uiManager.frmAppMain.soundManager.pauseMusicLoop();
             uiManager.frmAppMain.soundManager.resumeMusicLoop();

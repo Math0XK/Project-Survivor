@@ -50,7 +50,6 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             btnBack.Location = new Point(pnlPauseMain.Width * 5 / 20 - btnBack.Width / 2, pnlPauseMain.Height - btnBack.Height - 60);
             //btnBack.MouseClick += BtnBack_MouseClick;
             btnBack.Click += BtnBack_Click;
-            btnBack.GotFocus += GotFocus;
             btnBack.TabIndex = 1;
             uiManager.buttons.Add(btnBack);
             pnlPauseMain.Controls.Add(btnBack);
@@ -63,7 +62,6 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             btnRestart.Location = new Point(pnlPauseMain.Width / 2 - btnRestart.Width / 2, pnlPauseMain.Height - btnRestart.Height - 60);
             //btnRestart.MouseClick += BtnRestart_MouseClick;
             btnRestart.Click += BtnRestart_Click;
-            btnRestart.GotFocus += GotFocus;
             btnRestart.TabIndex = 1;
             uiManager.buttons.Add(btnRestart);
             pnlPauseMain.Controls.Add(btnRestart);
@@ -75,6 +73,12 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             lblDescription.ForeColor = Color.White;
             lblDescription.TextAlign = ContentAlignment.MiddleCenter;
             pnlPauseMain.Controls.Add(lblDescription);
+
+            if (uiManager.frmAppMain.cardMode)
+            {
+                btnBack.GotFocus += GotFocus;
+                btnRestart.GotFocus += GotFocus;
+            }
 
             if (uiManager.frmAppMain.highScore[uiManager.mode - 1] < uiManager.frmAppMain.score)
             {
@@ -102,7 +106,10 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
                     btnNext.Location = new Point(pnlPauseMain.Width * 15 / 20 - btnNext.Width / 2, pnlPauseMain.Height - btnNext.Height - 60);
                     //btnNext.MouseClick += BtnNext_MouseClick;
                     btnNext.Click += BtnNext_Click;
-                    btnNext.GotFocus += GotFocus;
+                    if (uiManager.frmAppMain.cardMode)
+                    {
+                        btnNext.GotFocus += GotFocus;
+                    }
                     btnNext.TabIndex = 0;
                     uiManager.buttons.Add(btnNext);
                     pnlPauseMain.Controls.Add(btnNext);
@@ -124,21 +131,33 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             if(sender == btnNext)
             {
                 btnNext.TabIndex = 1;
+                btnNext.ForeColor = Color.ForestGreen;
+                btnBack.ForeColor = Color.White;
                 btnRestart.TabIndex=0;
             }
             if(sender == btnRestart)
             {
                 btnRestart.TabIndex = 1;
+                btnRestart.ForeColor = Color.ForestGreen;
+                if(uiManager.win && uiManager.mode < 5)
+                {
+                    btnNext.ForeColor= Color.White;
+                }
+                else btnBack.ForeColor = Color.White;
                 btnBack.TabIndex = 0;
             }
             if(sender == btnBack && uiManager.win && uiManager.mode < 5)
             {
                 btnBack.TabIndex = 1;
+                btnBack.ForeColor = Color.ForestGreen;
+                btnRestart.ForeColor = Color.White;
                 btnNext.TabIndex = 0;
             }
             else if(sender == btnBack && (!uiManager.win || uiManager.mode == 5))
             {
                 btnBack.TabIndex = 1;
+                btnBack.ForeColor = Color.ForestGreen;
+                btnRestart.ForeColor = Color.White;
                 btnRestart.TabIndex = 0;
             }
         }
@@ -151,7 +170,11 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             uiManager.frmAppMain.entityManager.clearAllEntity();
             uiManager.mode++;
             uiManager.frmAppMain.hp = 8;
-            Fctvm110.SetAllDigital();
+            if (uiManager.frmAppMain.cardMode)
+            {
+                Fctvm110.ClearAnalogChannel(1);
+                Fctvm110.SetAllDigital();
+            }
             uiManager.frmAppMain.mainCpt = 0;
             uiManager.frmAppMain.score = 0;
             uiManager.ClearUi<EndGameUi>();
@@ -174,7 +197,11 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             uiManager.frmAppMain.gameLayer = 1000;
             uiManager.frmAppMain.entityManager.clearAllEntity();
             uiManager.frmAppMain.hp = 8;
-            Fctvm110.SetAllDigital();
+            if (uiManager.frmAppMain.cardMode)
+            {
+                Fctvm110.ClearAnalogChannel(1);
+                Fctvm110.SetAllDigital();
+            }
             uiManager.frmAppMain.mainCpt = 0;
             uiManager.frmAppMain.score = 0;
             uiManager.ClearUi<EndGameUi>();
@@ -194,6 +221,11 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
         {
             uiManager.ClearUi<OnGameUi>();
             uiManager.ClearUi<EndGameUi>();
+            if (uiManager.frmAppMain.cardMode)
+            {
+                Fctvm110.ClearAnalogChannel(1);
+                Fctvm110.ClearAllDigital();
+            }
             uiManager.frmAppMain.gameLayer = 2;
             uiManager.frmAppMain.soundManager.PlaySoundEffect(uiManager.frmAppMain.soundManager.clickSoundEffect);
             uiManager.mode = 0;

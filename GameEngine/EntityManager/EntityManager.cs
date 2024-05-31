@@ -1,5 +1,6 @@
 ﻿using ProjetVellemanTEST.GameEngine.EntityManager;
 using ProjetVellemanTEST.GameEngine.K8055DManager;
+using ProjetVellemanTEST.GameEngine.UiManager;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,7 @@ namespace ProjetVellemanTEST
         { 
             this.frmAppMain = frmAppMain;
         }
+        internal int K8055Diff;
 
         List<BaseEntity> entities = new List<BaseEntity>();
 
@@ -140,8 +142,12 @@ namespace ProjetVellemanTEST
                             {
                                 entity.destroyed = true;
                                 projectile.destroyed = true;
-                                frmAppMain.score += entity.points;
-                                Fctvm110.OutputAnalogChannel(1, (frmAppMain.score / 30000) * 255);
+                                if (frmAppMain.cardMode)
+                                {
+                                    frmAppMain.score += entity.points * K8055Diff;
+                                }
+                                else frmAppMain.score += entity.points;
+                                Fctvm110.OutputAnalogChannel(1, (int)(((float)frmAppMain.score / 9999f) * 255f));
                                 frmAppMain.soundManager.PlaySoundEffect(frmAppMain.soundManager.hitSoundEffect);
                                 return true;
                             }
@@ -155,6 +161,11 @@ namespace ProjetVellemanTEST
 
         public void moveEntity()
         {
+            if (frmAppMain.cardMode)
+            {
+                K8055Diff = (int)(1f + ((float)frmAppMain.data2 / 255f * 4f));
+            }
+            else K8055Diff = 1;
             foreach (BaseEntity entity in entities)
             {
                 if(entity is ProjectileEntity projectile)
@@ -163,25 +174,25 @@ namespace ProjetVellemanTEST
                 }
                 if(entity is MovingEntitiy movingEntitiy)
                 {
-                    movingEntitiy.mainPanel.Top += 1 * frmAppMain.uiManager.mode * (int)(1f + ((float)frmAppMain.data2 / 255f * 5f));
+                    movingEntitiy.mainPanel.Top += 1 * frmAppMain.uiManager.mode * K8055Diff;
                 }
                 if(entity is MovingEntityDiagonal movingEntityDiagonal)
                 {
                     if(movingEntityDiagonal.moveRL > 25)
                     {
-                        movingEntityDiagonal.mainPanel.Top += 1 * frmAppMain.uiManager.mode * (int)(1f + ((float)frmAppMain.data2 / 255f * 5f));
+                        movingEntityDiagonal.mainPanel.Top += 1 * frmAppMain.uiManager.mode * K8055Diff;
                         movingEntityDiagonal.mainPanel.Left += 1 * frmAppMain.uiManager.mode;
                     }
                     else if(movingEntityDiagonal.moveRL <= 25)
                     {
-                        movingEntityDiagonal.mainPanel.Top += 1 * frmAppMain.uiManager.mode * (int)(1f + ((float)frmAppMain.data2 / 255f * 5f));
+                        movingEntityDiagonal.mainPanel.Top += 1 * frmAppMain.uiManager.mode * K8055Diff;
                         movingEntityDiagonal.mainPanel.Left -= 1 * frmAppMain.uiManager.mode;
                     }
                 }
                 if(entity is MovingEntityPattern01 pattern01)
                 {
                     float move;
-                    pattern01.mainPanel.Top += 1 * frmAppMain.uiManager.mode * (int)(1f + ((float)frmAppMain.data2 / 255f * 5f));
+                    pattern01.mainPanel.Top += 1 * frmAppMain.uiManager.mode * K8055Diff;
                     move = (float)Math.Sin(frmAppMain.mainCpt/50)*10;
                     if(pattern01.moveRL > 25)
                     {
@@ -194,12 +205,12 @@ namespace ProjetVellemanTEST
                 }
                 if(entity is MovingEntityTinyVersion movingEntityTiny)
                 {
-                    movingEntityTiny.mainPanel.Top += 2 * frmAppMain.uiManager.mode * (int)(1f + ((float)frmAppMain.data2 / 255f * 5f));
+                    movingEntityTiny.mainPanel.Top += 2 * frmAppMain.uiManager.mode * K8055Diff;
                 }
                 if(entity is MovingEntityPattern01TinyVersion pattern01TinyVersion)
                 {
                     float move;
-                    pattern01TinyVersion.mainPanel.Top += 2 * frmAppMain.uiManager.mode * (int)(1f + ((float)frmAppMain.data2 / 255f * 5f));
+                    pattern01TinyVersion.mainPanel.Top += 2 * frmAppMain.uiManager.mode * K8055Diff;
                     move = (float)Math.Sin(frmAppMain.mainCpt / 50) * 10;
                     if(pattern01TinyVersion.moveRL > 25)
                     {

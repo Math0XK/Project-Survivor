@@ -56,7 +56,6 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             //btnBack.MouseClick += BtnBack_MouseClick;
             btnBack.TabIndex = 1;
             btnBack.Click += BtnBack_Click;
-            btnBack.GotFocus += GotFocus;
             uiManager.buttons.Add(btnBack);
             uiManager.frmAppMain.grpMain.Controls.Add(btnBack);
 
@@ -70,9 +69,14 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             //btnNext.MouseClick += BtnNext_MouseClick;
             btnNext.TabIndex = 0;
             btnNext.Click += BtnNext_Click;
-            btnNext.GotFocus += GotFocus;
             uiManager.buttons.Add(btnNext);
             uiManager.frmAppMain.grpMain.Controls.Add(btnNext);
+
+            if (uiManager.frmAppMain.cardMode)
+            {
+                btnBack.GotFocus += GotFocus;
+                btnNext.GotFocus += GotFocus;
+            }
         }
 
         private void GotFocus(object sender, EventArgs e)
@@ -80,11 +84,15 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             if(sender == btnNext)
             {
                 btnNext.TabIndex = 1;
+                btnBack.ForeColor = Color.White;
+                btnNext.ForeColor = Color.ForestGreen;
                 btnBack.TabIndex = 0;
             }
             if(sender == btnBack)
             {
                 btnBack.TabIndex = 1;
+                btnNext.ForeColor = Color.White;
+                btnBack.ForeColor = Color.ForestGreen;
                 btnNext.TabIndex = 0;
             }
         }

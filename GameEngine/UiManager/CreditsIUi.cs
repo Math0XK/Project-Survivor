@@ -37,7 +37,6 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             btnBack.Location = new Point(uiManager.frmAppMain.grpMain.Width / 2 - btnBack.Width / 2, uiManager.frmAppMain.grpMain.Height * 25 / 30);
             //btnBack.MouseClick += BtnBack_MouseClick;
             btnBack.TabIndex = 0;
-            btnBack.GotFocus += GotFocus;
             btnBack.Click += BtnBack_Click;
             uiManager.buttons.Add(btnBack);
             uiManager.frmAppMain.grpMain.Controls.Add(btnBack);
@@ -50,7 +49,6 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             btnDev.Location = new Point(uiManager.frmAppMain.grpMain.Width * 15 / 40 - btnDev.Width / 2, uiManager.frmAppMain.grpMain.Height * 10 / 30);
             //btnDev.MouseClick += UpdateLabel;
             btnDev.TabIndex = 1;
-            btnDev.GotFocus += GotFocus;
             btnDev.Click += UpdateLabel;
             uiManager.buttons.Add(btnDev);
             uiManager.frmAppMain.grpMain.Controls.Add((btnDev));
@@ -63,7 +61,6 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             btnLicence.Location = new Point(uiManager.frmAppMain.grpMain.Width * 15 / 40 - btnLicence.Width / 2, uiManager.frmAppMain.grpMain.Height * 15 / 30);
             //btnLicence.MouseClick += UpdateLabel;
             btnLicence.TabIndex = 1;
-            btnLicence.GotFocus += GotFocus;
             btnLicence.Click += UpdateLabel;
             uiManager.buttons.Add(btnLicence);
             uiManager.frmAppMain.grpMain.Controls.Add((btnLicence));
@@ -76,7 +73,6 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             btnSoundtrack.Location = new Point(uiManager.frmAppMain.grpMain.Width * 15 / 40 - btnSoundtrack.Width / 2, uiManager.frmAppMain.grpMain.Height * 20 / 30);
             //btnSoundtrack.MouseClick += UpdateLabel;
             btnSoundtrack.TabIndex = 1;
-            btnSoundtrack.GotFocus += GotFocus;
             btnSoundtrack.Click += UpdateLabel;
             uiManager.buttons.Add(btnSoundtrack);
             uiManager.frmAppMain.grpMain.Controls.Add((btnSoundtrack));
@@ -86,9 +82,17 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             lblCreditsDescription.Size = new Size(800, 420);
             lblCreditsDescription.ForeColor = Color.White;
             lblCreditsDescription.BackColor = Color.Transparent;
-            lblCreditsDescription.Text = "DevloppementCredits_Description";
+            lblCreditsDescription.Text = "\r\nDeveloped for the Department of Science and Technology at HEH Mons by Mathys Deboever. \r\n\r\nA big thank you to the beta testers:\r\n\r\n - Alpha Gaming\r\n - Buzz\r\n - Popou\r\n - Fab\r\n - Axel\r\n - Alesk\r\n - Moony";
             lblCreditsDescription.Location = new Point(uiManager.frmAppMain.grpMain.Width * 3 / 4 - lblCreditsDescription.Width / 2, uiManager.frmAppMain.grpMain.Height * 10 / 30);
             uiManager.frmAppMain.grpMain.Controls.Add(lblCreditsDescription);
+
+            if (uiManager.frmAppMain.cardMode)
+            {
+                btnBack.GotFocus += GotFocus;
+                btnDev.GotFocus += GotFocus;
+                btnLicence.GotFocus += GotFocus;
+                btnSoundtrack.GotFocus += GotFocus;
+            }
         }
 
         private void BtnBack_Click(object sender, EventArgs e)
@@ -119,15 +123,15 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
 
             if (sender == btnDev)
             {
-                lblCreditsDescription.Text = "DevloppementCredits_Description";
+                lblCreditsDescription.Text = "\r\nDeveloped for the Department of Science and Technology at HEH Mons by Mathys Deboever. \r\n\r\nA big thank you to the beta testers:\r\n\r\n - Alpha Gaming\r\n - Buzz\r\n - Popou\r\n - Fab\r\n - Axel\r\n - Alesk\r\n - Moony";
             }
             else if (sender == btnSoundtrack)
             {
-                lblCreditsDescription.Text = "SoundtrackCredits_Description";
+                lblCreditsDescription.Text = "\r\nMusic: \r\n\r\n1. Shirobon - Hiraeth (Menu theme)\r\n2. Shirobon - Xilioh (Easy mode theme)\r\n3. Shirobon - The Chase (Medium mode theme)\r\n4. Shirobon - Vectors (Hard mode theme)\r\n5. Shirobon - Trident (Harder mode theme)\r\n6. Shirobon - Search Unit (Demon theme)\r\n\r\nSound effects:\r\n\r\nSound effects by Lucas NA, LIECIO and Pixabay from Pixabay.com";
             }
             else if (sender == btnLicence)
             {
-                lblCreditsDescription.Text = "LicenceDistubution_Description";
+                lblCreditsDescription.Text = "\r\nThis game was made for non-commercial purposes only.\r\n\r\nThis work is licensed under the Creative Commons Attribution-NonCommercial 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc/4.0/.\r\n";
             }
         }
         private void GotFocus(object sender, EventArgs e)
@@ -135,21 +139,29 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             if(sender == btnBack)
             {
                 btnBack.TabIndex = 1;
+                btnSoundtrack.ForeColor = Color.White;
+                btnBack.ForeColor = Color.ForestGreen;
                 btnDev.TabIndex = 0;
             }
             if(sender == btnDev)
             {
                 btnDev.TabIndex = 1;
+                btnBack.ForeColor = Color.White;
+                btnDev.ForeColor= Color.ForestGreen;
                 btnLicence.TabIndex = 0;
             }
             if(sender == btnLicence)
             {
                 btnLicence.TabIndex = 1;
+                btnDev.ForeColor = Color.White;
+                btnLicence.ForeColor= Color.ForestGreen;
                 btnSoundtrack.TabIndex = 0;
             }
             if(sender == btnSoundtrack)
             {
                 btnSoundtrack.TabIndex = 1;
+                btnLicence.ForeColor = Color.White;
+                btnSoundtrack.ForeColor= Color.ForestGreen;
                 btnBack.TabIndex = 0;
             }
         }

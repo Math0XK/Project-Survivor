@@ -15,6 +15,7 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
         Label lblCharge = new();
         Label lblTicks = new();
         Label lblScore = new();
+        Label lblDiff = new();
         Panel pnlUi = new();
 
         internal override void OnCreate(UiManager uiManager)
@@ -60,7 +61,17 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             lblScore.TextAlign = ContentAlignment.TopRight;
             pnlUi.Controls.Add (lblScore);
 
-            Fctvm110.SetAllDigital();
+            if (uiManager.frmAppMain.cardMode)
+            {
+                Fctvm110.SetAllDigital();
+                lblDiff.Size = new Size(300, uiManager.frmAppMain.Height / 40);
+                lblDiff.Location = new Point(uiManager.frmAppMain.Width - lblScore.Width - lblDiff.Width, 0);
+                lblDiff.Font = new Font(UiManager.customFont.Families[0], 16, FontStyle.Regular);
+                lblDiff.BackColor = Color.Transparent;
+                lblDiff.ForeColor = Color.White;
+                lblDiff .TextAlign = ContentAlignment.TopLeft;
+                pnlUi.Controls.Add(lblDiff);
+            }
         }
 
         internal override void OnDestroy(UiManager uiManager)
@@ -80,6 +91,10 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             lblCharge.Text = "Charge : " + (uiManager.frmAppMain.charge - uiManager.frmAppMain.currentProjectile);
             lblHP.Text = "HP : "+ uiManager.frmAppMain.hp;
             lblScore.Text = "Score : "+ uiManager.frmAppMain.score;
+            if (uiManager.frmAppMain.cardMode)
+            {
+                lblDiff.Text = "Difficulty = " + uiManager.frmAppMain.entityManager.K8055Diff;
+            }
         }
 
     }

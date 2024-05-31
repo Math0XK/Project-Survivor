@@ -55,7 +55,6 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             btnBack.Location = new Point((uiManager.frmAppMain.grpMain.Width / 2 - btnBack.Width / 2) * 16 / 20, uiManager.frmAppMain.grpMain.Height * 25 / 30);
             //btnBack.MouseClick += BtnBack_MouseClick;
             btnBack.Click += BtnBack_Click;
-            btnBack.GotFocus += GotFocus;
             btnBack.TabIndex = 1;
             uiManager.buttons.Add(btnBack);
             uiManager.frmAppMain.grpMain.Controls.Add(btnBack);
@@ -69,21 +68,30 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             btnNext.Location = new Point((uiManager.frmAppMain.grpMain.Width / 2 - btnNext.Width / 2) * 24 / 20, uiManager.frmAppMain.grpMain.Height * 25 / 30);
             //btnNext.MouseClick += BtnNext_MouseClick;
             btnNext.Click += BtnNext_Click;
-            btnNext.GotFocus += GotFocus;
             btnNext.TabIndex = 0;
             uiManager.buttons.Add(btnNext);
             uiManager.frmAppMain.grpMain.Controls.Add(btnNext);
+
+            if (uiManager.frmAppMain.cardMode)
+            {
+                btnBack.GotFocus += GotFocus;
+                btnNext.GotFocus += GotFocus;
+            }
         }
         private void GotFocus(object sender, EventArgs e)
         {
             if(sender == btnNext)
             {
                 btnNext.TabIndex = 1;
+                btnNext.ForeColor = Color.ForestGreen;
+                btnBack.ForeColor = Color.White;
                 btnBack.TabIndex = 0;
             }
             if(sender == btnBack)
             {
                 btnBack.TabIndex = 1;
+                btnBack.ForeColor = Color.ForestGreen;
+                btnNext.ForeColor = Color.White;
                 btnNext.TabIndex = 0;
             }
         }

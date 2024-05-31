@@ -96,9 +96,26 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             btnBack.Location = new Point(uiManager.frmAppMain.grpMain.Width / 2 - btnBack.Width / 2, uiManager.frmAppMain.grpMain.Height * 25 / 30);
             //btnBack.MouseClick += BtnBack_MouseClick;
             btnBack.Click += BtnBack_Click;
+            
             btnBack.TabIndex = 0;
             uiManager.buttons.Add(btnBack);
             uiManager.frmAppMain.grpMain.Controls.Add(btnBack);
+
+            if (uiManager.frmAppMain.cardMode)
+            {
+                btnBack.GotFocus += BtnBack_GotFocus;
+                btnBack.LostFocus += BtnBack_LostFocus;
+            }
+        }
+
+        private void BtnBack_LostFocus(object sender, EventArgs e)
+        {
+            btnBack.ForeColor = Color.White;
+        }
+
+        private void BtnBack_GotFocus(object sender, EventArgs e)
+        {    
+            btnBack.ForeColor = Color.ForestGreen;
         }
 
         private void SoundManager_isSystemVolumeChanged()

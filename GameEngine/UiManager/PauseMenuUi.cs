@@ -51,7 +51,6 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             btnBack.Location = new Point(pnlPauseMain.Width * 5 / 20 - btnBack.Width / 2, pnlPauseMain.Height - btnBack.Height  - 60);
             //btnBack.MouseClick += BtnBack_MouseClick;
             btnBack.Click += BtnBack_Click;
-            btnBack.GotFocus += GotFocus;
             btnBack.TabIndex = 1;
             uiManager.buttons.Add(btnBack);
             pnlPauseMain.Controls.Add(btnBack);
@@ -64,7 +63,6 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             btnRestart.Location = new Point(pnlPauseMain.Width / 2 - btnRestart.Width / 2, pnlPauseMain.Height - btnRestart.Height - 60);
             //btnRestart.MouseClick += BtnRestart_MouseClick;
             btnRestart.Click += BtnRestart_Click;
-            btnRestart.GotFocus += GotFocus;
             btnRestart.TabIndex = 1;
             uiManager.buttons.Add(btnRestart);
             pnlPauseMain.Controls.Add(btnRestart);
@@ -78,7 +76,6 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             btnResume.Location = new Point(pnlPauseMain.Width * 15 / 20  - btnResume.Width / 2, pnlPauseMain.Height - btnResume.Height - 60);
             //btnResume.MouseClick += BtnResume_MouseClick;
             btnResume.Click += BtnResume_Click;
-            btnResume.GotFocus += GotFocus;
             btnResume.TabIndex = 0;
             uiManager.buttons.Add(btnResume);
             pnlPauseMain.Controls.Add(btnResume);
@@ -91,7 +88,12 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             lblDescription.TextAlign = ContentAlignment.MiddleCenter;
             pnlPauseMain.Controls.Add(lblDescription);
 
-
+            if (uiManager.frmAppMain.cardMode)
+            {
+                btnBack.GotFocus += GotFocus;
+                btnRestart.GotFocus += GotFocus;
+                btnResume.GotFocus += GotFocus;
+            }
         }
 
         private void GotFocus(object sender, EventArgs e)
@@ -99,16 +101,22 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             if(sender == btnResume)
             {
                 btnResume.TabIndex = 1;
+                btnBack.ForeColor = Color.White;
+                btnResume.ForeColor = Color.ForestGreen;
                 btnRestart.TabIndex = 0;
             }
             if(sender == btnRestart)
             {
                 btnRestart.TabIndex = 1;
+                btnResume.ForeColor = Color.White;
+                btnRestart.ForeColor = Color.ForestGreen;
                 btnBack.TabIndex = 0;
             }
             if(sender == btnBack)
             {
                 btnBack.TabIndex = 1;
+                btnRestart.ForeColor = Color.White;
+                btnBack.ForeColor = Color.ForestGreen;
                 btnResume.TabIndex=0;
             }
         }
@@ -127,7 +135,10 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             uiManager.frmAppMain.gameLayer = 1000;
             uiManager.frmAppMain.entityManager.clearAllEntity();
             uiManager.frmAppMain.hp = 8;
-            Fctvm110.SetAllDigital();
+            if (uiManager.frmAppMain.cardMode)
+            {
+                Fctvm110.SetAllDigital();
+            }
             uiManager.frmAppMain.mainCpt = 0;
             uiManager.frmAppMain.score = 0;
             uiManager.ClearUi<PauseMenuUi>();
@@ -145,6 +156,11 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
 
         private void BtnBack_Click(object sender, EventArgs e)
         {
+            if (uiManager.frmAppMain.cardMode)
+            {
+                Fctvm110.ClearAllDigital();
+                Fctvm110.ClearAnalogChannel(1);
+            }
             uiManager.ClearUi<OnGameUi>();
             uiManager.ClearUi<PauseMenuUi>();
             uiManager.frmAppMain.soundManager.PlaySoundEffect(uiManager.frmAppMain.soundManager.clickSoundEffect);
