@@ -74,9 +74,7 @@ namespace ProjetVellemanTEST
 			pnlPlayer = new PlayerEntity();
 			Fctvm110 = new Fctvm110();
 			if (Fctvm110.SearchDevices() != 0)
-			{
-				Console.WriteLine("card found");
-				
+			{				
 				Fctvm110.ClearAllAnalog();
 				data1 = Fctvm110.ReadAnalogChannel(1);
 				Fctvm110.OutputAnalogChannel(2, data1);
@@ -97,9 +95,8 @@ namespace ProjetVellemanTEST
 			
 		}
 
-        private void SoundManager_isSystemVolumeChanged()
+        internal void SoundManager_isSystemVolumeChanged()
         {
-			Console.Write("value changed");
 			if (cardMode)
 			{
 				Fctvm110.OutputAnalogChannel(2, data1);
@@ -110,11 +107,9 @@ namespace ProjetVellemanTEST
 
         private void Fctvm110_isAnyButtonsDown(int value)
         {
-            Console.WriteLine("card event");
             if (gameLayer == 0)
             {
                 uiManager.ClearUi<StartupUi>();
-                Console.WriteLine("test");
                 gameLayer = 1;
                 uiManager.CreateUiComponents<MenuUi>();
 				Fctvm110.isAnyButtonsDown -= Fctvm110_isAnyButtonsDown;
@@ -127,7 +122,6 @@ namespace ProjetVellemanTEST
 			if (gameLayer == 0)
 			{
 				uiManager.ClearUi<StartupUi>();
-				Console.WriteLine("test");
 				gameLayer = 1;
 				uiManager.CreateUiComponents<MenuUi>();
                 Fctvm110.isAnyButtonsDown -= Fctvm110_isAnyButtonsDown;
@@ -138,11 +132,8 @@ namespace ProjetVellemanTEST
 
 		private void gameUpdate(object sender, EventArgs e)
 		{
-			soundManager.SystemVolumeChange();
             if(gameLayer != 999 && cardMode)
 			{
-				data1 = Fctvm110.ReadAnalogChannel(1);
-				Console.WriteLine(soundManager.systemVolume);
                 Fctvm110.isAnyButtonsPressed();
                 if (Fctvm110.ReadDigitalChannel(1) && !hold)
                 {
@@ -151,17 +142,15 @@ namespace ProjetVellemanTEST
                 }
                 else if (!Fctvm110.ReadDigitalChannel(1) && hold) hold = false;
             }
-			if (cardMode)
+            soundManager.SystemVolumeChange();
+
+            if (cardMode)
 			{
-				soundManager.systemVolume = (float)data1 / 255;
+                Fctvm110.ReadAllAnalog(ref data1, ref data2);
+                soundManager.systemVolume = (float)data1 / 255;
 			}
 			if (gameLayer == 999)
 			{
-				if (cardMode)
-				{
-					Fctvm110.ReadAllAnalog(ref data1, ref data2);
-					Console.WriteLine(data1);
-				}
 				if (pnlPlayer.playerEnabled)
 				{
 					if (cardMode)
@@ -171,7 +160,6 @@ namespace ProjetVellemanTEST
 						{
 							Vbtn[i] = digitalChannels % 2;
 							digitalChannels /= 2;
-							//Console.WriteLine(Vbtn[i]);
 						}
 					}
                     if (pnlPlayer.mainPanel.Top >= (grpMain.Height) * 3 / 4)
@@ -195,8 +183,6 @@ namespace ProjetVellemanTEST
 						currentProjectile++;
 						hold = true;
 						entityManager.CreateEntity<ProjectileEntity>();
-						Console.WriteLine("Porjectile");
-						Console.WriteLine(currentProjectile.ToString());
 					}
 					else if (!inputManager.isKeyPressed(Keys.Space) && Vbtn[4] == 0 && hold) hold = false;
 					if(inputManager.isKeyPressed(Keys.Escape) && !e_hold && !paused)
@@ -221,27 +207,9 @@ namespace ProjetVellemanTEST
 
 				entityManager.moveEntity();
 				entityManager.destroyEntity();
-				if (entityManager.collision())
-				{
-					Console.WriteLine("Collision");
-				}
-				if (entityManager.destruction())
-				{
-					Console.WriteLine("destruction");
-				}
+				entityManager.collision();
+				entityManager.destruction();
                 uiManager.UpdateUi();
-                
-                /*if (mainCpt == actualCount)
-                {
-                    actualCount = mainCpt;
-					digitalChannels = Fctvm110.ReadAllDigital();
-					for (int i = 0; i <5; i++)
-					{
-						Vbtn[i] = digitalChannels % 2;
-						digitalChannels /= 2;
-						Console.WriteLine(Vbtn[i]);
-					}
-                }*/
                 mainCpt++;
                 if (currentEntity < uiManager.mode + 3)
 				{

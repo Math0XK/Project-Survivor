@@ -20,7 +20,6 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
         internal override void OnCreate(UiManager uiManager)
         {
             base.OnCreate(uiManager);
-            //uiManager.frmAppMain.tmrGameUpdate.Stop();
             uiManager.frmAppMain.gameLayer = 998;
             uiManager.frmAppMain.soundManager.pauseMusicLoop();
 
@@ -49,7 +48,6 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             btnBack.ForeColor = Color.White;
             btnBack.TextAlign = ContentAlignment.MiddleCenter;
             btnBack.Location = new Point(pnlPauseMain.Width * 5 / 20 - btnBack.Width / 2, pnlPauseMain.Height - btnBack.Height  - 60);
-            //btnBack.MouseClick += BtnBack_MouseClick;
             btnBack.Click += BtnBack_Click;
             btnBack.TabIndex = 1;
             uiManager.buttons.Add(btnBack);
@@ -61,7 +59,6 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             btnRestart.ForeColor = Color.White;
             btnRestart.TextAlign = ContentAlignment.MiddleCenter;
             btnRestart.Location = new Point(pnlPauseMain.Width / 2 - btnRestart.Width / 2, pnlPauseMain.Height - btnRestart.Height - 60);
-            //btnRestart.MouseClick += BtnRestart_MouseClick;
             btnRestart.Click += BtnRestart_Click;
             btnRestart.TabIndex = 1;
             uiManager.buttons.Add(btnRestart);
@@ -74,7 +71,6 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             btnResume.ForeColor = Color.White;
             btnResume.TextAlign = ContentAlignment.MiddleCenter;
             btnResume.Location = new Point(pnlPauseMain.Width * 15 / 20  - btnResume.Width / 2, pnlPauseMain.Height - btnResume.Height - 60);
-            //btnResume.MouseClick += BtnResume_MouseClick;
             btnResume.Click += BtnResume_Click;
             btnResume.TabIndex = 0;
             uiManager.buttons.Add(btnResume);
@@ -175,58 +171,13 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             uiManager.CreateUiComponents<MenuUi>();
         }
 
-        /*private void BtnResume_MouseClick(object sender, MouseEventArgs e)
-        {
-            uiManager.frmAppMain.soundManager.PlaySoundEffect(uiManager.frmAppMain.soundManager.clickSoundEffect);
-
-            uiManager.ClearUi<PauseMenuUi>();
-        }*/
-
-        /*private void BtnRestart_MouseClick(object sender, MouseEventArgs e)
-        {
-            uiManager.frmAppMain.soundManager.PlaySoundEffect(uiManager.frmAppMain.soundManager.clickSoundEffect);
-
-            uiManager.frmAppMain.gameLayer = 1000;
-            uiManager.frmAppMain.entityManager.clearAllEntity();
-            uiManager.frmAppMain.hp = 8;
-            uiManager.frmAppMain.mainCpt = 0;
-            uiManager.frmAppMain.score = 0;
-            uiManager.ClearUi<PauseMenuUi>();
-            uiManager.frmAppMain.gameLayer = 999;
-            uiManager.frmAppMain.soundManager.StopMusicLoop();
-            switch (uiManager.mode)
-            {
-                case 1: uiManager.frmAppMain.soundManager.PlayGameMusic(uiManager.frmAppMain.soundManager.easyTheme); uiManager.frmAppMain.endGameCpt = 10891; break;
-                case 2: uiManager.frmAppMain.soundManager.PlayGameMusic(uiManager.frmAppMain.soundManager.mediumTheme); uiManager.frmAppMain.endGameCpt = 11630; break;
-                case 3: uiManager.frmAppMain.soundManager.PlayGameMusic(uiManager.frmAppMain.soundManager.hardTheme); uiManager.frmAppMain.endGameCpt = 13663; break;
-                case 4: uiManager.frmAppMain.soundManager.PlayGameMusic(uiManager.frmAppMain.soundManager.harderTheme); uiManager.frmAppMain.endGameCpt = 12941; break;
-                case 5: uiManager.frmAppMain.soundManager.PlayGameMusic(uiManager.frmAppMain.soundManager.demonTheme); uiManager.frmAppMain.endGameCpt = 12197; break;
-            }
-
-
-        }*/
-
-        /*private void BtnBack_MouseClick(object sender, MouseEventArgs e)
-        {
-            uiManager.ClearUi<OnGameUi>();
-            uiManager.ClearUi<PauseMenuUi>();
-            uiManager.frmAppMain.soundManager.PlaySoundEffect(uiManager.frmAppMain.soundManager.clickSoundEffect);
-            uiManager.mode = 0;
-            uiManager.frmAppMain.score = 0;
-            uiManager.frmAppMain.mainCpt = 0;
-            uiManager.frmAppMain.hp = 8;
-            uiManager.frmAppMain.entityManager.clearAllEntity();
-            uiManager.frmAppMain.gameLayer = 2;
-            uiManager.frmAppMain.soundManager.StopMusicLoop();
-            uiManager.frmAppMain.soundManager.PlayMusicLoop(uiManager.frmAppMain.soundManager.startupTheme);
-            uiManager.CreateUiComponents<MenuUi>();
-        }*/
 
         internal override void OnDestroy(UiManager uiManager)
         {
             base.OnDestroy(uiManager);
             //uiManager.frmAppMain.tmrGameUpdate.Start();
             uiManager.frmAppMain.gameLayer = 999;
+            uiManager.frmAppMain.paused = false;
             uiManager.frmAppMain.soundManager.resumeMusicLoop();
             lblTitle.Dispose();
             btnBack.Dispose();

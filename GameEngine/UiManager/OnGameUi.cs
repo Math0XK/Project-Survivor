@@ -87,7 +87,6 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
         internal void updateOnGameUi()
         {
             lblTicks.Text = "Time : " + uiManager.frmAppMain.mainCpt;
-            //lblTicks.Text = "Progress : " + (int)(((float)uiManager.frmAppMain.mainCpt / (float)uiManager.frmAppMain.endGameCpt) * 100f) + "%";   
             lblCharge.Text = "Charge : " + (uiManager.frmAppMain.charge - uiManager.frmAppMain.currentProjectile);
             lblHP.Text = "HP : "+ uiManager.frmAppMain.hp;
             lblScore.Text = "Score : "+ uiManager.frmAppMain.score;

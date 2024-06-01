@@ -25,7 +25,6 @@ namespace ProjetVellemanTEST.GameEngine.SaveManager
             FILE_NAME = "Resources\\" + frmAppMain.pseudo + ".txt";
             if (File.Exists(FILE_NAME))
             {
-                Console.WriteLine($"{FILE_NAME} already exists!");
                 return 1;
             }
             else return 0;

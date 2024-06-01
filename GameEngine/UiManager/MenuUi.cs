@@ -29,7 +29,6 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             btnNewGame.Size = new Size(140, 80);
             btnNewGame.ForeColor = Color.White;
             btnNewGame.TabIndex = 0;
-            //btnNewGame.MouseClick += test;
             btnNewGame.Click += BtnNewGame_Click;
             btnNewGame.Location = new Point((uiManager.frmAppMain.grpMain.Width / 2) - (btnNewGame.Width / 2), (uiManager.frmAppMain.grpMain.Height * 8) / 30);
             uiManager.buttons.Add(btnNewGame);
@@ -42,7 +41,6 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             btnSavedGame.ForeColor = Color.White;
             btnSavedGame.TabIndex = 1;
             btnSavedGame.Click += BtnSavedGame_Click;
-            //btnSavedGame.MouseClick += BtnSavedGame_MouseClick;
             btnSavedGame.Location = new Point((uiManager.frmAppMain.grpMain.Width / 2) - (btnSavedGame.Width / 2), (uiManager.frmAppMain.grpMain.Height * 12) / 30);
             uiManager.buttons.Add(btnSavedGame);
             uiManager.frmAppMain.grpMain.Controls.Add(btnSavedGame);
@@ -55,7 +53,6 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             btnSettings.Location = new Point((uiManager.frmAppMain.grpMain.Width / 2) - (btnSettings.Width / 2), (uiManager.frmAppMain.grpMain.Height * 16) / 30);
             btnSettings.TabIndex = 2;
             btnSettings.Click += BtnSettings_Click;
-            //btnSettings.MouseClick += BtnSettings_MouseClick;
             uiManager.buttons.Add(btnSettings);
             uiManager.frmAppMain.grpMain.Controls.Add(btnSettings);
 
@@ -67,7 +64,6 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             btnCredits.Location = new Point((uiManager.frmAppMain.grpMain.Width / 2) - (btnCredits.Width / 2), (uiManager.frmAppMain.grpMain.Height * 20) / 30);
             btnCredits.TabIndex = 3;
             btnCredits.Click += BtnCredits_Click;
-            //btnCredits.MouseClick += BtnCredits_MouseClick;
             uiManager.buttons.Add(btnCredits);
             uiManager.frmAppMain.grpMain.Controls.Add(btnCredits);
 
@@ -79,7 +75,6 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             btnQuit.Location = new Point((uiManager.frmAppMain.grpMain.Width / 2) - (btnQuit.Width / 2), (uiManager.frmAppMain.grpMain.Height * 24) / 30);
             btnQuit.TabIndex = 4;
             btnQuit.Click += BtnQuit_Click;
-            //btnQuit.MouseClick += BtnQuit_MouseClick;
             uiManager.buttons.Add(btnQuit);
             uiManager.frmAppMain.grpMain.Controls.Add(btnQuit);
 
@@ -183,40 +178,6 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             }
         }
 
-        /*private void BtnQuit_MouseClick(object sender, MouseEventArgs e)
-        {
-            uiManager.frmAppMain.soundManager.PlaySoundEffect(uiManager.frmAppMain.soundManager.clickSoundEffect);
-
-            Application.Exit();
-        }*/
-
-        /*private void BtnCredits_MouseClick(object sender, MouseEventArgs e)
-        {
-            uiManager.frmAppMain.soundManager.PlaySoundEffect(uiManager.frmAppMain.soundManager.clickSoundEffect);
-
-            uiManager.ClearUi<MenuUi>();
-            uiManager.frmAppMain.gameLayer = 3;
-            uiManager.CreateUiComponents<CreditsIUi>();
-        }*/
-
-        /*private void BtnSettings_MouseClick(object sender, MouseEventArgs e)
-        {
-            uiManager.frmAppMain.soundManager.PlaySoundEffect(uiManager.frmAppMain.soundManager.clickSoundEffect);
-
-            uiManager.ClearUi<MenuUi>();
-            uiManager.frmAppMain.gameLayer = 5;
-            uiManager.CreateUiComponents<SettingsUi>();
-        }*/
-
-        /*private void BtnSavedGame_MouseClick(object sender, MouseEventArgs e)
-        {
-            uiManager.frmAppMain.soundManager.PlaySoundEffect(uiManager.frmAppMain.soundManager.clickSoundEffect);
-
-            uiManager.ClearUi<MenuUi>();
-            uiManager.frmAppMain.gameLayer = 4;
-            uiManager.CreateUiComponents<SavedGameUi>();
-        }*/
-
         internal override void OnDestroy(UiManager uiManager)
         {
             base.OnDestroy(uiManager);
@@ -227,16 +188,6 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             btnQuit.Dispose();
             lblTitle.Dispose();
             uiManager.buttons.Clear();
-            //uiManager.frmAppMain.gameLayer = 3;
-            //uiManager.frmAppMain.soundManager.StopSound();
-            //uiManager.frmAppMain.game = true;
         }
-
-        /*private void test(object sender, MouseEventArgs e)
-        {
-            uiManager.frmAppMain.soundManager.PlaySoundEffect(uiManager.frmAppMain.soundManager.clickSoundEffect);
-            uiManager.ClearUi<MenuUi>();
-            uiManager.CreateUiComponents<NewGameUi>();
-        }*/
     }
 }

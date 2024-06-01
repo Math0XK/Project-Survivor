@@ -19,21 +19,14 @@ namespace ProjetVellemanTEST
         {
             if(!playerEnabled)
             {
-                /*entityManager.frmAppMain.grpMain.SuspendLayout();
-                entityManager.frmAppMain.SuspendLayout();*/
                 base.onCreate(entityManager);
-                //base.onCreate(entityManager);
                 mainPanel.Location = location;
                 mainPanel.BackColor = System.Drawing.Color.White;
                 mainPanel.Name = "Player";
                 mainPanel.Size = size;
-                //panel.TabIndex = 1;
                 entityManager.frmAppMain.grpMain.Controls.Add(mainPanel);
                 playerEnabled = true;
                 hostile = false;
-                /*entityManager.frmAppMain.grpMain.ResumeLayout(false);
-                entityManager.frmAppMain.grpMain.PerformLayout();
-                entityManager.frmAppMain.ResumeLayout(false);*/
             }
 
         }

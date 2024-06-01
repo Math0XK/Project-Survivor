@@ -44,7 +44,6 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
                 {
                     uiComponents.Remove(ui1);
                     ui1.OnDestroy(this);
-                    Console.WriteLine("test2");
                 }
             }
         }

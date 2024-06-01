@@ -253,6 +253,7 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             uiManager.frmAppMain.hp = 8;
             uiManager.frmAppMain.entityManager.clearAllEntity();
             uiManager.frmAppMain.soundManager.StopMusicLoop();
+            uiManager.frmAppMain.soundManager.isSystemVolumeChanged += uiManager.frmAppMain.SoundManager_isSystemVolumeChanged;
             uiManager.frmAppMain.soundManager.PlayMusicLoop(uiManager.frmAppMain.soundManager.startupTheme);
             uiManager.CreateUiComponents<MenuUi>();
         }

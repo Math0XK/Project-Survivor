@@ -68,7 +68,6 @@ namespace ProjetVellemanTEST.GameEngine.SoundManager
             theme.Volume = musicVolume * systemVolume;
             theme.Open(new("file:///" + new FileInfo(currentTheme).FullName));
             theme.Play();
-            Console.WriteLine("music");
             theme.MediaEnded += CurrentTheme_MediaEnded;
         }
 
@@ -76,7 +75,6 @@ namespace ProjetVellemanTEST.GameEngine.SoundManager
         {
             theme.MediaEnded -= CurrentTheme_MediaEnded;
             theme.Close();
-            Console.WriteLine("fin");
             Play();
         }
 

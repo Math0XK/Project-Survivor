@@ -19,9 +19,5 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
         {
             this.uiManager = uiManager;
         }
-        internal virtual void OnResize(UiManager uiManager)
-        {
-            this.uiManager = uiManager;
-        }
     }
 }

@@ -43,11 +43,6 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             lblDescription.Dispose();
         }
 
-        internal override void OnResize(UiManager uiManager)
-        {
-            throw new NotImplementedException();
-        }
-
         internal void Animation(UiManager uiManager)
         {
             if (animationCounter == 0)

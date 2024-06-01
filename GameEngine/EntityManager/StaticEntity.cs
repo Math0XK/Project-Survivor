@@ -15,16 +15,11 @@ namespace ProjetVellemanTEST
             entityManager.frmAppMain.grpMain.SuspendLayout();
             entityManager.frmAppMain.SuspendLayout();
             base.onCreate(entityManager);
-            //base.onCreate(entityManager);
             mainPanel.Location = new Point(location.X, location.Y);
             mainPanel.BackColor = System.Drawing.Color.FromArgb(255, 255, 255);
             mainPanel.Name = "Moving entity";
             mainPanel.Size = new System.Drawing.Size(50, 50);
-            //panel.TabIndex = 1;
             entityManager.frmAppMain.grpMain.Controls.Add(mainPanel);
-            /*entityManager.frmAppMain.grpMain.ResumeLayout(false);
-            entityManager.frmAppMain.grpMain.PerformLayout();
-            entityManager.frmAppMain.ResumeLayout(false);*/
         }
         internal override void onDestroy(EntityManager entityManager)
         {

@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{0EE9FBD4-D5AC-49FF-96C7-D22B4B5000E2}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>ProjetVellemanTEST</RootNamespace>
-    <AssemblyName>ProjetVellemanTEST</AssemblyName>
+    <RootNamespace>ProjectSurvivor</RootNamespace>
+    <AssemblyName>ProjectSurvivor</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

@@ -35,7 +35,6 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             btnBack.ForeColor = Color.White;
             btnBack.Text = "Back";
             btnBack.Location = new Point(uiManager.frmAppMain.grpMain.Width / 2 - btnBack.Width / 2, uiManager.frmAppMain.grpMain.Height * 25 / 30);
-            //btnBack.MouseClick += BtnBack_MouseClick;
             btnBack.TabIndex = 0;
             btnBack.Click += BtnBack_Click;
             uiManager.buttons.Add(btnBack);
@@ -47,7 +46,6 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             btnDev.ForeColor = Color.White;
             btnDev.Text = "Devloppement";
             btnDev.Location = new Point(uiManager.frmAppMain.grpMain.Width * 15 / 40 - btnDev.Width / 2, uiManager.frmAppMain.grpMain.Height * 10 / 30);
-            //btnDev.MouseClick += UpdateLabel;
             btnDev.TabIndex = 1;
             btnDev.Click += UpdateLabel;
             uiManager.buttons.Add(btnDev);
@@ -59,7 +57,6 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             btnLicence.ForeColor = Color.White;
             btnLicence.Text = "Licence";
             btnLicence.Location = new Point(uiManager.frmAppMain.grpMain.Width * 15 / 40 - btnLicence.Width / 2, uiManager.frmAppMain.grpMain.Height * 15 / 30);
-            //btnLicence.MouseClick += UpdateLabel;
             btnLicence.TabIndex = 1;
             btnLicence.Click += UpdateLabel;
             uiManager.buttons.Add(btnLicence);
@@ -71,7 +68,6 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             btnSoundtrack.ForeColor = Color.White;
             btnSoundtrack.Text = "Soundtrack";
             btnSoundtrack.Location = new Point(uiManager.frmAppMain.grpMain.Width * 15 / 40 - btnSoundtrack.Width / 2, uiManager.frmAppMain.grpMain.Height * 20 / 30);
-            //btnSoundtrack.MouseClick += UpdateLabel;
             btnSoundtrack.TabIndex = 1;
             btnSoundtrack.Click += UpdateLabel;
             uiManager.buttons.Add(btnSoundtrack);
@@ -131,7 +127,7 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             }
             else if (sender == btnLicence)
             {
-                lblCreditsDescription.Text = "\r\nThis game was made for non-commercial purposes only.\r\n\r\nThis work is licensed under the Creative Commons Attribution-NonCommercial 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc/4.0/.\r\n";
+                lblCreditsDescription.Text = "\r\nThis game was made for non-commercial purposes only.\r\n\r\nBorn Survivor © 2024 by Mathys Deboever is licensed under CC BY-NC-SA 4.0. To view a copy of this license, visit https://creativecommons.org/licenses/by-nc-sa/4.0/\r\n";
             }
         }
         private void GotFocus(object sender, EventArgs e)
@@ -140,6 +136,8 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             {
                 btnBack.TabIndex = 1;
                 btnSoundtrack.ForeColor = Color.White;
+                btnDev.ForeColor = Color.White;
+                btnLicence.ForeColor = Color.White;
                 btnBack.ForeColor = Color.ForestGreen;
                 btnDev.TabIndex = 0;
             }
@@ -147,6 +145,8 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             {
                 btnDev.TabIndex = 1;
                 btnBack.ForeColor = Color.White;
+                btnLicence.ForeColor= Color.White;
+                btnSoundtrack.ForeColor= Color.White;
                 btnDev.ForeColor= Color.ForestGreen;
                 btnLicence.TabIndex = 0;
             }
@@ -154,6 +154,8 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             {
                 btnLicence.TabIndex = 1;
                 btnDev.ForeColor = Color.White;
+                btnSoundtrack.ForeColor = Color.White;
+                btnBack.ForeColor= Color.White;
                 btnLicence.ForeColor= Color.ForestGreen;
                 btnSoundtrack.TabIndex = 0;
             }
@@ -161,36 +163,11 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             {
                 btnSoundtrack.TabIndex = 1;
                 btnLicence.ForeColor = Color.White;
+                btnDev.ForeColor= Color.White;
+                btnBack.ForeColor = Color.White;
                 btnSoundtrack.ForeColor= Color.ForestGreen;
                 btnBack.TabIndex = 0;
             }
         }
-
-        /*private void UpdateLabel(object sender, MouseEventArgs e)
-        {
-            uiManager.frmAppMain.soundManager.PlaySoundEffect(uiManager.frmAppMain.soundManager.clickSoundEffect);
-
-            if (sender ==  btnDev) 
-            {
-                lblCreditsDescription.Text = "DevloppementCredits_Description";
-            }
-            else if(sender == btnSoundtrack) 
-            {
-                lblCreditsDescription.Text = "SoundtrackCredits_Description";
-            }
-            else if(sender == btnLicence)
-            {
-                lblCreditsDescription.Text = "LicenceDistubution_Description";
-            }
-        }*/
-
-        /*private void BtnBack_MouseClick(object sender, MouseEventArgs e)
-        {
-            uiManager.frmAppMain.soundManager.PlaySoundEffect(uiManager.frmAppMain.soundManager.clickSoundEffect);
-
-            uiManager.ClearUi<CreditsIUi>();
-            uiManager.frmAppMain.gameLayer = 2;
-            uiManager.CreateUiComponents<MenuUi>();
-        }*/
     }
 }

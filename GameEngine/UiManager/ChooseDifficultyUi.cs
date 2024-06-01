@@ -42,7 +42,6 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             btnBack.ForeColor = Color.White;
             btnBack.TextAlign = ContentAlignment.MiddleCenter;
             btnBack.Location = new Point((uiManager.frmAppMain.grpMain.Width / 2 - btnBack.Width / 2) * 16 / 20, uiManager.frmAppMain.grpMain.Height * 25 / 30);
-            //btnBack.MouseClick += BtnBack_MouseClick;
             btnBack.Click += BtnBack_Click;
             btnBack.TabIndex = 1;
             uiManager.buttons.Add(btnBack);
@@ -54,7 +53,6 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             btnNext.ForeColor = Color.White;
             btnNext.TextAlign = ContentAlignment.MiddleCenter;
             btnNext.Location = new Point((uiManager.frmAppMain.grpMain.Width / 2 - btnNext.Width / 2) * 24 / 20, uiManager.frmAppMain.grpMain.Height * 25 / 30);
-            //btnNext.MouseClick += BtnNext_MouseClick;
             btnNext.Click += BtnNext_Click;
             btnNext.TabIndex = 1;
             uiManager.buttons.Add(btnNext);
@@ -65,7 +63,6 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             btnEasyMode.ForeColor = Color.White;
             btnEasyMode.Text = "Easy";
             btnEasyMode.Location = new Point(uiManager.frmAppMain.grpMain.Width * 15 / 40 - btnEasyMode.Width / 2, uiManager.frmAppMain.grpMain.Height * 8 / 30);
-            //btnEasyMode.MouseClick += UpdateLabel;
             btnEasyMode.Click += UpdateLabel;
             btnEasyMode.TabIndex = 0;
             uiManager.buttons.Add(btnEasyMode);
@@ -76,7 +73,6 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             btnMediumMode.ForeColor = Color.White;
             btnMediumMode.Text = "Medium";
             btnMediumMode.Location = new Point(uiManager.frmAppMain.grpMain.Width * 15 / 40 - btnMediumMode.Width / 2, uiManager.frmAppMain.grpMain.Height * 11 / 30);
-            //btnMediumMode.MouseClick += UpdateLabel;
             btnMediumMode.Click += UpdateLabel;
             btnMediumMode.TabIndex = 1;
             uiManager.buttons.Add(btnMediumMode);
@@ -87,7 +83,6 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             btnHardMode.ForeColor = Color.White;
             btnHardMode.Text = "Hard";
             btnHardMode.Location = new Point(uiManager.frmAppMain.grpMain.Width * 15 / 40 - btnHardMode.Width / 2, uiManager.frmAppMain.grpMain.Height * 14 / 30);
-            //btnHardMode.MouseClick += UpdateLabel;
             btnHardMode.Click += UpdateLabel;
             btnHardMode.TabIndex = 1;
             uiManager.buttons.Add(btnHardMode);
@@ -98,7 +93,6 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             btnHarderMode.ForeColor = Color.White;
             btnHarderMode.Text = "Harder";
             btnHarderMode.Location = new Point(uiManager.frmAppMain.grpMain.Width * 15 / 40 - btnHarderMode.Width / 2, uiManager.frmAppMain.grpMain.Height * 17 / 30);
-            //btnHarderMode.MouseClick += UpdateLabel;
             btnHarderMode.Click += UpdateLabel;
             btnHarderMode.TabIndex = 1;
             uiManager.buttons.Add(btnHarderMode);
@@ -109,7 +103,6 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             btnDemonMode.ForeColor = Color.White;
             btnDemonMode.Text = "Demon";
             btnDemonMode.Location = new Point(uiManager.frmAppMain.grpMain.Width * 15 / 40 - btnDemonMode.Width / 2, uiManager.frmAppMain.grpMain.Height * 20 / 30);
-            //btnDemonMode.MouseClick += UpdateLabel;
             btnDemonMode.Click += UpdateLabel;
             btnDemonMode.TabIndex = 1;
             uiManager.buttons.Add(btnDemonMode);
@@ -140,8 +133,13 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             if(sender == btnEasyMode)
             {
                 btnEasyMode.TabIndex = 1;
-                btnBack.ForeColor = Color.White;
                 btnEasyMode.ForeColor = Color.ForestGreen;
+                btnMediumMode.ForeColor = Color.White;
+                btnHardMode.ForeColor = Color.White;
+                btnHarderMode.ForeColor = Color.White;
+                btnDemonMode.ForeColor = Color.White;
+                btnNext.ForeColor = Color.White;
+                btnBack.ForeColor = Color.White;
                 btnMediumMode.TabIndex = 0;
             }
             if(sender == btnMediumMode)
@@ -149,39 +147,69 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
                 btnMediumMode.TabIndex = 1;
                 btnEasyMode.ForeColor = Color.White;
                 btnMediumMode.ForeColor = Color.ForestGreen;
+                btnHardMode.ForeColor = Color.White;
+                btnHarderMode.ForeColor = Color.White;
+                btnDemonMode.ForeColor = Color.White;
+                btnNext.ForeColor = Color.White;
+                btnBack.ForeColor = Color.White;
                 btnHardMode.TabIndex = 0;
             }
             if(sender == btnHardMode)
             {
                 btnHardMode.TabIndex = 1;
+                btnEasyMode.ForeColor = Color.White;
                 btnMediumMode.ForeColor = Color.White;
                 btnHardMode.ForeColor = Color.ForestGreen;
+                btnHarderMode.ForeColor = Color.White;
+                btnDemonMode.ForeColor = Color.White;
+                btnNext.ForeColor = Color.White;
+                btnBack.ForeColor = Color.White;
                 btnHarderMode.TabIndex = 0;
             }
             if(sender == btnHarderMode)
             {
                 btnHarderMode.TabIndex = 1;
+                btnEasyMode.ForeColor = Color.White;
+                btnMediumMode.ForeColor = Color.White;
                 btnHardMode.ForeColor = Color.White;
                 btnHarderMode.ForeColor = Color.ForestGreen;
+                btnDemonMode.ForeColor = Color.White;
+                btnNext.ForeColor = Color.White;
+                btnBack.ForeColor = Color.White;
                 btnDemonMode.TabIndex = 0;
             }
             if(sender == btnDemonMode)
             {
                 btnDemonMode.TabIndex = 1;
+                btnEasyMode.ForeColor = Color.White;
+                btnMediumMode.ForeColor = Color.White;
+                btnHardMode.ForeColor = Color.White;
                 btnHarderMode.ForeColor = Color.White;
                 btnDemonMode.ForeColor = Color.ForestGreen;
+                btnNext.ForeColor = Color.White;
+                btnBack.ForeColor = Color.White;
                 btnNext.TabIndex = 0;
             }
             if(sender == btnNext)
             {
                 btnNext.TabIndex = 1;
+                btnEasyMode.ForeColor = Color.White;
+                btnMediumMode.ForeColor = Color.White;
+                btnHardMode.ForeColor = Color.White;
+                btnHarderMode.ForeColor = Color.White;
                 btnDemonMode.ForeColor = Color.White;
                 btnNext.ForeColor = Color.ForestGreen;
+                btnBack.ForeColor = Color.White;
                 btnBack.TabIndex = 0;
             }
             if(sender == btnBack)
             {
                 btnBack.TabIndex = 1;
+                btnEasyMode.ForeColor = Color.White;
+                btnMediumMode.ForeColor = Color.White;
+                btnHardMode.ForeColor = Color.White;
+                btnHarderMode.ForeColor = Color.White;
+                btnDemonMode.ForeColor = Color.White;
                 btnNext.ForeColor = Color.White;
                 btnBack.ForeColor = Color.ForestGreen;
                 btnEasyMode.TabIndex = 0;
@@ -267,73 +295,5 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             lblModeDescription.Dispose();
             uiManager.buttons.Clear();
         }
-
-        /*private void UpdateLabel(object sender, MouseEventArgs e)
-        {
-            uiManager.frmAppMain.soundManager.PlaySoundEffect(uiManager.frmAppMain.soundManager.clickSoundEffect);
-            if (sender == btnEasyMode)
-            {
-                lblModeDescription.Text = "EasyMode_Description";
-                uiManager.mode = 1;
-            }
-            else if(sender == btnMediumMode)
-            {
-                lblModeDescription.Text = "MeduimMode_Description";
-                uiManager.mode = 2;
-            }
-            else if(sender == btnHardMode)
-            {
-                lblModeDescription.Text = "HardMode_Description";
-                uiManager.mode = 3;
-            }
-            else if (sender == btnHarderMode)
-            {
-                lblModeDescription.Text = "HarderMode_Description";
-                uiManager.mode = 4;
-            }
-            else if (sender == btnDemonMode)
-            {
-                lblModeDescription.Text = "DemonMode_Description";
-                uiManager.mode = 5;
-            }
-        }*/
-
-        /*private void BtnNext_MouseClick(object sender, MouseEventArgs e)
-        {
-            uiManager.frmAppMain.soundManager.PlaySoundEffect(uiManager.frmAppMain.soundManager.clickSoundEffect);
-            if(uiManager.mode == 0)
-            {
-                MessageBox.Show("No level selected, please select a level", "Selection error", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else if(uiManager.mode < 0 || uiManager.mode > 5)
-            {
-                MessageBox.Show("Oups, something went wrong with the level", "Seletion error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                uiManager.ClearUi<ChooseDifficultyUi>();
-                uiManager.frmAppMain.gameLayer = 999;
-                uiManager.CreateUiComponents<OnGameUi>();
-                uiManager.frmAppMain.soundManager.StopMusicLoop();
-                switch(uiManager.mode)
-                {
-                    case 1: uiManager.frmAppMain.soundManager.PlayGameMusic(uiManager.frmAppMain.soundManager.easyTheme); uiManager.frmAppMain.endGameCpt = 10891; break;
-                    case 2: uiManager.frmAppMain.soundManager.PlayGameMusic(uiManager.frmAppMain.soundManager.mediumTheme); uiManager.frmAppMain.endGameCpt = 11630; break;
-                    case 3: uiManager.frmAppMain.soundManager.PlayGameMusic(uiManager.frmAppMain.soundManager.hardTheme); uiManager.frmAppMain.endGameCpt = 13663; break;
-                    case 4: uiManager.frmAppMain.soundManager.PlayGameMusic(uiManager.frmAppMain.soundManager.harderTheme); uiManager.frmAppMain.endGameCpt = 12941; break;
-                    case 5: uiManager.frmAppMain.soundManager.PlayGameMusic(uiManager.frmAppMain.soundManager.demonTheme); uiManager.frmAppMain.endGameCpt = 12197; break;
-                }
-            }
-            
-        }*/
-
-        /*private void BtnBack_MouseClick(object sender, MouseEventArgs e)
-        {
-            uiManager.frmAppMain.soundManager.PlaySoundEffect(uiManager.frmAppMain.soundManager.clickSoundEffect);
-            uiManager.ClearUi<ChooseDifficultyUi>();
-            uiManager.frmAppMain.gameLayer = 2;
-            uiManager.CreateUiComponents<MenuUi>();
-            
-        }*/
     }
 }
