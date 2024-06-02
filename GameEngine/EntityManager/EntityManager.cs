@@ -18,10 +18,11 @@ namespace ProjetVellemanTEST
         { 
             this.frmAppMain = frmAppMain;
         }
-        internal int K8055Diff;
+        internal int K8055Diff;     //Stock the difficulty multiplicator of the K8055
 
-        List<BaseEntity> entities = new List<BaseEntity>();
+        List<BaseEntity> entities = new List<BaseEntity>();     //Stock entities in a list
 
+        //Method called to create any types of entity
         internal T CreateEntity<T>() where T : BaseEntity, new()
         {
             T entity = new T();
@@ -30,21 +31,7 @@ namespace ProjetVellemanTEST
             return entity;
         }
 
-        internal void destroyAllEntityGroup<T>() where T : BaseEntity
-        {
-            List<BaseEntity> copy = new List<BaseEntity>(entities);
-            foreach(BaseEntity entity in copy)
-            {
-                if(entity is T entit)
-                {
-                    entities.Remove(entit);
-                    entit.onDestroy(this);
-                }
-                
-            }
-            
-        }
-
+        //Collision system
         public bool collision()
         {
             bool collisionX = false;
@@ -85,12 +72,17 @@ namespace ProjetVellemanTEST
                         }
                         else
                         {
-                            entity.destroyed = true;
-                            Fctvm110.ClearDigitalChannel(frmAppMain.hp);
-                            frmAppMain.hp--;
-                            frmAppMain.score -= entity.points;
-                            if(frmAppMain.score <= 0 )frmAppMain.score = 0;
-                            frmAppMain.soundManager.PlaySoundEffect(frmAppMain.soundManager.hurtSoundEffect);
+                            entity.destroyed = true;                            //Entity can be destroyed
+                            frmAppMain.score -= entity.points;                  //Remove points from score
+                            if (frmAppMain.cardMode)
+                            {
+                                Fctvm110.ClearDigitalChannel(frmAppMain.hp);    //Turn off digital output to match the health of the player
+                                Fctvm110.OutputAnalogChannel(1, (int)(((float)frmAppMain.score / 20000f) * 255f));  //Display the score on the analog output 1
+                            }
+                            frmAppMain.hp--;                                    //Decrement 1 HP
+                            
+                            if(frmAppMain.score <= 0 )frmAppMain.score = 0;     //Avoid the score to go negative
+                            frmAppMain.soundManager.PlaySoundEffect(frmAppMain.soundManager.hurtSoundEffect);   //Play a funny sound effect
                             return true;
                         }
                     }
@@ -99,6 +91,7 @@ namespace ProjetVellemanTEST
             return false;
         }
 
+        //Projectile's collision system
         public bool destruction()
         {
             bool collisionX = false;
@@ -140,15 +133,15 @@ namespace ProjetVellemanTEST
                             }
                             else
                             {
-                                entity.destroyed = true;
-                                projectile.destroyed = true;
+                                entity.destroyed = true;            //Allow entity to be destroyed
+                                projectile.destroyed = true;        //Allow projectile to be destroyed
                                 if (frmAppMain.cardMode)
                                 {
-                                    frmAppMain.score += entity.points * K8055Diff;
+                                    frmAppMain.score += entity.points * K8055Diff; //Add points to score multiplicated by the difficulty multiplicator
                                 }
-                                else frmAppMain.score += entity.points;
-                                Fctvm110.OutputAnalogChannel(1, (int)(((float)frmAppMain.score / 9999f) * 255f));
-                                frmAppMain.soundManager.PlaySoundEffect(frmAppMain.soundManager.hitSoundEffect);
+                                else frmAppMain.score += entity.points;            //Add points to score
+                                Fctvm110.OutputAnalogChannel(1, (int)(((float)frmAppMain.score / 20000f) * 255f));      //Display the score to analog output 1
+                                frmAppMain.soundManager.PlaySoundEffect(frmAppMain.soundManager.hitSoundEffect);        //Play a funny sound effect
                                 return true;
                             }
                         }
@@ -159,6 +152,8 @@ namespace ProjetVellemanTEST
             return false;
         }
 
+        //Move entities en give them different pattern for each
+        //Types of entities
         public void moveEntity()
         {
             if (frmAppMain.cardMode)
@@ -224,7 +219,8 @@ namespace ProjetVellemanTEST
               
             }
         }
-
+        
+        //Destroy entity if it has to be destroyed
         public void destroyEntity()
         {
             List<BaseEntity> copy = new List<BaseEntity>(entities);
@@ -245,6 +241,7 @@ namespace ProjetVellemanTEST
                 }
             }
         }
+        //Remove all entity
         public void clearAllEntity()
         {
             List<BaseEntity> copy = new List<BaseEntity>(entities);

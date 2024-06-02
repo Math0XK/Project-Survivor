@@ -10,6 +10,9 @@ namespace ProjetVellemanTEST
 {
 	internal class InputManager
 	{
+		//Manage all events related to keyboard and get which
+		//Key is pressed
+
 		internal delegate void OnKeyDown(Keys key);
 		public event OnKeyDown isAnyKeyDown;
 		internal delegate void escapeDown(Keys key);

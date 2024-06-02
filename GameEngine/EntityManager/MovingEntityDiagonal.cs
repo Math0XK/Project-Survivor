@@ -8,6 +8,7 @@ using System.Windows.Forms;
 
 namespace ProjetVellemanTEST.GameEngine.EntityManager
 {
+    //Create a diagonal moving entity
     internal class MovingEntityDiagonal : BaseEntity
     {
         Random Random = new Random();

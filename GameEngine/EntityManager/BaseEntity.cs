@@ -10,6 +10,8 @@ namespace ProjetVellemanTEST
 {
     internal abstract class BaseEntity
     {
+        //Give property to all entities
+
         internal bool destroyed = false;
         internal bool hostile = false;
         internal int points;
@@ -21,7 +23,6 @@ namespace ProjetVellemanTEST
         internal virtual void onCreate(EntityManager entityManager)
         {
             this.EntityManager = entityManager;
-            mainPanel.TabIndex = 2;
         }
 
         internal virtual void onDestroy(EntityManager entityManager)

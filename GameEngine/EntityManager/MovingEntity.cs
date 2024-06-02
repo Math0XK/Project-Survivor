@@ -10,7 +10,7 @@ using System.Xml.Linq;
 
 namespace ProjetVellemanTEST
 {
-
+    //Create a linear moving entity
     internal class MovingEntitiy : BaseEntity
     {
         internal override void onCreate(EntityManager entityManager)

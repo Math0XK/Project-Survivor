@@ -14,6 +14,7 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
         Label lblDescription = new Label();
         internal int animationCounter = 100;
 
+        //Initiate all elements and display the Ui
         internal override void OnCreate(UiManager uiManager)
         {
             base.OnCreate(uiManager);
@@ -35,14 +36,14 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             lblTitle.ForeColor = Color.Transparent;
             uiManager.frmAppMain.grpMain.Controls.Add(lblTitle);
         }
-
+        //Destroy all objects and clear the memory
         internal override void OnDestroy(UiManager uiManager)
         {
             base.OnDestroy(uiManager);
             lblTitle.Dispose();
             lblDescription.Dispose();
         }
-
+        //Little animation 
         internal void Animation(UiManager uiManager)
         {
             if (animationCounter == 0)

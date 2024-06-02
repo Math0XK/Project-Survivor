@@ -40,14 +40,14 @@ namespace ProjetVellemanTEST.GameEngine.SoundManager
         {
             this.frmAppMain = frmAppMain;
         }
-
+        //Play music loop
         public void PlayMusicLoop(string fileName)
         {
             currentTheme = fileName;
             Play();
             
         }
-
+        //Play level music
         public void PlayGameMusic(string fileName)
         {  
             theme.Open(new("file:///" + new FileInfo(fileName).FullName));
@@ -55,14 +55,14 @@ namespace ProjetVellemanTEST.GameEngine.SoundManager
             theme.Play();
             theme.MediaEnded += Theme_MediaEnded;
         }
-
+        //Event that occurs when level music end
         private void Theme_MediaEnded(object sender, EventArgs e)
         {
             theme.MediaEnded -= Theme_MediaEnded;
             frmAppMain.uiManager.win = true;
             frmAppMain.uiManager.CreateUiComponents<EndGameUi>();
         }
-
+        //Play music
         internal void Play()
         {
             theme.Volume = musicVolume * systemVolume;
@@ -70,14 +70,14 @@ namespace ProjetVellemanTEST.GameEngine.SoundManager
             theme.Play();
             theme.MediaEnded += CurrentTheme_MediaEnded;
         }
-
+        //Event that occurs when music has stopped
         private void CurrentTheme_MediaEnded(object sender, EventArgs e)
         {
             theme.MediaEnded -= CurrentTheme_MediaEnded;
             theme.Close();
             Play();
         }
-
+        //Stop music loop
         public void StopMusicLoop() 
         {
             theme.MediaEnded -= CurrentTheme_MediaEnded;
@@ -85,7 +85,7 @@ namespace ProjetVellemanTEST.GameEngine.SoundManager
             theme.Stop();
             theme.Close();
         }
-
+        //Play soundeffect
         public void PlaySoundEffect(string fileName)
         {
             MediaPlayer soundEffect = new MediaPlayer();
@@ -98,7 +98,7 @@ namespace ProjetVellemanTEST.GameEngine.SoundManager
 
 
         }
-
+        //Stop and unload the soundeffect
         private void StopSound(object sender, EventArgs e)
         {
             List<MediaPlayer> copy = new List<MediaPlayer>(soundEffects);
@@ -111,16 +111,19 @@ namespace ProjetVellemanTEST.GameEngine.SoundManager
                 }
             }
         }
+        //Pause music
         internal void pauseMusicLoop()
         {
             theme.Pause();
         }
+        //Resume the music
         internal void resumeMusicLoop()
         {
             theme.Volume = musicVolume * systemVolume;
             theme.Play();
         }
 
+        //Manage event related to the change of the system volume value
         public delegate void SystemVolumeChanged();
         public event SystemVolumeChanged isSystemVolumeChanged;
 

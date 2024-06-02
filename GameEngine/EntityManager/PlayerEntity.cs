@@ -8,6 +8,7 @@ using System.Windows.Forms;
 
 namespace ProjetVellemanTEST
 {
+    //Create the player
     internal class PlayerEntity : BaseEntity
     {
         internal bool isMoving = false;

@@ -8,6 +8,7 @@ using System.Windows.Forms;
 
 namespace ProjetVellemanTEST.GameEngine.EntityManager
 {
+    //Create a tiny linear moving entity
     internal class MovingEntityTinyVersion : BaseEntity
     {
         internal override void onCreate(ProjetVellemanTEST.EntityManager entityManager)

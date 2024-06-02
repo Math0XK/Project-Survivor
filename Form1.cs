@@ -20,6 +20,7 @@ namespace ProjetVellemanTEST
 
 	public partial class frmAppMain : Form
 	{
+		//Some stuff to help while coding
 		/*
 		 * StartupUi -> gamelayer = 1
 		 * MenuUi -> gamelayer = 2
@@ -33,13 +34,23 @@ namespace ProjetVellemanTEST
 
 
 		internal int mainCpt = 0;
-		internal bool game = false;
-		private int velocity = 10;
-		internal int hp = 8;
-		internal int score = 0;
-		internal int[] highScore = [0, 0, 0, 0, 0];
-		internal int endGameCpt = 100;
-		internal string pseudo;
+
+
+		private int velocity = 10;						//Movement speed of the player
+		internal int hp = 8;							//Health of the player
+		internal int score = 0;							//Score of the player
+		internal int[] highScore = [0, 0, 0, 0, 0];		//Highscore of each levels
+        internal int gameLayer = 0;						//Indicator of what screen is displayed
+        internal int charge = 3;						//Maximum projectile capacity
+        internal int currentProjectile = 0;				//Memorize how many projectiles are displayed
+        internal int currentEntity = 0;					//Memorize how many entity are displayed 
+        internal int digitalChannels;					//Stock the binary value of the digital channels of the K8055
+        internal int data1, data2;						//Stock the value of each analog input
+        internal int[] Vbtn = [0, 0, 0, 0, 0];			//Stock the value of each digital inputs after the mask
+
+        internal string pseudo;							//Save the name of the player
+
+		//Initiate my classes 
 		internal InputManager inputManager;
 		internal EntityManager entityManager;
 		internal PlayerEntity pnlPlayer;
@@ -47,25 +58,28 @@ namespace ProjetVellemanTEST
 		internal SoundManager soundManager;
 		internal SaveManager saveManager;
 		internal Fctvm110 Fctvm110;
-		internal int gameLayer = 0;
-		internal int charge = 3;
-		internal int currentProjectile = 0;
-		internal int currentEntity = 0;
-		internal int actualCount = 0;
-		int digitalChannels;
+
+		//Create a random seed
 		internal Random random = new Random();
-		internal bool hold = false;
+
+		//Save the status of some buttons
+        internal bool hold = false;
 		internal bool hold2 = false;
 		internal bool e_hold = false;
+
+		//True when the game is paused
 		internal bool paused = false;
+
+		//True when K8055 is detected on launch
 		internal bool cardMode = false;
-		internal int data1, data2;
-		internal int[] Vbtn = [0, 0, 0, 0, 0];
+		
 
 		public frmAppMain()
 		{
 			InitializeComponent();
-			grpMain.Size = Size;
+			grpMain.Size = Size;						//Givve grpMain the size of the window
+
+			//Initiate my classes 
 			inputManager = new InputManager();
 			entityManager = new EntityManager(this);
 			uiManager = new UiManager(this);
@@ -73,6 +87,8 @@ namespace ProjetVellemanTEST
             saveManager = new SaveManager(this);
 			pnlPlayer = new PlayerEntity();
 			Fctvm110 = new Fctvm110();
+
+			//Search if K8055 is detected. If yes, connect to it and clear all outputs
 			if (Fctvm110.SearchDevices() != 0)
 			{				
 				Fctvm110.ClearAllAnalog();
@@ -81,20 +97,24 @@ namespace ProjetVellemanTEST
                 Fctvm110.ClearAllDigital();
 				cardMode = true;
 			}
+
+			//Bind some useful events
 			if (gameLayer == 0)
 			{
 				if (cardMode)
 				{
-					Fctvm110.isAnyButtonsDown += Fctvm110_isAnyButtonsDown;
+					Fctvm110.isAnyButtonsDown += Fctvm110_isAnyButtonsDown;		//Events that occurs when any buttons of the K8055 is pressed
 				}
-				inputManager.isAnyKeyDown += anyKeyDown;
-				uiManager.CreateUiComponents<StartupUi>();
+				inputManager.isAnyKeyDown += anyKeyDown;						//Events that occurs when any buttons of the keyboard is pressed
+				uiManager.CreateUiComponents<StartupUi>();						//Create the startup Ui
 			}
-            soundManager.isSystemVolumeChanged += SoundManager_isSystemVolumeChanged;
-			soundManager.PlayMusicLoop(soundManager.startupTheme);
+            soundManager.isSystemVolumeChanged += SoundManager_isSystemVolumeChanged;  //Event that occurs when the system volume value has changed
+			soundManager.PlayMusicLoop(soundManager.startupTheme);				//Play the menu theme
 			
 		}
 
+		//Force the music to change volume by pausing and resuming the music quickly
+		//And send the actual value to the analog output 2
         internal void SoundManager_isSystemVolumeChanged()
         {
 			if (cardMode)
@@ -105,6 +125,8 @@ namespace ProjetVellemanTEST
             uiManager.frmAppMain.soundManager.resumeMusicLoop();
         }
 
+		//If any buttons has been pressed, clear the startup Ui, display
+		//The Main Menu Ui and unbind useless events
         private void Fctvm110_isAnyButtonsDown(int value)
         {
             if (gameLayer == 0)
@@ -117,6 +139,7 @@ namespace ProjetVellemanTEST
             }
         }
 
+		//Same here 
         internal void anyKeyDown(Keys keys)
 		{
 			if (gameLayer == 0)
@@ -130,11 +153,15 @@ namespace ProjetVellemanTEST
 			
 		}
 
+		//gameUpdate is a events that occurs on each ticks of the game clock. The clock is set on 1 ms
+		//Due to limited performance of windows forms, a lot more than 1 ms are passing between each ticks
 		private void gameUpdate(object sender, EventArgs e)
 		{
             if(gameLayer != 999 && cardMode)
 			{
+				//Check if any buttons is pressed
                 Fctvm110.isAnyButtonsPressed();
+				//If digital input 1 is high, focus the next element focusable in the tabindex
                 if (Fctvm110.ReadDigitalChannel(1) && !hold)
                 {
                     this.Select(true, true);
@@ -142,26 +169,33 @@ namespace ProjetVellemanTEST
                 }
                 else if (!Fctvm110.ReadDigitalChannel(1) && hold) hold = false;
             }
+			//Check if the system volume value has changed
             soundManager.SystemVolumeChange();
 
             if (cardMode)
 			{
+				//Read the value of each analog inputs and stock them
                 Fctvm110.ReadAllAnalog(ref data1, ref data2);
-                soundManager.systemVolume = (float)data1 / 255;
+				//Change the system volume with the valur of analog input 1
+                soundManager.systemVolume = (float)(data1 / 255);
 			}
+			//Gamelayer = 999 means that the game goes on
 			if (gameLayer == 999)
 			{
 				if (pnlPlayer.playerEnabled)
 				{
 					if (cardMode)
 					{
+						//Get the binary value of each digital inputs in once
 						digitalChannels = Fctvm110.ReadAllDigital();
+						//Mask the value and stock the state of each digital inputs
 						for (int i = 0; i < 5; i++)
 						{
 							Vbtn[i] = digitalChannels % 2;
 							digitalChannels /= 2;
 						}
 					}
+					//Move the player with Z/Q/S/D, arrows or K8055 digital inputs 1 -> 4
                     if (pnlPlayer.mainPanel.Top >= (grpMain.Height) * 3 / 4)
 					{
 						if (inputManager.isKeyPressed(Keys.Z) || inputManager.isKeyPressed(Keys.Up) || Vbtn[2] == 1) pnlPlayer.mainPanel.Top -= velocity;
@@ -178,6 +212,7 @@ namespace ProjetVellemanTEST
 					{
 						if (inputManager.isKeyPressed(Keys.Q) || inputManager.isKeyPressed(Keys.Left) || Vbtn[1] == 1) pnlPlayer.mainPanel.Left -= velocity;
 					}
+					//Throw a projectile when space or K8055's digital input 5 is pressed
 					if ((inputManager.isKeyPressed(Keys.Space) || Vbtn[4] == 1) && !hold && currentProjectile < charge)
 					{
 						currentProjectile++;
@@ -185,6 +220,8 @@ namespace ProjetVellemanTEST
 						entityManager.CreateEntity<ProjectileEntity>();
 					}
 					else if (!inputManager.isKeyPressed(Keys.Space) && Vbtn[4] == 0 && hold) hold = false;
+					//Pause the game when escape is pressed
+					//Then bind a special event to unpause the game
 					if(inputManager.isKeyPressed(Keys.Escape) && !e_hold && !paused)
 					{
 						e_hold = true;
@@ -198,19 +235,27 @@ namespace ProjetVellemanTEST
 					}
 
 				}
+				//When the game start, create the player
 				else
 				{
                     pnlPlayer = entityManager.CreateEntity<PlayerEntity>();
                     pnlPlayer.size = new Size(20, 20);
                     pnlPlayer.location = new Point(grpMain.Width / 2 - pnlPlayer.mainPanel.Width / 2, (grpMain.Height) * 3 / 4 + pnlPlayer.mainPanel.Height);
                 }
-
+				//Move each entity
 				entityManager.moveEntity();
+				//Destroy entities that have to be destroyed
 				entityManager.destroyEntity();
+				//Check for collision between entities and player
 				entityManager.collision();
+				//Check for collision between entities and projectiles
 				entityManager.destruction();
+				//Update Ui that have to be updated
                 uiManager.UpdateUi();
+				//Count each ticks
                 mainCpt++;
+				//Make entities spawn with random position
+				//Choose random types of entities
                 if (currentEntity < uiManager.mode + 3)
 				{
 					int chooseEntity = random.Next(1, uiManager.mode+1);
@@ -239,16 +284,19 @@ namespace ProjetVellemanTEST
 							break;
 					}
 				}
+				//End the game when the player is dead
 				if (hp <= 0)
 				{
 					uiManager.CreateUiComponents<EndGameUi>();
 				}
 				
             }
+			//Animate the startup Ui
 			if (gameLayer == 0)
 			{
 				uiManager.StartupAnimation();
 			}
+			//Performs clicks with K8055's digital input 2
 			if(gameLayer != 0 && gameLayer < 999)
 			{
 				if (cardMode)
@@ -271,7 +319,7 @@ namespace ProjetVellemanTEST
 				}
 			}
 		}
-
+		//Event that occurs when escape is pressed when the game is paused
         private void InputManager_isEscapeDown(Keys key)
         {
             e_hold = true;
@@ -279,12 +327,12 @@ namespace ProjetVellemanTEST
             uiManager.ClearUi<PauseMenuUi>();
 			inputManager.isEscapeDown -= InputManager_isEscapeDown;
         }
-
+		//Event that occurs when any keys are up
         private void onKeyUp(object sender, KeyEventArgs e)
 		{
 			inputManager.onKeyUp(e.KeyCode);
 		}
-
+		//Event that occurs when any keys are down
 		private void onKeyDown(object sender, KeyEventArgs e)
 		{
 			inputManager.onKeyDown(e.KeyCode);

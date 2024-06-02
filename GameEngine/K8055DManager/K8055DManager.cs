@@ -9,6 +9,9 @@ namespace ProjetVellemanTEST.GameEngine.K8055DManager
 {
     public class Fctvm110
     {
+
+        //Include all methods related to the K8055 board
+
         #region fctvm110 Declares
 
         [DllImport("Resources\\K8055d.dll")]
@@ -59,6 +62,8 @@ namespace ProjetVellemanTEST.GameEngine.K8055DManager
         public static extern int SetCurrentDevice(int lngCardAddress);
 
         #endregion
+
+        //Manage all events related to the K8055 board
 
         public event AnyButtonsDown isAnyButtonsDown;
         public delegate void AnyButtonsDown(int value);

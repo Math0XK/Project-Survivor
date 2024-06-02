@@ -17,6 +17,8 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
         Button btnResume = new();
         Label lblTitle = new();
         Label lblDescription = new();
+
+        //Initiate all elements and display the Ui
         internal override void OnCreate(UiManager uiManager)
         {
             base.OnCreate(uiManager);
@@ -91,7 +93,7 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
                 btnResume.GotFocus += GotFocus;
             }
         }
-
+        //Method to force focus on each buttons and change color
         private void GotFocus(object sender, EventArgs e)
         {
             if(sender == btnResume)
@@ -116,14 +118,14 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
                 btnResume.TabIndex=0;
             }
         }
-
+        //Event that occurs when the button resume is clicked
         private void BtnResume_Click(object sender, EventArgs e)
         {
             uiManager.frmAppMain.soundManager.PlaySoundEffect(uiManager.frmAppMain.soundManager.clickSoundEffect);
 
             uiManager.ClearUi<PauseMenuUi>();
         }
-
+        //Event that occurs when the button restart is clicked
         private void BtnRestart_Click(object sender, EventArgs e)
         {
             uiManager.frmAppMain.soundManager.PlaySoundEffect(uiManager.frmAppMain.soundManager.clickSoundEffect);
@@ -142,14 +144,14 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             uiManager.frmAppMain.soundManager.StopMusicLoop();
             switch (uiManager.mode)
             {
-                case 1: uiManager.frmAppMain.soundManager.PlayGameMusic(uiManager.frmAppMain.soundManager.easyTheme); uiManager.frmAppMain.endGameCpt = 10891; break;
-                case 2: uiManager.frmAppMain.soundManager.PlayGameMusic(uiManager.frmAppMain.soundManager.mediumTheme); uiManager.frmAppMain.endGameCpt = 11630; break;
-                case 3: uiManager.frmAppMain.soundManager.PlayGameMusic(uiManager.frmAppMain.soundManager.hardTheme); uiManager.frmAppMain.endGameCpt = 13663; break;
-                case 4: uiManager.frmAppMain.soundManager.PlayGameMusic(uiManager.frmAppMain.soundManager.harderTheme); uiManager.frmAppMain.endGameCpt = 12941; break;
-                case 5: uiManager.frmAppMain.soundManager.PlayGameMusic(uiManager.frmAppMain.soundManager.demonTheme); uiManager.frmAppMain.endGameCpt = 12197; break;
+                case 1: uiManager.frmAppMain.soundManager.PlayGameMusic(uiManager.frmAppMain.soundManager.easyTheme); break;
+                case 2: uiManager.frmAppMain.soundManager.PlayGameMusic(uiManager.frmAppMain.soundManager.mediumTheme); break;
+                case 3: uiManager.frmAppMain.soundManager.PlayGameMusic(uiManager.frmAppMain.soundManager.hardTheme); break;
+                case 4: uiManager.frmAppMain.soundManager.PlayGameMusic(uiManager.frmAppMain.soundManager.harderTheme); break;
+                case 5: uiManager.frmAppMain.soundManager.PlayGameMusic(uiManager.frmAppMain.soundManager.demonTheme); break;
             }
         }
-
+        //Event that occurs when the back button is clicked
         private void BtnBack_Click(object sender, EventArgs e)
         {
             if (uiManager.frmAppMain.cardMode)
@@ -171,11 +173,10 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             uiManager.CreateUiComponents<MenuUi>();
         }
 
-
+        //Destroy all objects and clear the memory
         internal override void OnDestroy(UiManager uiManager)
         {
             base.OnDestroy(uiManager);
-            //uiManager.frmAppMain.tmrGameUpdate.Start();
             uiManager.frmAppMain.gameLayer = 999;
             uiManager.frmAppMain.paused = false;
             uiManager.frmAppMain.soundManager.resumeMusicLoop();

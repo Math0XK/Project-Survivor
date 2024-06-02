@@ -11,6 +11,8 @@ namespace ProjetVellemanTEST.GameEngine.SaveManager
 {
     internal class SaveManager
     {
+        //Manage all methods related to save and load data
+
         private frmAppMain frmAppMain;
 
         public SaveManager(frmAppMain frmAppMain)

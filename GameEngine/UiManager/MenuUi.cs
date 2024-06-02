@@ -19,6 +19,7 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
         Button btnQuit = new Button();
         Label lblTitle = new Label();
 
+        //Initiate all elements and display the Ui
         internal override void OnCreate(UiManager uiManager)
         {
             base.OnCreate(uiManager);
@@ -96,14 +97,14 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
                 btnQuit.GotFocus += GotFocus;
             }
         }
-
+        //Quit the application
         private void BtnQuit_Click(object sender, EventArgs e)
         {
             uiManager.frmAppMain.soundManager.PlaySoundEffect(uiManager.frmAppMain.soundManager.clickSoundEffect);
 
             Application.Exit();
         }
-
+        //Go to Credits Ui
         private void BtnCredits_Click(object sender, EventArgs e)
         {
             uiManager.frmAppMain.soundManager.PlaySoundEffect(uiManager.frmAppMain.soundManager.clickSoundEffect);
@@ -112,7 +113,7 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             uiManager.frmAppMain.gameLayer = 3;
             uiManager.CreateUiComponents<CreditsIUi>();
         }
-
+        //Go to Settings Ui
         private void BtnSettings_Click(object sender, EventArgs e)
         {
             uiManager.frmAppMain.soundManager.PlaySoundEffect(uiManager.frmAppMain.soundManager.clickSoundEffect);
@@ -121,7 +122,7 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             uiManager.frmAppMain.gameLayer = 5;
             uiManager.CreateUiComponents<SettingsUi>();
         }
-
+        //Go to Load game Ui
         private void BtnSavedGame_Click(object sender, EventArgs e)
         {
             uiManager.frmAppMain.soundManager.PlaySoundEffect(uiManager.frmAppMain.soundManager.clickSoundEffect);
@@ -130,14 +131,14 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             uiManager.frmAppMain.gameLayer = 4;
             uiManager.CreateUiComponents<SavedGameUi>();
         }
-
+        //Go to New game Ui
         private void BtnNewGame_Click(object sender, EventArgs e)
         {
             uiManager.frmAppMain.soundManager.PlaySoundEffect(uiManager.frmAppMain.soundManager.clickSoundEffect);
             uiManager.ClearUi<MenuUi>();
             uiManager.CreateUiComponents<NewGameUi>();
         }
-
+        //Method to force focus on each buttons and change color
         private void GotFocus(object sender, EventArgs e)
         {
             if (sender == btnNewGame)
@@ -177,7 +178,7 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
                 btnNewGame.TabIndex = 0;
             }
         }
-
+        //Destroy all objects and clear the memory
         internal override void OnDestroy(UiManager uiManager)
         {
             base.OnDestroy(uiManager);

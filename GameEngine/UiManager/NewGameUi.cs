@@ -16,6 +16,7 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
         internal Label lblNameDescription;
         internal Label lblTitle;
 
+        //Initiate all elements and display the Ui
         internal override void OnCreate(UiManager uiManager)
         {
             base.OnCreate(uiManager);
@@ -76,7 +77,7 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
                 btnNext.GotFocus += GotFocus;
             }
         }
-
+        //Method to force focus on each buttons and change color
         private void GotFocus(object sender, EventArgs e)
         {
             if(sender == btnNext)
@@ -94,6 +95,7 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
                 btnNext.TabIndex = 0;
             }
         }
+        //Event that occurs when the button next is clicked
         private void BtnNext_Click(object sender, EventArgs e)
         {
             uiManager.frmAppMain.soundManager.PlaySoundEffect(uiManager.frmAppMain.soundManager.clickSoundEffect);
@@ -115,7 +117,7 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
                 uiManager.CreateUiComponents<ChooseDifficultyUi>();
             }
         }
-
+        //Event that occurs when the back button is clicked
         private void BtnBack_Click(object sender, EventArgs e)
         {
             uiManager.frmAppMain.soundManager.PlaySoundEffect(uiManager.frmAppMain.soundManager.clickSoundEffect);
@@ -124,7 +126,7 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             uiManager.frmAppMain.gameLayer = 2;
             uiManager.CreateUiComponents<MenuUi>();
         }
-
+        //Destroy all objects and clear the memory
         internal override void OnDestroy(UiManager uiManager)
         {
             base.OnDestroy(uiManager);

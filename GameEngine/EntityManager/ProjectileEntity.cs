@@ -10,7 +10,7 @@ namespace ProjetVellemanTEST.GameEngine.EntityManager
 {
     internal class ProjectileEntity : BaseEntity
     {
-
+        //Create projectile
         internal override void onCreate(ProjetVellemanTEST.EntityManager entityManager)
         {
             base.onCreate(entityManager);

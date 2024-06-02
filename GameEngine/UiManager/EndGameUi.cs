@@ -20,6 +20,8 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
         Button btnNext = new();
         Label lblTitle = new();
         Label lblDescription = new();
+
+        //Initiate all elements and display the Ui
         internal override void OnCreate(UiManager uiManager)
         {
             base.OnCreate(uiManager);
@@ -208,7 +210,7 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
                 case 5: uiManager.frmAppMain.soundManager.PlayGameMusic(uiManager.frmAppMain.soundManager.demonTheme); break;
             }
         }
-
+        //Event that occurs when the button restart is clicked
         private void BtnRestart_Click(object sender, EventArgs e)
         {
             uiManager.frmAppMain.soundManager.PlaySoundEffect(uiManager.frmAppMain.soundManager.clickSoundEffect);
@@ -235,7 +237,7 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
                 case 5: uiManager.frmAppMain.soundManager.PlayGameMusic(uiManager.frmAppMain.soundManager.demonTheme); break;
             }
         }
-
+        //Event that occurs when the back button is clicked
         private void BtnBack_Click(object sender, EventArgs e)
         {
             uiManager.ClearUi<OnGameUi>();
