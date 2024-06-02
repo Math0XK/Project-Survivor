@@ -45,7 +45,7 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             btnDev.Font = new Font(UiManager.customFont.Families[0], 11, FontStyle.Regular);
             btnDev.Size = new Size(140, 80);
             btnDev.ForeColor = Color.White;
-            btnDev.Text = "Devloppement";
+            btnDev.Text = "Devlopement";
             btnDev.Location = new Point(uiManager.frmAppMain.grpMain.Width * 15 / 40 - btnDev.Width / 2, uiManager.frmAppMain.grpMain.Height * 10 / 30);
             btnDev.TabIndex = 1;
             btnDev.Click += UpdateLabel;
