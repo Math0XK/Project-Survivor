@@ -177,7 +177,7 @@ namespace ProjetVellemanTEST
 				//Read the value of each analog inputs and stock them
                 Fctvm110.ReadAllAnalog(ref data1, ref data2);
 				//Change the system volume with the valur of analog input 1
-                soundManager.systemVolume = (float)(data1 / 255);
+                soundManager.systemVolume = data1 / 255f;
 			}
 			//Gamelayer = 999 means that the game goes on
 			if (gameLayer == 999)
