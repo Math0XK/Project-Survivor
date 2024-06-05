@@ -1,0 +1,74 @@
+1. Introduction
+1.1. Game Overview
+Born Survivor is an arcade game where the player controls a small square as the main character. The goal of the game is to score as many points as possible by shooting enemy squares while avoiding them.
+
+2. Installation and Configuration
+2.1. System Requirements
+Operating System: Windows 10 or higher.
+Hardware: Keyboard, mouse.
+Hardware required to play with the card: Velleman K8055D card, USB type A to type B cable, and a PC with an available USB port.
+Additional Notes: For optimal gaming experience, set your screen resolution to 1920x1080 pixels and Windows display scaling to 100%.
+Make sure to connect the card before starting the game to be able to use it.
+
+2.2. Game Installation
+Download: Download the game archive.
+Decompression: Unzip the downloaded archive to the directory of your choice.
+Execution: Double-click on ProjectSurvivor.exe to launch the game.
+
+2.3. Velleman K8055D Card Configuration
+Connecting the card: Connect the Velleman K8055D card to a USB port on your PC.
+Driver installation: If necessary, install the drivers for the Velleman card from the official website: https://www.velleman.eu/support/downloads/?code=K8055&type=.
+
+3. User Interface
+3.1. In the Menus
+You can navigate the menus using the Velleman K8055D card or via the keyboard and mouse.
+
+K8055:
+
+INP1: Navigate through menus
+INP2: Select the focused item
+ATT1: Adjust sound volume
+Keyboard and Mouse:
+
+Use the keyboard to enter your username.
+Use the mouse to click buttons in various interfaces.
+3.2. Game Controls
+Basic controls: The character's movements and actions are controlled via the Velleman K8055D card or the keyboard.
+
+K8055:
+
+INP1: Move right
+INP2: Move left
+INP3: Move up
+INP4: Move down
+INP5: Shoot
+ATT1: Adjust sound volume
+ATT2: Adjust difficulty
+Keyboard:
+
+D or Right Arrow: Move right
+Q or Left Arrow: Move left
+Z or Up Arrow: Move up
+S or Down Arrow: Move down
+Space: Shoot
+4. Game Instructions
+4.1. Starting a Game
+Launching the game: In the main menu, click "New Game" to create a new save or click "Load Game" to load an existing save. Then, enter the name of your save and click "Confirm". Finally, select the level you want to play and click "Confirm" again.
+Objective: Shoot the enemies to eliminate them and score points. Avoid getting hit by the enemies.
+
+4.2. Game Mechanics
+Collision detection: When the character collides with an enemy, you lose 1 life point. If you have no more life points, the game is over.
+Scoring: Each enemy eliminated scores points. The current score is displayed in the top right corner of the screen.
+
+4.3. End of Game
+Game Over: The game ends when the character has no more life points or if the music ends. Your final score is displayed on the screen.
+Reset: To restart the level, click "Restart", or click "Next Level" to proceed to the next level. Click "Back to Menu" to return to the main menu.
+
+5. Troubleshooting
+5.1. Common Issues
+The game does not start: Ensure that all necessary files are present in the game directory and that you have installed the drivers for the Velleman card.
+Card connection issues: Check that the card is properly connected to the USB port and restart the game. Make sure the drivers are installed. Restart the PC if necessary.
+The game does not display correctly: Make sure to play with a screen resolution of 1920x1080 pixels and that Windows display scaling is at 100%. Change these settings for the best gaming experience.
+
+5.2. Technical Support
+Contact: For additional assistance, contact mathys.deboever@std.heh.be.

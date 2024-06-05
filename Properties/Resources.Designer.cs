@@ -190,6 +190,24 @@ namespace ProjectSurvivor.Properties {
         
         /// <summary>
         ///   Recherche une chaîne localisée semblable à 1. Introduction
+        ///1.1. Game Overview
+        ///Born Survivor is an arcade game where the player controls a small square as the main character. The goal of the game is to score as many points as possible by shooting enemy squares while avoiding them.
+        ///
+        ///2. Installation and Configuration
+        ///2.1. System Requirements
+        ///Operating System: Windows 10 or higher.
+        ///Hardware: Keyboard, mouse.
+        ///Hardware required to play with the card: Velleman K8055D card, USB type A to type B cable, and a PC with an available USB port.
+        ///Additional Notes: F [le reste de la chaîne a été tronqué]&quot;;.
+        /// </summary>
+        internal static string User_Guide_EN {
+            get {
+                return ResourceManager.GetString("User Guide EN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à 1. Introduction
         ///
         ///1.1. Présentation du Jeu
         ///
@@ -204,9 +222,9 @@ namespace ProjectSurvivor.Properties {
         ///Matériel : Clavier, souris.
         ///Matériel requis pour jouer avec la carte : Carte Velleman K8055D, câble USB type A vers type B, et un PC avec [le reste de la chaîne a été tronqué]&quot;;.
         /// </summary>
-        internal static string User_Guide {
+        internal static string User_Guide_FR {
             get {
-                return ResourceManager.GetString("User Guide", resourceCulture);
+                return ResourceManager.GetString("User_Guide_FR", resourceCulture);
             }
         }
     }

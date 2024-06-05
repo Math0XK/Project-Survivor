@@ -13,7 +13,7 @@ Système d'exploitation : Windows 10 ou supérieur.
 Matériel : Clavier, souris.
 Matériel requis pour jouer avec la carte : Carte Velleman K8055D, câble USB type A vers type B, et un PC avec port USB disponible.
 Notes supplémentaires : Pour une éxpérience de jeu optimale, veillez à régler la résolution de votre écran en 1920x1080 pixels et régler l'échelle de rendu Windows à 100%.
-						Assurez vous de connecter la carte avant de démarrer le jeu afin de pouvoir l'utiliser.
+			Assurez vous de connecter la carte avant de démarrer le jeu afin de pouvoir l'utiliser.
 
 2.2. Installation du Jeu
 
@@ -23,7 +23,7 @@ Exécution : Double-cliquez sur ProjectSurvivor.exe pour lancer le jeu.
 
 2.3. Configuration de la Carte Velleman K8055D
 Connexion de la carte : Connectez la carte Velleman K8055D à un port USB de votre PC.
-Installation des pilotes : Si nécessaire, installez les pilotes pour la carte Velleman à partir du site officiel [lien vers les pilotes].
+Installation des pilotes : Si nécessaire, installez les pilotes pour la carte Velleman à partir du site officiel https://www.velleman.eu/support/downloads/?code=K8055&type=.
 
 3. Interface Utilisateur
 
@@ -35,7 +35,7 @@ Vous pouvez naviguer dans les menus à l'aide de la carte Velleman K8055D ou via 
 			ATT1 : Régler le volume sonore
 	
 	Clavier et souris : Utilisez le clavier pour entrer votre pseudonyme
-					  : Utilisez la souris pour appuyer sur les boutons dans les différentes interfaces
+			  : Utilisez la souris pour appuyer sur les boutons dans les différentes interfaces
 
 3.2. Commandes du Jeu
 
@@ -49,18 +49,18 @@ Contrôles de base : Les mouvements et actions du personnage sont contrôlés via l
 			ATT2 : Régler la difficulté
 
 	Clavier :	D ou flèche de droite : Aller vers la droite
-				Q ou flèche de gauche : Aller vers la gauche
-				Z ou flèche du haut : Aller vers le haut
-				S ou flèche du bas : Aller vers le bas
-				Espace : Tirer
+			Q ou flèche de gauche : Aller vers la gauche
+			Z ou flèche du haut : Aller vers le haut
+			S ou flèche du bas : Aller vers le bas
+			Espace : Tirer
 
 4. Instructions de Jeu
 
 4.1. Démarrer une Partie
 
 Lancement du jeu : Dans le menu principale, cliquez sur "New Game" pour créer une nouvelle sauvegarde ou cliquez sur "Load Game" pour charger une sauvegarde existante. 
-				   Ensuite, introduisez le nom de votre sauvegarde puis cliquez sur "Confirm".
-				   Enfin, séléctionner le niveau auquel vous voulez jouer puis cliquez à nouveau sur "Confirm".
+		   Ensuite, introduisez le nom de votre sauvegarde puis cliquez sur "Confirm".
+		   Enfin, séléctionner le niveau auquel vous voulez jouer puis cliquez à nouveau sur "Confirm".
 Objectif : Tirez sur les ennemis pour les éliminer et gagnez des points. Évitez de vous faire toucher par les ennemis.
 
 4.2. Mécaniques de Jeu
