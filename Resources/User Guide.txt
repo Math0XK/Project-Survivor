@@ -1,0 +1,87 @@
+1. Introduction
+
+1.1. Présentation du Jeu
+
+Born Survivor est un jeu d’arcade dans lequel le joueur contrôle un petit carré servant de personnage principal. 
+Le but du jeu est de gagner le plus de points possible en tirant sur les carrés ennemis tout en les évitant.
+
+2. Installation et Configuration
+
+2.1. Prérequis Système
+
+Système d'exploitation : Windows 10 ou supérieur.
+Matériel : Clavier, souris.
+Matériel requis pour jouer avec la carte : Carte Velleman K8055D, câble USB type A vers type B, et un PC avec port USB disponible.
+Notes supplémentaires : Pour une éxpérience de jeu optimale, veillez à régler la résolution de votre écran en 1920x1080 pixels et régler l'échelle de rendu Windows à 100%.
+						Assurez vous de connecter la carte avant de démarrer le jeu afin de pouvoir l'utiliser.
+
+2.2. Installation du Jeu
+
+Téléchargement : Téléchargez l'archive du jeu
+Décompression : Décompressez l'archive téléchargée dans le répertoire de votre choix.
+Exécution : Double-cliquez sur ProjectSurvivor.exe pour lancer le jeu.
+
+2.3. Configuration de la Carte Velleman K8055D
+Connexion de la carte : Connectez la carte Velleman K8055D à un port USB de votre PC.
+Installation des pilotes : Si nécessaire, installez les pilotes pour la carte Velleman à partir du site officiel [lien vers les pilotes].
+
+3. Interface Utilisateur
+
+3.1. Dans les menus
+
+Vous pouvez naviguer dans les menus à l'aide de la carte Velleman K8055D ou via le clavier et la souris.
+	K8055 : INP1 : Naviguer dans les menus
+			INP2 : Séléctionner l'élément qui a le focus
+			ATT1 : Régler le volume sonore
+	
+	Clavier et souris : Utilisez le clavier pour entrer votre pseudonyme
+					  : Utilisez la souris pour appuyer sur les boutons dans les différentes interfaces
+
+3.2. Commandes du Jeu
+
+Contrôles de base : Les mouvements et actions du personnage sont contrôlés via la carte Velleman K8055D ou via le clavier.
+	K8055 : INP1 : Aller vers la droite
+			INP2 : Aller vers la gauche
+			INP3 : Aller vers le haut 
+			INP4 : Aller vers le bas
+			INP5 : Tirer
+			ATT1 : Régler le volume sonore
+			ATT2 : Régler la difficulté
+
+	Clavier :	D ou flèche de droite : Aller vers la droite
+				Q ou flèche de gauche : Aller vers la gauche
+				Z ou flèche du haut : Aller vers le haut
+				S ou flèche du bas : Aller vers le bas
+				Espace : Tirer
+
+4. Instructions de Jeu
+
+4.1. Démarrer une Partie
+
+Lancement du jeu : Dans le menu principale, cliquez sur "New Game" pour créer une nouvelle sauvegarde ou cliquez sur "Load Game" pour charger une sauvegarde existante. 
+				   Ensuite, introduisez le nom de votre sauvegarde puis cliquez sur "Confirm".
+				   Enfin, séléctionner le niveau auquel vous voulez jouer puis cliquez à nouveau sur "Confirm".
+Objectif : Tirez sur les ennemis pour les éliminer et gagnez des points. Évitez de vous faire toucher par les ennemis.
+
+4.2. Mécaniques de Jeu
+
+Détection des collisions : Lorsque le personnage entre en collision avec un ennemi, vous perdez 1 point de vie. Si vous n'avez plus de point de vie, la partie est terminée.
+Scoring : Chaque ennemi éliminé rapporte des points. Le score actuel est affiché en haut à droite de l'écran.
+
+4.3. Fin de Partie
+
+Game Over : La partie se termine lorsque le personnage n'a plus de point de vie ou si la musique se termine. Votre score final est affiché à l'écran.
+Réinitialiser : Pour recommencer le niveau, cliquez sur "Restart", ou cliquez sur "Next Level" pour passer au niveau suivant. Cliquez sur "Back to Menu" pour retourner à l'écran principal.
+
+5. Dépannage
+
+5.1. Problèmes Courants
+
+Le jeu ne se lance pas : Assurez-vous que tous les fichiers nécessaires sont présents dans le répertoire du jeu et que vous avez installé les pilotes de la carte Velleman.
+Problèmes de connexion de la carte : Vérifiez que la carte est correctement connectée au port USB puis redémarrez le jeu. Verifiez que les pilotes sont installés. Redémarrez le PC si nécessaire.
+Le jeu ne s'affiche pas correctement : Assurez vous de jouer avec une résolution d'écran de 1920x1080 pixels et que l'échelle d'affichage de Windows est à 100%. Changez ces paramètres pour profiter d'une expérience de jeu optimale.
+
+5.2. Support Technique
+
+Contact : Pour toute assistance supplémentaire, contactez mathys.deboever@std.heh.be.
+

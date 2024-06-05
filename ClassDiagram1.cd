@@ -1,0 +1,221 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="ProjetVellemanTEST.GameEngine.EntityManager.ProjectileEntity">
+    <Position X="6.75" Y="27.25" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAQA=</HashCode>
+      <FileName>GameEngine\EntityManager\ProjectileEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjetVellemanTEST.GameEngine.EntityManager.MovingEntityDiagonal">
+    <Position X="14.75" Y="27.25" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAgABAAgAAAAAAAAAQA=</HashCode>
+      <FileName>GameEngine\EntityManager\MovingEntityDiagonal.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjetVellemanTEST.GameEngine.EntityManager.MovingEntityPattern01">
+    <Position X="26.75" Y="27.25" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAgABAAgAAAAAAAAAQA=</HashCode>
+      <FileName>GameEngine\EntityManager\MovingEntityPattern01.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjetVellemanTEST.GameEngine.EntityManager.MovingEntityPattern01TinyVersion">
+    <Position X="10.75" Y="27.25" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAgABAAgAAAAAAAAAQA=</HashCode>
+      <FileName>GameEngine\EntityManager\MovingEntityPattern01TinyVersion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjetVellemanTEST.GameEngine.EntityManager.MovingEntityTinyVersion">
+    <Position X="18.75" Y="27.25" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAQA=</HashCode>
+      <FileName>GameEngine\EntityManager\MovingEntityTinyVersion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjetVellemanTEST.BaseEntity">
+    <Position X="18.75" Y="23.25" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAIACAAAAAAAAAAJAAAAACIAAAAAAgAAAAgAAAAQA=</HashCode>
+      <FileName>GameEngine\EntityManager\BaseEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjetVellemanTEST.EntityManager">
+    <Position X="22.5" Y="23.25" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAGIAAAAAAAAAAAAAAAAQAAAAAAAAAAgAE=</HashCode>
+      <FileName>GameEngine\EntityManager\EntityManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjetVellemanTEST.MovingEntitiy">
+    <Position X="22.75" Y="27.25" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAQA=</HashCode>
+      <FileName>GameEngine\EntityManager\MovingEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjetVellemanTEST.PlayerEntity">
+    <Position X="30.75" Y="27.25" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAOAAAAAAAAAAAAAAAAAAAAAAAgAAABAAAAAQA=</HashCode>
+      <FileName>GameEngine\EntityManager\PlayerEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjetVellemanTEST.InputManager">
+    <Position X="18.25" Y="1.5" Width="2.75" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Delegate Name="ProjetVellemanTEST.InputManager.OnKeyDown">
+        <TypeIdentifier>
+          <NewMemberFileName>GameEngine\InputManager\InputManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Delegate Name="ProjetVellemanTEST.InputManager.escapeDown">
+        <TypeIdentifier>
+          <NewMemberFileName>GameEngine\InputManager\InputManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAIAAEAAAAAAAAAiAAAAgAAAAAAIAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GameEngine\InputManager\InputManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjetVellemanTEST.GameEngine.K8055DManager.Fctvm110">
+    <Position X="21.75" Y="1.5" Width="4.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Delegate Name="ProjetVellemanTEST.GameEngine.K8055DManager.Fctvm110.AnyButtonsDown">
+        <TypeIdentifier>
+          <NewMemberFileName>GameEngine\K8055DManager\K8055DManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>ICAAIAwIAAAEAAKAAEAgAAAEAACIEADIAKAAAAEIECA=</HashCode>
+      <FileName>GameEngine\K8055DManager\K8055DManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjetVellemanTEST.GameEngine.SaveManager.SaveManager">
+    <Position X="27" Y="1.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAADAAAAAAAAAAAAAAAgAAAAAAAAAAgAAAA=</HashCode>
+      <FileName>GameEngine\SaveManager\SaveManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjetVellemanTEST.GameEngine.SoundManager.SoundManager">
+    <Position X="30.75" Y="1.5" Width="4.25" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Delegate Name="ProjetVellemanTEST.GameEngine.SoundManager.SoundManager.SystemVolumeChanged" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>GameEngine\SoundManager\SoundManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>ACCBAACAEBACGEAAQgAAAAAAoCAIIRAAhCAADCABBwA=</HashCode>
+      <FileName>GameEngine\SoundManager\SoundManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjetVellemanTEST.GameEngine.UiManager.UiManager">
+    <Position X="26" Y="11.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAQACQACAIAAAAAAAAAAAABgAAAAACAAAIAA=</HashCode>
+      <FileName>GameEngine\UiManager\UiManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjetVellemanTEST.GameEngine.UiManager.BaseUi">
+    <Position X="22" Y="13" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAgAAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GameEngine\UiManager\BaseUi.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjetVellemanTEST.GameEngine.UiManager.ChooseDifficultyUi">
+    <Position X="20" Y="15.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>IAABgAQAAAAAgIACAAAAAAAAACAAEABAAAAAAJIBAAA=</HashCode>
+      <FileName>GameEngine\UiManager\ChooseDifficultyUi.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjetVellemanTEST.GameEngine.UiManager.CreditsIUi">
+    <Position X="33.25" Y="15.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAgAAAAAAAACAAEABCAAAAAIIFAAA=</HashCode>
+      <FileName>GameEngine\UiManager\CreditsIUi.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjetVellemanTEST.GameEngine.UiManager.EndGameUi">
+    <Position X="3" Y="15.5" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAABgAAAAAAAAAAABAgAAAgAACAAAABAAAAAgJIBAAA=</HashCode>
+      <FileName>GameEngine\UiManager\EndGameUi.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjetVellemanTEST.GameEngine.UiManager.MenuUi">
+    <Position X="11.5" Y="15.5" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAABCCEgGAAAAAAAABgAgAgAACAAAAAAAABAAAIBAAA=</HashCode>
+      <FileName>GameEngine\UiManager\MenuUi.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjetVellemanTEST.GameEngine.UiManager.NewGameUi">
+    <Position X="24" Y="15.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAABgAAAAAAAAAAAAAEAAAAAACAAAABAAAAAApIBAAA=</HashCode>
+      <FileName>GameEngine\UiManager\NewGameUi.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjetVellemanTEST.GameEngine.UiManager.OnGameUi">
+    <Position X="37.25" Y="15.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>gAABAAAAAAAAAAAAAAAAAAGgACAAAAAAAABAAAAQAIA=</HashCode>
+      <FileName>GameEngine\UiManager\OnGameUi.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjetVellemanTEST.GameEngine.UiManager.PauseMenuUi">
+    <Position X="7.25" Y="15.5" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAADAgAAAgAACAAIABAAAAAgIIBAAA=</HashCode>
+      <FileName>GameEngine\UiManager\PauseMenuUi.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjetVellemanTEST.GameEngine.UiManager.SavedGameUi">
+    <Position X="16" Y="15.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAABgAAAAAAAAAAAAAEAAAAAACAAAABAAAAAApIBAAA=</HashCode>
+      <FileName>GameEngine\UiManager\SavedGameUi.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjetVellemanTEST.GameEngine.UiManager.SettingsUi">
+    <Position X="28" Y="15.5" Width="4.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAEAAAAAAAYgSAICAAAQBAAEAEAKABQAA=</HashCode>
+      <FileName>GameEngine\UiManager\SettingsUi.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjetVellemanTEST.GameEngine.UiManager.StartupUi">
+    <Position X="41" Y="15.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAACAAgAAAAAgAACAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>GameEngine\UiManager\StartupUi.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjetVellemanTEST.frmAppMain">
+    <Position X="13.75" Y="1.5" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAIEACAABAAAgAjIJgACICQAhgBoSxRgAAgAJAA=</HashCode>
+      <FileName>Main.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

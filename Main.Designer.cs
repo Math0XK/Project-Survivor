@@ -41,6 +41,7 @@
             // 
             // grpMain
             // 
+            this.grpMain.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.grpMain.Location = new System.Drawing.Point(0, 2);
             this.grpMain.Name = "grpMain";
             this.grpMain.Size = new System.Drawing.Size(1918, 1077);

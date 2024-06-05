@@ -187,5 +187,27 @@ namespace ProjectSurvivor.Properties {
                 return ResourceManager.GetStream("Shirobon_Xilioh", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à 1. Introduction
+        ///
+        ///1.1. Présentation du Jeu
+        ///
+        ///Born Survivor est un jeu d’arcade dans lequel le joueur contrôle un petit carré servant de personnage principal. 
+        ///Le but du jeu est de gagner le plus de points possible en tirant sur les carrés ennemis tout en les évitant.
+        ///
+        ///2. Installation et Configuration
+        ///
+        ///2.1. Prérequis Système
+        ///
+        ///Système d&apos;exploitation : Windows 10 ou supérieur.
+        ///Matériel : Clavier, souris.
+        ///Matériel requis pour jouer avec la carte : Carte Velleman K8055D, câble USB type A vers type B, et un PC avec [le reste de la chaîne a été tronqué]&quot;;.
+        /// </summary>
+        internal static string User_Guide {
+            get {
+                return ResourceManager.GetString("User Guide", resourceCulture);
+            }
+        }
     }
 }

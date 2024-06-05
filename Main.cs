@@ -315,7 +315,7 @@ namespace ProjetVellemanTEST
 							}
 						}
 					}
-					else if (hold && Vbtn[1] == 0) hold2 = false;
+					else if (hold2 && Vbtn[1] == 0) hold2 = false;
 				}
 			}
 		}

@@ -74,6 +74,7 @@ namespace ProjetVellemanTEST
                         {
                             entity.destroyed = true;                            //Entity can be destroyed
                             frmAppMain.score -= entity.points;                  //Remove points from score
+                            if(frmAppMain.score <= 0 )frmAppMain.score = 0;     //Avoid the score to go negative
                             if (frmAppMain.cardMode)
                             {
                                 Fctvm110.ClearDigitalChannel(frmAppMain.hp);    //Turn off digital output to match the health of the player
@@ -81,7 +82,6 @@ namespace ProjetVellemanTEST
                             }
                             frmAppMain.hp--;                                    //Decrement 1 HP
                             
-                            if(frmAppMain.score <= 0 )frmAppMain.score = 0;     //Avoid the score to go negative
                             frmAppMain.soundManager.PlaySoundEffect(frmAppMain.soundManager.hurtSoundEffect);   //Play a funny sound effect
                             return true;
                         }

@@ -11,9 +11,6 @@ namespace ProjetVellemanTEST
     //Create the player
     internal class PlayerEntity : BaseEntity
     {
-        internal bool isMoving = false;
-        internal bool collisionX = false;
-        internal bool collisionY = false;
         internal bool playerEnabled = false;
 
         internal override void onCreate(EntityManager entityManager)
