@@ -181,7 +181,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\User Guide.txt" />
+    <None Include="Resources\User Guide.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
