@@ -16,7 +16,10 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
         internal Label lblNameDescription;
         internal Label lblTitle;
 
-        //Initiate all elements and display the Ui
+        /// <summary>
+        /// Initiate all elements and display the Ui
+        /// </summary>
+        /// <param name="uiManager"></param>
         internal override void OnCreate(UiManager uiManager)
         {
             base.OnCreate(uiManager);
@@ -77,7 +80,11 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
                 btnNext.GotFocus += GotFocus;
             }
         }
-        //Method to force focus on each buttons and change color
+        /// <summary>
+        /// Method to force focus on each buttons and change color
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void GotFocus(object sender, EventArgs e)
         {
             if(sender == btnNext)
@@ -95,7 +102,11 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
                 btnNext.TabIndex = 0;
             }
         }
-        //Event that occurs when the button next is clicked
+        /// <summary>
+        /// Event that occurs when the button next is clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnNext_Click(object sender, EventArgs e)
         {
             uiManager.frmAppMain.soundManager.PlaySoundEffect(uiManager.frmAppMain.soundManager.clickSoundEffect);
@@ -117,7 +128,11 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
                 uiManager.CreateUiComponents<ChooseDifficultyUi>();
             }
         }
-        //Event that occurs when the back button is clicked
+        /// <summary>
+        /// Event that occurs when the back button is clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnBack_Click(object sender, EventArgs e)
         {
             uiManager.frmAppMain.soundManager.PlaySoundEffect(uiManager.frmAppMain.soundManager.clickSoundEffect);
@@ -126,7 +141,10 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             uiManager.frmAppMain.gameLayer = 2;
             uiManager.CreateUiComponents<MenuUi>();
         }
-        //Destroy all objects and clear the memory
+        /// <summary>
+        /// Destroy all objects and clear the memory
+        /// </summary>
+        /// <param name="uiManager"></param>
         internal override void OnDestroy(UiManager uiManager)
         {
             base.OnDestroy(uiManager);

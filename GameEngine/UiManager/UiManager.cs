@@ -31,7 +31,11 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
         List<BaseUi> uiComponents = new List<BaseUi>();
         internal List<Button> buttons = new List<Button>();
 
-        //Method used to create every types of ui
+        /// <summary>
+        /// Method used to create every types of ui
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
         internal T CreateUiComponents<T>() where T : BaseUi, new()
         {
             T ui = new T();
@@ -39,7 +43,10 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             ui.OnCreate(this);
             return ui;
         }
-        //Method used to clear every types of ui
+        /// <summary>
+        /// Method used to clear every types of ui
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
         internal void ClearUi<T>() where T : BaseUi
         {
             List<BaseUi>copy = new List<BaseUi>(uiComponents);
@@ -52,7 +59,9 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
                 }
             }
         }
-        //Method used to animate the startup Ui
+        /// <summary>
+        /// Method used to animate the startup Ui
+        /// </summary>
         internal void StartupAnimation()
         {
             foreach(BaseUi ui in uiComponents)
@@ -63,7 +72,9 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
                 }
             }
         }
-        //Method used to update on game ui
+        /// <summary>
+        /// Method used to update on game ui
+        /// </summary>
         internal void UpdateUi()
         {
             foreach(BaseUi ui in uiComponents)

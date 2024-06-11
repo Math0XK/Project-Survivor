@@ -18,7 +18,10 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
         Label lblTitle = new();
         Label lblDescription = new();
 
-        //Initiate all elements and display the Ui
+        /// <summary>
+        /// Initiate all elements and display the Ui
+        /// </summary>
+        /// <param name="uiManager"></param>
         internal override void OnCreate(UiManager uiManager)
         {
             base.OnCreate(uiManager);
@@ -93,7 +96,11 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
                 btnResume.GotFocus += GotFocus;
             }
         }
-        //Method to force focus on each buttons and change color
+        /// <summary>
+        /// Method to force focus on each buttons and change color
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void GotFocus(object sender, EventArgs e)
         {
             if(sender == btnResume)
@@ -118,14 +125,22 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
                 btnResume.TabIndex=0;
             }
         }
-        //Event that occurs when the button resume is clicked
+        /// <summary>
+        /// Event that occurs when the button resume is clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnResume_Click(object sender, EventArgs e)
         {
             uiManager.frmAppMain.soundManager.PlaySoundEffect(uiManager.frmAppMain.soundManager.clickSoundEffect);
 
             uiManager.ClearUi<PauseMenuUi>();
         }
-        //Event that occurs when the button restart is clicked
+        /// <summary>
+        /// Event that occurs when the button restart is clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnRestart_Click(object sender, EventArgs e)
         {
             uiManager.frmAppMain.soundManager.PlaySoundEffect(uiManager.frmAppMain.soundManager.clickSoundEffect);
@@ -151,7 +166,11 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
                 case 5: uiManager.frmAppMain.soundManager.PlayGameMusic(uiManager.frmAppMain.soundManager.demonTheme); break;
             }
         }
-        //Event that occurs when the back button is clicked
+        /// <summary>
+        /// Event that occurs when the back button is clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnBack_Click(object sender, EventArgs e)
         {
             if (uiManager.frmAppMain.cardMode)
@@ -173,7 +192,10 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             uiManager.CreateUiComponents<MenuUi>();
         }
 
-        //Destroy all objects and clear the memory
+        /// <summary>
+        /// Destroy all objects and clear the memory
+        /// </summary>
+        /// <param name="uiManager"></param>
         internal override void OnDestroy(UiManager uiManager)
         {
             base.OnDestroy(uiManager);

@@ -18,7 +18,10 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
         Label lblDiff = new();
         Panel pnlUi = new();
 
-        //Initiate all elements and display the Ui
+        /// <summary>
+        /// Initiate all elements and display the Ui
+        /// </summary>
+        /// <param name="uiManager"></param>
         internal override void OnCreate(UiManager uiManager)
         {
             base.OnCreate(uiManager);
@@ -74,7 +77,10 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
                 pnlUi.Controls.Add(lblDiff);
             }
         }
-        //Destroy all objects and clear the memory
+        /// <summary>
+        /// Destroy all objects and clear the memory
+        /// </summary>
+        /// <param name="uiManager"></param>
         internal override void OnDestroy(UiManager uiManager)
         {
             base.OnDestroy(uiManager);
@@ -84,7 +90,9 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             lblTicks.Dispose();
             pnlUi.Dispose();
         }
-        //Update informations displayed
+        /// <summary>
+        /// Update informations displayed
+        /// </summary>
         internal void updateOnGameUi()
         {
             lblTicks.Text = "Time : " + uiManager.frmAppMain.mainCpt;

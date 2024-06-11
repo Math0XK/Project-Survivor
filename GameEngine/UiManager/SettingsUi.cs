@@ -19,7 +19,10 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
         Label lblMusicVolume = new Label();
         Label lblSoundEffectsVolume = new Label();
 
-        //Initiate all elements and display the Ui
+        /// <summary>
+        /// Initiate all elements and display the Ui
+        /// </summary>
+        /// <param name="uiManager"></param>
         internal override void OnCreate(UiManager uiManager)
         {
             base.OnCreate(uiManager);
@@ -107,23 +110,37 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
                 btnBack.LostFocus += BtnBack_LostFocus;
             }
         }
-        //Change color to white when button lose focus
+        /// <summary>
+        /// Change color to white when button lose focus
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnBack_LostFocus(object sender, EventArgs e)
         {
             btnBack.ForeColor = Color.White;
         }
-        //Change color to green when the button get focus
+        /// <summary>
+        /// Change color to green when the button get focus
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnBack_GotFocus(object sender, EventArgs e)
         {    
             btnBack.ForeColor = Color.ForestGreen;
         }
-        //Event that occurs when the system volume value has changed
+        /// <summary>
+        /// Event that occurs when the system volume value has changed
+        /// </summary>
         private void SoundManager_isSystemVolumeChanged()
         {
             systemVolume.Value = (int)(uiManager.frmAppMain.soundManager.systemVolume * 100);
             lblSystemVolume.Text = "System Volume :" + systemVolume.Value + "%";
         }
-        //Event that occurs when the back button is clicked
+        /// <summary>
+        /// Event that occurs when the back button is clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnBack_Click(object sender, EventArgs e)
         {
             uiManager.frmAppMain.soundManager.PlaySoundEffect(uiManager.frmAppMain.soundManager.clickSoundEffect);
@@ -132,7 +149,10 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             uiManager.frmAppMain.gameLayer = 2;
             uiManager.CreateUiComponents<MenuUi>();
         }
-        //Destroy all objects and clear the memory
+        /// <summary>
+        /// Destroy all objects and clear the memory
+        /// </summary>
+        /// <param name="uiManager"></param>
         internal override void OnDestroy(UiManager uiManager)
         {
             base.OnDestroy(uiManager);
@@ -147,14 +167,22 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             lblTitle.Dispose();
             uiManager.buttons.Clear();
         }
-        //Event that occurs when the trackbar value has changed
+        /// <summary>
+        /// Event that occurs when the trackbar value has changed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SoundEffectsVolume_ValueChanged(object sender, EventArgs e)
         {
             uiManager.frmAppMain.soundManager.soundEffectsVolume = (float)soundEffectsVolume.Value / 100;
             lblSoundEffectsVolume.Text = "Sound effects Volume :" + soundEffectsVolume.Value + "%";
 
         }
-        //Event that occurs when the trackbar value has changed
+        /// <summary>
+        /// Event that occurs when the trackbar value has changed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MusicVolume_ValueChanged(object sender, EventArgs e)
         {
             uiManager.frmAppMain.soundManager.musicVolume = (float)musicVolume.Value / 100;
@@ -162,7 +190,11 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             uiManager.frmAppMain.soundManager.pauseMusicLoop();
             uiManager.frmAppMain.soundManager.resumeMusicLoop();
         }
-        //Event that occurs when the trackbar value has changed
+        /// <summary>
+        /// Event that occurs when the trackbar value has changed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SystemVolume_ValueChanged(object sender, EventArgs e)
         {
             uiManager.frmAppMain.soundManager.systemVolume = (float)systemVolume.Value/100;

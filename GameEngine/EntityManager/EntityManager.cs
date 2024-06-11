@@ -18,9 +18,11 @@ namespace ProjetVellemanTEST
         { 
             this.frmAppMain = frmAppMain;
         }
-        internal int K8055Diff;     //Stock the difficulty multiplicator of the K8055
+        //Stock the difficulty multiplicator of the K8055
+        internal int K8055Diff;
 
-        List<BaseEntity> entities = new List<BaseEntity>();     //Stock entities in a list
+        //Stock entities in a list
+        List<BaseEntity> entities = new List<BaseEntity>();     
 
         //Method called to create any types of entity
         internal T CreateEntity<T>() where T : BaseEntity, new()
@@ -72,17 +74,23 @@ namespace ProjetVellemanTEST
                         }
                         else
                         {
-                            entity.destroyed = true;                            //Entity can be destroyed
-                            frmAppMain.score -= entity.points;                  //Remove points from score
-                            if(frmAppMain.score <= 0 )frmAppMain.score = 0;     //Avoid the score to go negative
+                            //Entity can be destroyed
+                            entity.destroyed = true;
+                            //Remove points from score
+                            frmAppMain.score -= entity.points;
+                            //Avoid the score to go negative
+                            if (frmAppMain.score <= 0 )frmAppMain.score = 0;     
                             if (frmAppMain.cardMode)
                             {
-                                Fctvm110.ClearDigitalChannel(frmAppMain.hp);    //Turn off digital output to match the health of the player
-                                Fctvm110.OutputAnalogChannel(1, (int)(((float)frmAppMain.score / 20000f) * 255f));  //Display the score on the analog output 1
+                                //Turn off digital output to match the health of the player
+                                Fctvm110.ClearDigitalChannel(frmAppMain.hp);
+                                //Display the score on the analog output 1
+                                Fctvm110.OutputAnalogChannel(1, (int)(((float)frmAppMain.score / 20000f) * 255f));  
                             }
-                            frmAppMain.hp--;                                    //Decrement 1 HP
-                            
-                            frmAppMain.soundManager.PlaySoundEffect(frmAppMain.soundManager.hurtSoundEffect);   //Play a funny sound effect
+                            //Decrement 1 HP
+                            frmAppMain.hp--;
+                            //Play a funny sound effect
+                            frmAppMain.soundManager.PlaySoundEffect(frmAppMain.soundManager.hurtSoundEffect);   
                             return true;
                         }
                     }
@@ -133,15 +141,21 @@ namespace ProjetVellemanTEST
                             }
                             else
                             {
-                                entity.destroyed = true;            //Allow entity to be destroyed
-                                projectile.destroyed = true;        //Allow projectile to be destroyed
+                                //Allow entity to be destroyed
+                                entity.destroyed = true;
+                                //Allow projectile to be destroyed
+                                projectile.destroyed = true;        
                                 if (frmAppMain.cardMode)
                                 {
-                                    frmAppMain.score += entity.points * K8055Diff; //Add points to score multiplicated by the difficulty multiplicator
+                                    //Add points to score multiplicated by the difficulty multiplicator
+                                    frmAppMain.score += entity.points * K8055Diff; 
                                 }
-                                else frmAppMain.score += entity.points;            //Add points to score
-                                Fctvm110.OutputAnalogChannel(1, (int)(((float)frmAppMain.score / 20000f) * 255f));      //Display the score to analog output 1
-                                frmAppMain.soundManager.PlaySoundEffect(frmAppMain.soundManager.hitSoundEffect);        //Play a funny sound effect
+                                //Add points to score
+                                else frmAppMain.score += entity.points;
+                                //Display the score to analog output 1
+                                Fctvm110.OutputAnalogChannel(1, (int)(((float)frmAppMain.score / 20000f) * 255f));
+                                //Play a funny sound effect
+                                frmAppMain.soundManager.PlaySoundEffect(frmAppMain.soundManager.hitSoundEffect);        
                                 return true;
                             }
                         }

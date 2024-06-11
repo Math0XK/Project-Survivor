@@ -40,14 +40,20 @@ namespace ProjetVellemanTEST.GameEngine.SoundManager
         {
             this.frmAppMain = frmAppMain;
         }
-        //Play music loop
+        /// <summary>
+        /// Play music loop
+        /// </summary>
+        /// <param name="fileName"></param>
         public void PlayMusicLoop(string fileName)
         {
             currentTheme = fileName;
             Play();
             
         }
-        //Play level music
+        /// <summary>
+        /// Play level music
+        /// </summary>
+        /// <param name="fileName"></param>
         public void PlayGameMusic(string fileName)
         {  
             theme.Open(new("file:///" + new FileInfo(fileName).FullName));
@@ -55,14 +61,20 @@ namespace ProjetVellemanTEST.GameEngine.SoundManager
             theme.Play();
             theme.MediaEnded += Theme_MediaEnded;
         }
-        //Event that occurs when level music end
+        /// <summary>
+        /// Event that occurs when level music end
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Theme_MediaEnded(object sender, EventArgs e)
         {
             theme.MediaEnded -= Theme_MediaEnded;
             frmAppMain.uiManager.win = true;
             frmAppMain.uiManager.CreateUiComponents<EndGameUi>();
         }
-        //Play music
+        /// <summary>
+        /// Play music
+        /// </summary>
         internal void Play()
         {
             theme.Volume = musicVolume * systemVolume;
@@ -70,14 +82,20 @@ namespace ProjetVellemanTEST.GameEngine.SoundManager
             theme.Play();
             theme.MediaEnded += CurrentTheme_MediaEnded;
         }
-        //Event that occurs when music has stopped
+        /// <summary>
+        /// Event that occurs when music has stopped
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CurrentTheme_MediaEnded(object sender, EventArgs e)
         {
             theme.MediaEnded -= CurrentTheme_MediaEnded;
             theme.Close();
             Play();
         }
-        //Stop music loop
+        /// <summary>
+        /// Stop music loop
+        /// </summary>
         public void StopMusicLoop() 
         {
             theme.MediaEnded -= CurrentTheme_MediaEnded;
@@ -85,7 +103,10 @@ namespace ProjetVellemanTEST.GameEngine.SoundManager
             theme.Stop();
             theme.Close();
         }
-        //Play soundeffect
+        /// <summary>
+        /// Play soundeffect
+        /// </summary>
+        /// <param name="fileName"></param>
         public void PlaySoundEffect(string fileName)
         {
             MediaPlayer soundEffect = new MediaPlayer();
@@ -98,7 +119,11 @@ namespace ProjetVellemanTEST.GameEngine.SoundManager
 
 
         }
-        //Stop and unload the soundeffect
+        /// <summary>
+        /// Stop and unload the soundeffect
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void StopSound(object sender, EventArgs e)
         {
             List<MediaPlayer> copy = new List<MediaPlayer>(soundEffects);
@@ -111,7 +136,9 @@ namespace ProjetVellemanTEST.GameEngine.SoundManager
                 }
             }
         }
-        //Pause music
+        /// <summary>
+        /// Pause music
+        /// </summary>
         internal void pauseMusicLoop()
         {
             theme.Pause();
@@ -123,7 +150,9 @@ namespace ProjetVellemanTEST.GameEngine.SoundManager
             theme.Play();
         }
 
-        //Manage event related to the change of the system volume value
+        /// <summary>
+        /// Manage event related to the change of the system volume value
+        /// </summary>
         public delegate void SystemVolumeChanged();
         public event SystemVolumeChanged isSystemVolumeChanged;
 

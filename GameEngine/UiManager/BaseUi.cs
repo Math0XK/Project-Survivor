@@ -10,7 +10,9 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
 {
     internal abstract class BaseUi
     {
-        //Give methods to all Ui
+        /// <summary>
+        /// Give methods to all Ui
+        /// </summary>
         internal UiManager uiManager;
         internal virtual void OnCreate(UiManager uiManager)
         {

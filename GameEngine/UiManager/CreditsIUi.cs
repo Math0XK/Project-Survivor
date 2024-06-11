@@ -17,7 +17,10 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
         Button btnSoundtrack;
         Button btnDev;
 
-        //Initiate all elements and display the Ui
+        /// <summary>
+        /// Initiate all elements and display the Ui
+        /// </summary>
+        /// <param name="uiManager"></param>
         internal override void OnCreate(UiManager uiManager)
         {
             base.OnCreate(uiManager);
@@ -91,7 +94,11 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
                 btnSoundtrack.GotFocus += GotFocus;
             }
         }
-        //Event that occurs when the back button is clicked
+        /// <summary>
+        /// Event that occurs when the back button is clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnBack_Click(object sender, EventArgs e)
         {
             uiManager.frmAppMain.soundManager.PlaySoundEffect(uiManager.frmAppMain.soundManager.clickSoundEffect);
@@ -100,7 +107,10 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             uiManager.frmAppMain.gameLayer = 2;
             uiManager.CreateUiComponents<MenuUi>();
         }
-        //Destroy all objects and clear the memory
+        /// <summary>
+        /// Destroy all objects and clear the memory
+        /// </summary>
+        /// <param name="uiManager"></param>
         internal override void OnDestroy(UiManager uiManager)
         {
             base.OnDestroy(uiManager);
@@ -113,7 +123,11 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
             uiManager.buttons.Clear();
 
         }
-        //Update the text of the label when a button is clicked
+        /// <summary>
+        /// Update the text of the label when a button is clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void UpdateLabel(object sender, EventArgs e)
         {
             uiManager.frmAppMain.soundManager.PlaySoundEffect(uiManager.frmAppMain.soundManager.clickSoundEffect);
@@ -131,7 +145,11 @@ namespace ProjetVellemanTEST.GameEngine.UiManager
                 lblCreditsDescription.Text = "\r\nThis game was made for non-commercial purposes only.\r\n\r\nBorn Survivor © 2024 by Mathys Deboever is licensed under CC BY-NC-SA 4.0. To view a copy of this license, visit https://creativecommons.org/licenses/by-nc-sa/4.0/\r\n";
             }
         }
-        //Method to force focus on each buttons and change color
+        /// <summary>
+        /// Method to force focus on each buttons and change color
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void GotFocus(object sender, EventArgs e)
         {
             if(sender == btnBack)

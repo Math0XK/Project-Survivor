@@ -34,21 +34,31 @@ namespace ProjetVellemanTEST
 
 
 		internal int mainCpt = 0;
+        //Movement speed of the player
+        private int velocity = 10;
+        //Health of the player
+        internal int hp = 8;
+        //Score of the player
+        internal int score = 0;
+        //Highscore of each levels
+        internal int[] highScore = [0, 0, 0, 0, 0];
+        //Indicator of what screen is displayed
+        internal int gameLayer = 0;
+        //Maximum projectile capacity
+        internal int charge = 3;
+        //Memorize how many projectiles are displayed
+        internal int currentProjectile = 0;
+        //Memorize how many entity are displayed 
+        internal int currentEntity = 0;
+        //Stock the binary value of the digital channels of the K8055
+        internal int digitalChannels;
+        //Stock the value of each analog input
+        internal int data1, data2;
+        //Stock the value of each digital inputs after the mask
+        internal int[] Vbtn = [0, 0, 0, 0, 0];
 
-
-		private int velocity = 10;						//Movement speed of the player
-		internal int hp = 8;							//Health of the player
-		internal int score = 0;							//Score of the player
-		internal int[] highScore = [0, 0, 0, 0, 0];		//Highscore of each levels
-        internal int gameLayer = 0;						//Indicator of what screen is displayed
-        internal int charge = 3;						//Maximum projectile capacity
-        internal int currentProjectile = 0;				//Memorize how many projectiles are displayed
-        internal int currentEntity = 0;					//Memorize how many entity are displayed 
-        internal int digitalChannels;					//Stock the binary value of the digital channels of the K8055
-        internal int data1, data2;						//Stock the value of each analog input
-        internal int[] Vbtn = [0, 0, 0, 0, 0];			//Stock the value of each digital inputs after the mask
-
-        internal string pseudo;							//Save the name of the player
+        //Save the name of the player
+        internal string pseudo;							
 
 		//Initiate my classes 
 		internal InputManager inputManager;
@@ -77,7 +87,8 @@ namespace ProjetVellemanTEST
 		public frmAppMain()
 		{
 			InitializeComponent();
-			grpMain.Size = Size;						//Givve grpMain the size of the window
+            //Givve grpMain the size of the window
+            grpMain.Size = Size;						
 
 			//Initiate my classes 
 			inputManager = new InputManager();
@@ -103,13 +114,18 @@ namespace ProjetVellemanTEST
 			{
 				if (cardMode)
 				{
-					Fctvm110.isAnyButtonsDown += Fctvm110_isAnyButtonsDown;		//Events that occurs when any buttons of the K8055 is pressed
+                    //Events that occurs when any buttons of the K8055 is pressed
+                    Fctvm110.isAnyButtonsDown += Fctvm110_isAnyButtonsDown;		
 				}
-				inputManager.isAnyKeyDown += anyKeyDown;						//Events that occurs when any buttons of the keyboard is pressed
-				uiManager.CreateUiComponents<StartupUi>();						//Create the startup Ui
+                //Events that occurs when any buttons of the keyboard is pressed
+                inputManager.isAnyKeyDown += anyKeyDown;
+                //Create the startup Ui
+                uiManager.CreateUiComponents<StartupUi>();						
 			}
-            soundManager.isSystemVolumeChanged += SoundManager_isSystemVolumeChanged;  //Event that occurs when the system volume value has changed
-			soundManager.PlayMusicLoop(soundManager.startupTheme);				//Play the menu theme
+            //Event that occurs when the system volume value has changed
+            soundManager.isSystemVolumeChanged += SoundManager_isSystemVolumeChanged;
+            //Play the menu theme
+            soundManager.PlayMusicLoop(soundManager.startupTheme);				
 			
 		}
 

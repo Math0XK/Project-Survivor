@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace ProjetVellemanTEST.GameEngine.EntityManager
 {
-    //Create a tiny entity moving in wierd sinus like shape
+    //Create a tiny entity moving in weird sinus like shape
     internal class MovingEntityPattern01TinyVersion : BaseEntity
     {
         Random Random = new Random();
